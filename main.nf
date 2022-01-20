@@ -38,7 +38,7 @@ fastqs = Channel.fromFilePairs("${input}/${file_glob}")
 
 
 
-include { fastqc } from './modules/Initial_QC/fastqc.nf' as raw_fqc
+include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
 
 workflow {
   take fastqs
