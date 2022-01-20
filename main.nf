@@ -32,7 +32,7 @@ out_dir = "./nextflow_out"
 project_name = "test_1"
 thread_max = "19"
 input_folder = "./test_fq"
-file_glob = "_[1,2].fq.gz"
+file_glob = "*_[1,2].fq.gz"
 
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 
