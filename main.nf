@@ -34,7 +34,7 @@ thread_max = "19"
 input_folder = "./test_fq"
 file_glob = "_[1,2].fq.gz"
 
-fastqs = Channel.fromFilePairs("${input}/${file_glob}")
+fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 
 
 
