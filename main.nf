@@ -34,11 +34,11 @@ thread_max = "19"
 input_folder = "./test_fq"
 file_glob = "_[1,2].fq.gz"
 
-fastqs = Channel.fromFilePairs("${input}/${file_glob}".map  { file -> tuple(file.baseName, file) }
+fastqs = Channel.fromFilePairs("${input}/${file_glob}")
 
 
 
-include { raw_fqc } from './modules/Initial_QC/fastqc.nf'
+include { fastqc } from './modules/Initial_QC/fastqc.nf' as raw_fqc
 
 workflow {
   take fastqs
