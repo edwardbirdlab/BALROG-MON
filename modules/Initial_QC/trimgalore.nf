@@ -1,5 +1,4 @@
 process trimgalore {
-	publishDir "${out_dir}/${project_name}/trimgalore", mode: 'copy', overwrite: false
 	container 'https://depot.galaxyproject.org/singularity/trim-galore:0.6.7--hdfd78af_0'
     input:
         tuple val(sample), file(fastq_1), file(fastq_2)
