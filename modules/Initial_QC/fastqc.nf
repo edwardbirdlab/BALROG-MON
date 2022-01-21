@@ -3,7 +3,7 @@ process fastqc {
     input:
         tuple val(sample), file(fastq_1), file(fastq_2)
     output:
-        file("${sample}_fastqc.tar")
+        file("${sample}_fastqc.tar")emit: fastqc
 
     script:
 
