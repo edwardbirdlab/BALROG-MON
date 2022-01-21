@@ -1,5 +1,5 @@
 process fastqc {
-	publishDir "${out_dir}/${project_name}/test_data_set", mode: 'copy', overwrite: false
+	publishDir "${out_dir}/${project_name}/fastqc", mode: 'copy', overwrite: false
 	container 'pegi3s/fastqc:latest'
     input:
         tuple val(sample), file(fastq_1), file(fastq_2)
