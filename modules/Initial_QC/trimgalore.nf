@@ -4,9 +4,9 @@ process trimgalore {
     input:
         tuple val(sample), file(fastq_1), file(fastq_2)
     output:
-	    tuple val(meta), path("*.fq.gz")    , emit: trimmed_reads
-	    tuple val(meta), path("*report.txt"), emit: trimgalore_log
-	    tuple val(meta), path("*.zip") , emit: trimgalore_zip
+	    tuple val(sample), file(${sample}_val_1.fq.gz), file(${sample}_val_2.fq.gz) , emit: trimmed_reads
+	    tuple val(sample), path("*report.txt"), emit: trimgalore_log
+	    tuple val(sample), path("*.zip") , emit: trimgalore_zip
 
     script:
 
@@ -15,9 +15,11 @@ process trimgalore {
             --cores 4 \\
             --paired \\
             --gzip \\
-            ${sample}_1.fastq.gz \\
-            ${sample}_2.fastq.gz
+            --basename ${sample} \\
+            ${fastq_1} \\
+            ${fastq_2}
     """
 }
 
 /* At some point add in option for clipping of 3' and 5'. */
+/* Add in function for determining core number */
