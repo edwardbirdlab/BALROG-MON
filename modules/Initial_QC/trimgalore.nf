@@ -1,0 +1,1 @@
+Trimgalore module
