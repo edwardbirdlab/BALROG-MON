@@ -9,3 +9,5 @@
 *.fa.gz
 *.fq.gz
 token.txt
+!test_fq_1.fq.gz
+!test_fq_2.fq.gz
