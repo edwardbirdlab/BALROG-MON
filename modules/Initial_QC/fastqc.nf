@@ -1,7 +1,7 @@
 process fastqc {
 	container 'pegi3s/fastqc:latest'
     input:
-        tuple val(sample), file(fastq_1), file(fastq_2)
+        tuple val(sample), file(fastqs)
     output:
         file("${sample}_fastqc.tar")
 
@@ -9,7 +9,7 @@ process fastqc {
 
     """
     mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastq_1} ${fastq_2}
+    fastqc -o ${sample}_fastqc -t 19 ${fastqs[0]} ${fastqs[1]}
     tar -cvf ${sample}_fastqc.tar ${sample}_fastqc
     """
 }

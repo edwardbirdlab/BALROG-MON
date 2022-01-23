@@ -1,22 +1,22 @@
-process trimgalore {
+process trim_galore {
 	container 'https://depot.galaxyproject.org/singularity/trim-galore:0.6.7--hdfd78af_0'
     input:
-        tuple val(sample), file(fastq_1), file(fastq_2)
+        tuple val(sample), file(fastqs)
     output:
-	    tuple val(sample), file(${sample}_val_1.fq.gz), file(${sample}_val_2.fq.gz) , emit: trimmed_reads
-	    tuple val(sample), path("*report.txt"), emit: trimgalore_log
-	    tuple val(sample), path("*.zip") , emit: trimgalore_zip
+	    tuple val(sample), file("${sample}_val_1.fq.gz"), file("${sample}_val_2.fq.gz")
+	    tuple val(sample), path("*report.txt")
+	    tuple val(sample), path("*.zip")
 
     script:
 
     """
-    trim_galore \\
-            --cores 4 \\
-            --paired \\
-            --gzip \\
-            --basename ${sample} \\
-            ${fastq_1} \\
-            ${fastq_2}
+    trim_galore \
+    --cores 4 \
+    --paired \
+    --gzip \
+    --basename ${sample} \
+    ${fastqs[0]} \
+    ${fastqs[1]}
     """
 }
 
