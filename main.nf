@@ -38,9 +38,11 @@ fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 
 
 include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
+include { trim_galore as raw_fqc } from './modules/Initial_QC/trimgalore.nf'
 
 workflow {
   take fastqs
   take thread_max
   raw_fqc(fastqs)
+  trim_galore(fastqs)
 }
