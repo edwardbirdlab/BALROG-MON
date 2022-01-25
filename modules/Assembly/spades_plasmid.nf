@@ -1,16 +1,16 @@
-process fastqc {
-	publishDir "${out_dir}/${project_name}/test_data_set", mode: 'copy', overwrite: false
-	container 'pegi3s/fastqc:latest'
+process spades_plasmid {
+    container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
+    publishDir "${params.project_name}/spades_plasmid", mode: 'copy', overwrite: false
+
     input:
-        tuple val(sample), file(fastq_1), file(fastq_2)
+        tuple val(sample), path(fastq1), path(fastq2)
     output:
-        file("${sample}_fastqc.tar")
+        tuple val(sample), path("${sample}_scaffolds.fasta"), emit: plasmids
 
     script:
 
     """
-    mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastq_1} ${fastq_2}
-    tar -cvf ${sample}_fastqc.tar ${sample}_fastqc
+    spades.py -k 21,33,55,77 --careful --only-assembler --plasmid --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t 19
+    cp ${sample}/scaffolds.fasta ${sample}_scaffolds.fasta 
     """
 }

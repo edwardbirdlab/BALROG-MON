@@ -5,7 +5,7 @@ process spades_genome {
     input:
         tuple val(sample), path(fastq1), path(fastq2)
     output:
-        path("${sample}_scaffolds.fasta"), emit: genome
+        tuple val(sample), path("${sample}_scaffolds.fasta"), emit: genome
 
     script:
 
