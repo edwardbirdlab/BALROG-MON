@@ -5,7 +5,7 @@ process fastqc {
     input:
         tuple val(sample), file(fastqs)
     output:
-        file("${sample}_fastqc.tar")
+        path("${sample}_fastqc.tar"), emit: rawfastq
 
     script:
 

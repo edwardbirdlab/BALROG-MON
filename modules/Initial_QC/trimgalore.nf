@@ -5,9 +5,9 @@ process trim_galore {
     input:
         tuple val(sample), file(fastqs)
     output:
-	    tuple val(sample), file("${sample}_val_1.fq.gz"), file("${sample}_val_2.fq.gz")
-	    tuple val(sample), path("*report.txt")
-	    tuple val(sample), file("${sample}_1.fq.gz_trimming_report.txt"), file("${sample}_2.fq.gz_trimming_report.txt")
+	    tuple val(sample), path("${sample}_val_1.fq.gz"), path("${sample}_val_2.fq.gz"), emit: trimmed_fastq
+	    tuple val(sample), path("*report.txt"), emit: trim_galore_report
+	    tuple val(sample), path("${sample}_1.fq.gz_trimming_report.txt"), path("${sample}_2.fq.gz_trimming_report.txt"), emit: trim_galore_red_reports
 
 
     script:
