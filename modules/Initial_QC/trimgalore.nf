@@ -1,5 +1,7 @@
 process trim_galore {
 	container 'quay.io/biocontainers/trim-galore:0.6.7--hdfd78af_0'
+    publishDir "${params.project_name}/trim_galore", mode: 'copy', overwrite: false
+
     input:
         tuple val(sample), file(fastqs)
     output:

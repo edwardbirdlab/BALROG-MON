@@ -28,10 +28,12 @@ nextflow.enable.dsl=2
 
 /* Temp while testing */
 
-thread_max = "19"
+
 input_folder = "./BARA/test_fq"
 file_glob = "*_[1,2].fq.gz"
 includeConfig = "./configs/nxtflow.cfg"
+params.project_name = 'BARA_Out'
+params.thread_max  = '19'
 
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 
@@ -41,8 +43,7 @@ include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
 include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
 
 workflow {
-  take fastqs
-  take thread_max
-  raw_fqc(fastqs)
-  trim_galore(fastqs)
+    take fastqs
+    raw_fqc(fastqs)
+    trim_galore(fastqs)
 }
