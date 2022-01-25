@@ -41,9 +41,11 @@ fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 
 include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
 include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
+include { spades_genome as spades_genome } from './modules/Assembly/spades_genome.nf'
 
 workflow {
     take fastqs
     raw_fqc(fastqs)
     trim_galore(fastqs)
+    spades_genome(trim_galore.out.trimmed_fastq)
 }
