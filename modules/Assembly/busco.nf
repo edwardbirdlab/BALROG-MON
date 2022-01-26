@@ -1,16 +1,16 @@
-process fastqc {
-	publishDir "${out_dir}/${project_name}/test_data_set", mode: 'copy', overwrite: false
-	container 'pegi3s/fastqc:latest'
+process busco {
+    container 'ezlabgva/busco:v5.2.2_cv2'
+    publishDir "${params.project_name}/busco", mode: 'copy', overwrite: false
+
     input:
-        tuple val(sample), file(fastq_1), file(fastq_2)
+        tuple val(sample), file(fasta)
     output:
-        file("${sample}_fastqc.tar")
+        path("${sample}.tar.gz"), emit: quast_results
 
     script:
 
     """
-    mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastq_1} ${fastq_2}
-    tar -cvf ${sample}_fastqc.tar ${sample}_fastqc
+    busco -i ${fasta} -o ${sample} -m genome
+    tar -zcvf ${sample}.tar.gz ./${sample}
     """
 }

@@ -46,6 +46,7 @@ include { spades_plasmid as spades_plasmid } from './modules/Assembly/spades_pla
 include { quast as quast_genome} from './modules/Assembly/quast.nf'
 include { quast as quast_plasmid} from './modules/Assembly/quast.nf'
 include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
+include { busco as busco_genome } from './modules/Assembly/busco.nf'
 
 workflow {
     take fastqs
@@ -56,4 +57,5 @@ workflow {
     spades_plasmid(trim_galore.out.trimmed_fastq)
     quast_genome(spades_genome.out.genome)
     quast_plasmid(spades_plasmid.out.plasmids)
+    busco_genome(spades_genome.out.genome)
 }
