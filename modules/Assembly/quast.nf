@@ -5,8 +5,8 @@ process quast {
     input:
         tuple val(sample), file(fasta)
     output:
-        path(${sample}), emit: quast_results
-        path(report_${sample}.tsv) emit: quast_tsv
+        path($sample), emit: quast_results
+        path("report_${sample}.tsv"), emit: quast_tsv
 
     script:
 
