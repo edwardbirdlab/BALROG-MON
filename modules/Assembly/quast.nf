@@ -5,13 +5,12 @@ process quast {
     input:
         tuple val(sample), file(fasta)
     output:
-        path($sample), emit: quast_results
-        path("report_${sample}.tsv"), emit: quast_tsv
+        path("${sample}.tar.gz"), emit: quast_results
 
     script:
 
     """
-    quast.py --out-dir ${sample} ${fasta} --threads ${params.thread_max}
-    mv ${sample}/report.tsv ./report_${sample}.tsv
+    quast.py -o ${sample} ${fasta} --threads ${params.thread_max}
+    tar -zcvf ${sample}.tar.gz ./${sample}
     """
 }
