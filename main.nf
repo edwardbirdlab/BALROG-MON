@@ -45,14 +45,15 @@ include { spades_genome as spades_genome } from './modules/Assembly/spades_genom
 include { spades_plasmid as spades_plasmid } from './modules/Assembly/spades_plasmid.nf'
 include { quast as quast_genome} from './modules/Assembly/quast.nf'
 include { quast as quast_plasmid} from './modules/Assembly/quast.nf'
+include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
 
 workflow {
     take fastqs
+    card_DB()
     raw_fqc(fastqs)
     trim_galore(fastqs)
     spades_genome(trim_galore.out.trimmed_fastq)
     spades_plasmid(trim_galore.out.trimmed_fastq)
     quast_genome(spades_genome.out.genome)
     quast_plasmid(spades_plasmid.out.plasmids)
-    
 }

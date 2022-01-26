@@ -1,16 +1,18 @@
-process quast {
-    container 'quay.io/biocontainers/quast:5.0.2--py37pl526hb5aa323_2'
-    publishDir "${params.project_name}/quast", mode: 'copy', overwrite: false
+process card_DB {
 
-    input:
-        tuple val(sample), file(fasta)
+    publishDir "${params.project_name}/card_DB", mode: 'copy', overwrite: false
+
     output:
-        path("${sample}.tar.gz"), emit: quast_results
+        path("localDB.tar.gz"), emit: card_DB
 
     script:
 
     """
-    quast.py -o ${sample} ${fasta} --threads ${params.thread_max}
-    tar -zcvf ${sample}.tar.gz ./${sample}
+    mkdir localDB
+    cd localDB
+    wget https://card.mcmaster.ca/latest/data
+    tar -xvf data ./card.json
+    cd ..
+    tar -zcvf localDB.tar.gz localDB
     """
 }
