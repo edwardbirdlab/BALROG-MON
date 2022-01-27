@@ -1,7 +1,7 @@
 process prokka {
     container 'staphb/prokka:1.14.5'
     containerOptions = "--user root"
-    publishDir "${params.project_name}/prokka", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/prokka_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

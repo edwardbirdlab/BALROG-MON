@@ -1,6 +1,6 @@
-process card {
+process quast {
     container 'quay.io/biocontainers/quast:5.0.2--py37pl526hb5aa323_2'
-    publishDir "${params.project_name}/quast", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/quast_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

@@ -43,12 +43,12 @@ include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
 include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
 include { spades_genome as spades_genome } from './modules/Assembly/spades_genome.nf'
 include { spades_plasmid as spades_plasmid } from './modules/Assembly/spades_plasmid.nf'
-include { quast as quast_genome} from './modules/Assembly/quast.nf'
-include { quast as quast_plasmid} from './modules/Assembly/quast.nf'
+include { quast as quast_genome} from './modules/Assembly/quast_genome.nf'
+include { quast as quast_plasmid} from './modules/Assembly/quast_plasmid.nf'
 include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
 include { busco as busco_genome } from './modules/Assembly/busco.nf'
-include { prokka as prokka_genome } from './modules/Annotation/prokka.nf'
-include { prokka as prokka_plasmid } from './modules/Annotation/prokka.nf'
+include { prokka as prokka_genome } from './modules/Annotation/prokka_genome.nf'
+include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
 
 workflow {
     take fastqs
