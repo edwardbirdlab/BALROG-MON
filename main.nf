@@ -47,6 +47,8 @@ include { quast as quast_genome} from './modules/Assembly/quast.nf'
 include { quast as quast_plasmid} from './modules/Assembly/quast.nf'
 include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
 include { busco as busco_genome } from './modules/Assembly/busco.nf'
+include { prokka as prokka_genome } from './modules/Annotation/prokka.nf'
+include { prokka as prokka_plasmid } from './modules/Annotation/prokka.nf'
 
 workflow {
     take fastqs
@@ -58,4 +60,6 @@ workflow {
     quast_genome(spades_genome.out.genome)
     quast_plasmid(spades_plasmid.out.plasmids)
     busco_genome(spades_genome.out.genome)
+    prokka_genome(spades_genome.out.genome)
+    prokka_plasmid(spades_plasmid.out.plasmids)
 }
