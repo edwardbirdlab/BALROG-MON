@@ -49,10 +49,13 @@ include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
 include { busco as busco_genome } from './modules/Assembly/busco.nf'
 include { prokka as prokka_genome } from './modules/Annotation/prokka_genome.nf'
 include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
+include { plasmidverify as plasmidverify } from './modules/Assembly/plasmidverify.nf'
+include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidverify_db.nf'
 
 workflow {
     take fastqs
     card_DB()
+    plasmidverify_db()
     raw_fqc(fastqs)
     trim_galore(fastqs)
     spades_genome(trim_galore.out.trimmed_fastq)
@@ -62,4 +65,5 @@ workflow {
     busco_genome(spades_genome.out.genome)
     prokka_genome(spades_genome.out.genome)
     prokka_plasmid(spades_plasmid.out.plasmids)
+    plasmidverify(spades_plasmid.out.plasmids, plasmidverify_db.out.pfam_DB)
 }
