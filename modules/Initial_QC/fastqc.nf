@@ -5,13 +5,12 @@ process fastqc {
     input:
         tuple val(sample), file(fastqs)
     output:
-        path("${sample}_fastqc.tar.gz"), emit: rawfastq
+        path("./${sample}_fastqc"), emit: rawfastq
 
     script:
 
     """
     mkdir ${sample}_fastqc
     fastqc -o ${sample}_fastqc -t 19 ${fastqs[0]} ${fastqs[1]}
-    tar -zcvf ${sample}_fastqc.tar.gz ${sample}_fastqc
     """
 }

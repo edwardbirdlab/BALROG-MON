@@ -6,6 +6,7 @@ process spades_genome {
         tuple val(sample), path(fastq1), path(fastq2)
     output:
         tuple val(sample), path("${sample}_scaffolds.fasta"), emit: genome
+        tuple val(sample), path("./${sample}"), emit spades_genome_dir
 
     script:
 

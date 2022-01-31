@@ -6,12 +6,11 @@ process prokka {
     input:
         tuple val(sample), file(fasta)
     output:
-        path("${sample}.tar.gz"), emit: prokka_results
+        path("./${sample}"), emit: prokka_results
 
     script:
 
     """
     prokka --outdir ${sample} --prefix ${sample} ${fasta} --cpus 19 --centre X --compliant
-    tar -zcvf ${sample}.tar.gz ./${sample}
     """
 }

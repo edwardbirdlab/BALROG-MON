@@ -5,12 +5,11 @@ process busco {
     input:
         tuple val(sample), file(fasta)
     output:
-        path("${sample}.tar.gz"), emit: quast_results
+        path("./${sample}"), emit: quast_results
 
     script:
 
     """
     busco -i ${fasta} -o ${sample} -m genome
-    tar -zcvf ${sample}.tar.gz ./${sample}
     """
 }
