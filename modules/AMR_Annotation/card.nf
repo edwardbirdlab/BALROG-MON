@@ -1,16 +1,17 @@
 process card {
-    container 'quay.io/biocontainers/quast:5.0.2--py37pl526hb5aa323_2'
-    publishDir "${params.project_name}/quast", mode: 'copy', overwrite: false
+    container 'quay.io/biocontainers/rgi:5.1.1--py_0'
+    publishDir "${params.project_name}/CARD", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)
+        path(db)
     output:
-        path("${sample}.tar.gz"), emit: quast_results
+        path("./${sample}"), emit: card_results
 
     script:
 
     """
-    quast.py -o ${sample} ${fasta} --threads ${params.thread_max}
-    tar -zcvf ${sample}.tar.gz ./${sample}
+    mkdir ${sample}
+    rgi main --input_sequence $fasta --output_file ./${sample}/${sample}_out --input_type contig --local --clean
     """
 }

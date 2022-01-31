@@ -51,6 +51,7 @@ include { prokka as prokka_genome } from './modules/Annotation/prokka_genome.nf'
 include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
 include { plasmidverify as plasmidverify } from './modules/Assembly/plasmidverify.nf'
 include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidverify_db.nf'
+include { card as card} from './modules/AMR_Annotation/card.nf'
 
 workflow {
     take fastqs
@@ -66,4 +67,5 @@ workflow {
     prokka_genome(spades_genome.out.genome)
     prokka_plasmid(spades_plasmid.out.plasmids)
     plasmidverify(spades_plasmid.out.plasmids, plasmidverify_db.out.pfam_DB)
+    card(spades_plasmid.out.plasmids, card_DB.out.card_DB)
 }
