@@ -52,6 +52,7 @@ include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.n
 include { plasmidverify as plasmidverify } from './modules/Assembly/plasmidverify.nf'
 include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidverify_db.nf'
 include { card as card} from './modules/AMR_Annotation/card.nf'
+include { barrnap as barrnap} from './modules/Annotation/barrnap.nf'
 
 workflow {
     take fastqs
@@ -68,4 +69,5 @@ workflow {
     prokka_plasmid(spades_plasmid.out.plasmids)
     plasmidverify(spades_plasmid.out.plasmids, plasmidverify_db.out.pfam_DB)
     card(spades_plasmid.out.plasmids, card_DB.out.card_DB)
+    barrnap(spades_genome.out.genome)
 }

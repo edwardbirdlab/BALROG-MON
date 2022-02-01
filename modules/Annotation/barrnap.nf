@@ -1,17 +1,16 @@
-process prokka {
-    container 'staphb/prokka:1.14.5'
+process barrnap {
+    container 'barrnap:1.0'
     containerOptions = "--user root"
-    publishDir "${params.project_name}/prokka_genome", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/barrnap", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)
     output:
-        path("${sample}.tar.gz"), emit: prokka_results
+        tuple val(sample), path("${sample}_seqs.fa"), emit: barrnap_results
 
     script:
 
     """
-    prokka --outdir ${sample} --prefix ${sample} ${fasta} --cpus 19 --centre X --compliant
-    tar -zcvf ${sample}.tar.gz ./${sample}
+    barrnap --quiet $fasta --outseq ${sample}_seqs.fa
     """
 }
