@@ -54,6 +54,7 @@ include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidv
 include { card as card} from './modules/AMR_Annotation/card.nf'
 include { barrnap as barrnap } from './modules/Annotation/barrnap.nf'
 include { db_16s as db_16s } from './modules/DB_Down/ncbi_16s.nf'
+include { blast_16s as blast_16s } from './modules/Annotation/blast_16s.nf'
 
 workflow {
     take fastqs
@@ -72,4 +73,5 @@ workflow {
     plasmidverify(spades_plasmid.out.plasmids, plasmidverify_db.out.pfam_DB)
     card(spades_plasmid.out.plasmids, card_DB.out.card_DB)
     barrnap(spades_genome.out.genome)
+    blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
 }
