@@ -1,16 +1,17 @@
-process fastqc {
-	publishDir "${out_dir}/${project_name}/test_data_set", mode: 'copy', overwrite: false
-	container 'pegi3s/fastqc:latest'
+process card {
+    container 'quay.io/biocontainers/rgi:5.1.1--py_0'
+    publishDir "${params.project_name}/CARD", mode: 'copy', overwrite: false
+
     input:
-        tuple val(sample), file(fastq_1), file(fastq_2)
+        tuple val(sample), file(fasta)
+        path(db)
     output:
-        file("${sample}_fastqc.tar")
+        path("./${sample}"), emit: card_results
 
     script:
 
     """
-    mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastq_1} ${fastq_2}
-    tar -cvf ${sample}_fastqc.tar ${sample}_fastqc
+    mkdir ${sample}
+    rgi main --input_sequence $fasta --output_file ./${sample}/${sample}_out --input_type contig --local --clean
     """
 }

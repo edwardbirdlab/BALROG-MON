@@ -1,0 +1,11 @@
+################# BASE IMAGE ######################
+FROM continuumio/miniconda3:4.10.3p1
+
+################## INSTALLATION ######################
+USER root
+
+RUN conda install -y -c bioconda -c conda-forge ncbi-amrfinderplus
+
+
+WORKDIR /data/
+
