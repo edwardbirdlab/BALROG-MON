@@ -52,10 +52,12 @@ include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.n
 include { plasmidverify as plasmidverify } from './modules/Assembly/plasmidverify.nf'
 include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidverify_db.nf'
 include { card as card} from './modules/AMR_Annotation/card.nf'
-include { barrnap as barrnap} from './modules/Annotation/barrnap.nf'
+include { barrnap as barrnap } from './modules/Annotation/barrnap.nf'
+include { db_16s as db_16s } from './modules/DB_Down/ncbi_16s.nf'
 
 workflow {
     take fastqs
+    db_16s()
     card_DB()
     plasmidverify_db()
     raw_fqc(fastqs)
