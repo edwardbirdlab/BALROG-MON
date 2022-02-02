@@ -1,12 +1,12 @@
-process card {
+process card_plasmid {
     container 'quay.io/biocontainers/rgi:5.1.1--py_0'
-    publishDir "${params.project_name}/CARD", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/CARD_plasmid", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)
         path(db)
     output:
-        path("./${sample}"), emit: card_results
+        path("./${sample}"), emit: card_plasmid_results
 
     script:
 

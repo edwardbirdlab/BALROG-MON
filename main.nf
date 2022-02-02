@@ -51,11 +51,13 @@ include { prokka as prokka_genome } from './modules/Annotation/prokka_genome.nf'
 include { prokka as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
 include { plasmidverify as plasmidverify } from './modules/Assembly/plasmidverify.nf'
 include { plasmidverify_db as plasmidverify_db} from './modules/DB_Down/plasmidverify_db.nf'
-include { card as card} from './modules/AMR_Annotation/card.nf'
+include { card_genome as card_genome} from './modules/AMR_Annotation/card_genome.nf'
+include { card_plasmid as card_plasmid } from './modules/AMR_Annotation/card_plasmid.nf'
 include { barrnap as barrnap } from './modules/Annotation/barrnap.nf'
 include { db_16s as db_16s } from './modules/DB_Down/ncbi_16s.nf'
 include { blast_16s as blast_16s } from './modules/Annotation/blast_16s.nf'
-include { amrfinder as amrfinder } from './modules/AMR_Annotation/amrfinder.nf'
+include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/amrfinder_genome.nf'
+include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
 
 workflow {
     take fastqs
@@ -72,8 +74,10 @@ workflow {
     prokka_genome(spades_genome.out.genome)
     prokka_plasmid(spades_plasmid.out.plasmids)
     plasmidverify(spades_plasmid.out.plasmids, plasmidverify_db.out.pfam_DB)
-    card(spades_plasmid.out.plasmids, card_DB.out.card_DB)
+    card_plasmid(spades_plasmid.out.plasmids, card_DB.out.card_DB)
+    card_genome(spades_genome.out.genome, card_DB.out.card_DB)
     barrnap(spades_genome.out.genome)
     blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
-    amrfinder(spades_genome.out.genome)
+    amrfinder_genome(spades_genome.out.genome)
+    amrfinder_plasmid(spades_plasmid.out.plasmids)
 }
