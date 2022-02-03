@@ -58,9 +58,13 @@ include { db_16s as db_16s } from './modules/DB_Down/ncbi_16s.nf'
 include { blast_16s as blast_16s } from './modules/Annotation/blast_16s.nf'
 include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/amrfinder_genome.nf'
 include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
+include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
+include { resfinder_db as resfinder_db } from './modules/DB_Down/resfinder_db.nf'
+include {resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
 
 workflow {
     take fastqs
+    resfinder_db()
     db_16s()
     card_DB()
     plasmidverify_db()
@@ -80,4 +84,6 @@ workflow {
     blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
     amrfinder_genome(spades_genome.out.genome)
     amrfinder_plasmid(spades_plasmid.out.plasmids)
+    resfinder_genome(spades_genome.out.genome, resfinder_db.out.resfinder_DB)
+    resfinder_plasmid(spades_plasmid.out.plasmids, resfinder_db.out.resfinder_DB)
 }
