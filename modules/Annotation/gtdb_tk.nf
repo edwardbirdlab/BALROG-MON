@@ -1,5 +1,5 @@
 process gtdbtk {
-    container 'gtdbtk:1.5.0'
+    container 'ecogenomic/gtdbtk:1.5.0'
     containerOptions = "--user root"
     publishDir "${params.project_name}/prokka_genome", mode: 'copy', overwrite: false
 
