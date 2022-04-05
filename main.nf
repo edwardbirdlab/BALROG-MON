@@ -61,6 +61,7 @@ include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotatio
 include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
 include { resfinder_db as resfinder_db } from './modules/DB_Down/resfinder_db.nf'
 include {resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
+include {gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
 
 workflow {
     take fastqs
@@ -86,4 +87,5 @@ workflow {
     amrfinder_plasmid(spades_plasmid.out.plasmids)
     resfinder_genome(spades_genome.out.genome, resfinder_db.out.resfinder_DB)
     resfinder_plasmid(spades_plasmid.out.plasmids, resfinder_db.out.resfinder_DB)
+    gtdbtk(spades_genome.out.genome)
 }

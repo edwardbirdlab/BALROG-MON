@@ -1,5 +1,5 @@
-process prokka {
-    container 'staphb/prokka:1.14.5'
+process gtdbtk {
+    container 'gtdbtk:1.5.0'
     containerOptions = "--user root"
     publishDir "${params.project_name}/prokka_genome", mode: 'copy', overwrite: false
 
@@ -11,6 +11,8 @@ process prokka {
     script:
 
     """
-    prokka --outdir ${sample} --prefix ${sample} ${fasta} --cpus 19 --centre X --compliant
+    mkdir fasta_dir
+    cp ${fasta} fasta_dir
+    gtdbtk classify_wf --out_dir ${sample} --prefix ${sample} --genome_dir fasta_dir --cpus 19 
     """
 }
