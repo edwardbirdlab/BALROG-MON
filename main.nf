@@ -60,11 +60,13 @@ include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/
 include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
 include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
 include { resfinder_db as resfinder_db } from './modules/DB_Down/resfinder_db.nf'
-include {resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
-include {gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
+include { resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
+include { gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
+include { gtdbtk_db as gtdbtk_db } from './modules/DB_Down/gtdbtk_db.nf'
 
 workflow {
     take fastqs
+    gtdbtk_db()
     resfinder_db()
     db_16s()
     card_DB()
@@ -87,5 +89,5 @@ workflow {
     amrfinder_plasmid(spades_plasmid.out.plasmids)
     resfinder_genome(spades_genome.out.genome, resfinder_db.out.resfinder_DB)
     resfinder_plasmid(spades_plasmid.out.plasmids, resfinder_db.out.resfinder_DB)
-    gtdbtk(spades_genome.out.genome)
+    gtdbtk(spades_genome.out.genome, gtdbtk_db.out.DB)
 }
