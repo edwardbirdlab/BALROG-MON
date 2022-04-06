@@ -1,6 +1,6 @@
 process resfinder_db {
 
-    container 'resfinder:1.0'
+    container 'ebird013/plasmid_verify:1.0'
     publishDir "${params.project_name}/resfinder_DB", mode: 'copy', overwrite: false
 
     output:

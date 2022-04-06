@@ -1,5 +1,5 @@
 process plasmidverify {
-    container 'plasmidverify:1.0'
+    container 'ebird013/plasmid_verify:1.0'
     containerOptions = "--user root"
     publishDir "${params.project_name}/plasmid_verify", mode: 'copy', overwrite: false
 

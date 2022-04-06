@@ -1,6 +1,6 @@
 process gtdbtk_db {
 
-    container 'ecogenomic/gtdbtk:1.5.0'
+    container 'ebird013/gtdbtk:1.5.0'
     publishDir "${params.project_name}/gtdbtk_DB", mode: 'copy', overwrite: false
 
     output:
