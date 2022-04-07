@@ -1,4 +1,5 @@
 process card_plasmid {
+   label 'lowmem'
     container 'quay.io/biocontainers/rgi:5.1.1--py_0'
     publishDir "${params.project_name}/CARD_plasmid", mode: 'copy', overwrite: false
 

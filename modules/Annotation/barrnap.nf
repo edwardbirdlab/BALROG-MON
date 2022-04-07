@@ -1,4 +1,5 @@
 process barrnap {
+    label 'lowmem'
     container 'ebird013/barrnap:0.9'
     containerOptions = "--user root"
     publishDir "${params.project_name}/barrnap", mode: 'copy', overwrite: false

@@ -1,4 +1,5 @@
 process resfinder_plasmid {
+   label 'lowmem'
     container 'ebird013/plasmid_verify:1.0'
     containerOptions = "--user root"
     publishDir "${params.project_name}/resfinder_plasmid", mode: 'copy', overwrite: false

@@ -1,4 +1,5 @@
 process spades_plasmid {
+    label 'medmem'
     container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
     publishDir "${params.project_name}/spades_plasmid", mode: 'copy', overwrite: false
 

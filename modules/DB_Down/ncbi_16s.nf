@@ -1,5 +1,5 @@
 process db_16s {
-
+    label 'small'
     publishDir "${params.project_name}/db_16s", mode: 'copy', overwrite: false
 
     output:

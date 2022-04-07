@@ -1,5 +1,5 @@
 process card_DB {
-
+    label 'small'
     publishDir "${params.project_name}/card_DB", mode: 'copy', overwrite: false
 
     output:

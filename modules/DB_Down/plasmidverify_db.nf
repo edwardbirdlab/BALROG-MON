@@ -1,5 +1,5 @@
 process plasmidverify_db {
-
+    label 'small'
     output:
         path("Pfam-A.hmm"), emit: pfam_DB
 
