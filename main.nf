@@ -29,7 +29,7 @@ nextflow.enable.dsl=2
 /* Temp while testing */
 
 
-input_folder = "../testdata/"
+input_folder = "/scratch/vlpicken/Github/testdata"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BARA_Out'
 params.thread_max  = '19'

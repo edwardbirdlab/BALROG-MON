@@ -1,7 +1,6 @@
 process plasmidverify {
     label 'lowmem'
-    container 'ebird013/plasmid_verify:1.0'
-    containerOptions = "--user root"
+    container 'ebird013/plasmid_verify:1.0.1'
     publishDir "${params.project_name}/plasmid_verify", mode: 'copy', overwrite: false
 
     input:

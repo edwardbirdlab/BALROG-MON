@@ -1,7 +1,6 @@
 process resfinder_plasmid {
    label 'lowmem'
     container 'ebird013/resfinder:4.0'
-    containerOptions = "--user root"
     publishDir "${params.project_name}/resfinder_plasmid", mode: 'copy', overwrite: false
 
     input:
@@ -17,8 +16,6 @@ process resfinder_plasmid {
     cd ${db}
     python3 INSTALL.py non_interactive
     cd ..
-    cp -r ${db} /usr/src
-    mkdir ${sample}
-    python3 /usr/src/run_resfinder.py -o ./${sample} -l 0.6 -t 0.8 -ifa ${fasta} -acq
+    python3 /usr/src/run_resfinder.py -o ./${sample} -l 0.6 -t 0.8 -ifa ${fasta} -acq -db_res ./${db}
     """
 }

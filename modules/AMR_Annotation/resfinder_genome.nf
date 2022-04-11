@@ -1,7 +1,6 @@
 process resfinder_genome {
    label 'lowmem'
     container 'ebird013/resfinder:4.0'
-    containerOptions = "--user root"
     publishDir "${params.project_name}/resfinder_genome", mode: 'copy', overwrite: false
 
     input:

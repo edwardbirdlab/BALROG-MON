@@ -1,7 +1,6 @@
 process prokka_plasmid {
     label 'lowmem'
     container 'staphb/prokka:1.14.5'
-    containerOptions = "--user root"
     publishDir "${params.project_name}/prokka_plasmid", mode: 'copy', overwrite: false
 
     input:
