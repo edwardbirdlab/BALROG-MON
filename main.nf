@@ -29,9 +29,8 @@ nextflow.enable.dsl=2
 /* Temp while testing */
 
 
-input_folder = "./BARA/test_fq"
+input_folder = "../testdata/"
 file_glob = "*_[1,2].fq.gz"
-includeConfig = "./configs/nxtflow.cfg"
 params.project_name = 'BARA_Out'
 params.thread_max  = '19'
 

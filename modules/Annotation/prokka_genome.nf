@@ -1,4 +1,4 @@
-process prokka {
+process prokka_genome {
     label 'lowmem'
     container 'staphb/prokka:1.14.5'
     containerOptions = "--user root"

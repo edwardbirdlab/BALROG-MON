@@ -1,5 +1,6 @@
 process db_16s {
     label 'small'
+    container 'ncbi/blast'
     publishDir "${params.project_name}/db_16s", mode: 'copy', overwrite: false
 
     output:

@@ -1,5 +1,6 @@
 process blast_16s {
     label 'lowmem'
+    container 'ncbi/blast'
     publishDir "${params.project_name}/ncbi_16s", mode: 'copy', overwrite: false
 
     input:
