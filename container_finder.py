@@ -12,6 +12,7 @@ if len(os.listdir(BARA_Dir + '/modules')) > 1:
             for line in module:
                 if search in line:
                     containers.append(line)
+            module.close()
 
 cut_containers = []
 for i in containers:
@@ -20,17 +21,25 @@ for i in containers:
     cut_containers.append(con)
 
 
-docker_containers = []
+containers = []
+
 for i in cut_containers:
-    if i.startswith('quay'):
+    if i in containers:
         pass
     else:
-    	if i in docker_containers:
-    		pass
-    	else:
-    		docker_containers.append(i)
+        containers.append(i)
 
-os.system("mkdir " + out_dir)
+commands = []
 
-for cont in docker_containers:
-    os.system('singularity pull --dir ' + out_dir + ' docker://' + cont)
+for cont in containers:
+    command = 'singularity pull --dir ' + out_dir + ' docker://' + cont
+    commands.append(command)
+
+
+command = ' & '.join(commands)
+
+text_file = open("singularity_pre_download.sh", "w")
+n = text_file.write('mkdir containers_down & ' + command)
+text_file.close()
+
+os.system('chmod +x singularity_pre_download.sh')
