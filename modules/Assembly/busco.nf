@@ -1,6 +1,6 @@
 process busco {
     label 'lowmem'
-    container '/scratch/vlpicken/Github/containers/busco_v5.2.2_cv2.sif'
+    container 'ezlabgva/busco:v5.2.2_cv2'
     publishDir "${params.project_name}/busco", mode: 'copy', overwrite: false
 
     input:
