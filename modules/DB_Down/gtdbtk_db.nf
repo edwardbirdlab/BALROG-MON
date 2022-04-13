@@ -10,7 +10,7 @@ process gtdbtk_db {
 
     """
     mkdir out_db
-    wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
-    tar -xf gtdbtk_data.tar.gz -C out_db
+    wget https://data.gtdb.ecogenomic.org/releases/release202/202.0/auxillary_files/gtdbtk_r202_data.tar.gz
+    tar -xf gtdbtk_r202_data.tar.gz -C out_db
     """
 }
