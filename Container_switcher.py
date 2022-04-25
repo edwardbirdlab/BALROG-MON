@@ -37,7 +37,7 @@ for folder in os.listdir(BARA_Dir + '/modules'):
             module = open(BARA_Dir + '/modules' + '/' + folder + '/' + mod, 'r')
             for line in module:
                 if any(word in line for word in containers):
-                    new_line = 'if (workflow.containerEngine == \'singularity\'){ container \'./containers_down/' + con + '.sif\' } else { container \'' + con + '\' } /n'
+                    new_line = 'if (workflow.containerEngine == \'singularity\'){ container \'./containers_down/' + con + '.sif\' } else { container \'' + con + '\' } \\n'
                     new_file = new_file + new_line
                 else:
                     new_file = new_file + line
