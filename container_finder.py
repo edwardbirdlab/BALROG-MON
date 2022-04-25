@@ -1,6 +1,6 @@
 import os
 
-BARA_Dir = '/work/GitHub/BARA'
+BARA_Dir = '.'
 out_dir = './containers_down'
 
 search = 'container'
