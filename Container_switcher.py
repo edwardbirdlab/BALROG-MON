@@ -36,16 +36,15 @@ for folder in os.listdir(BARA_Dir + '/modules'):
             new_file = ''
             module = open(BARA_Dir + '/modules' + '/' + folder + '/' + mod, 'r')
             for line in module:
-                for con in containers:
-                    if con in line:
-                        new_line = 'if (workflow.containerEngine == \'singularity\'){ container \'./containers_down/' + con + '.sif\' } else { container \'' + con + '\' }'
-                        new_file = new_file + new_line
-                    else:
-                        new_file = new_file + line
+                if any(word in line for word in containers):
+                    new_line = 'if (workflow.containerEngine == \'singularity\'){ container \'./containers_down/' + con + '.sif\' } else { container \'' + con + '\' }'
+                    new_file = new_file + new_line
+                else:
+                    new_file = new_file + line
             module.close()
             module_edit = open(BARA_Dir + '/modules' + '/' + folder + '/' + mod, 'w')
             module_edit.write(new_file)
-            module_eidt.close()
+            module_edit.close()
 
 
 
