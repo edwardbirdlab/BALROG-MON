@@ -29,10 +29,11 @@ for i in cut_containers:
     else:
         containers.append(i)
 
-new_file = ''
+
 
 for folder in os.listdir(BARA_Dir + '/modules'):
         for mod in os.listdir(BARA_Dir + '/modules' + '/' + folder):
+            new_file = ''
             module = open(BARA_Dir + '/modules' + '/' + folder + '/' + mod, 'r')
             for line in module:
                 for con in containers:
