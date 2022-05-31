@@ -1,6 +1,6 @@
 process fastqc {
     label 'lowmem'
-	container 'pegi3s/fastqc:latest'
+	container 'pegi3s/fastqc:0.11.9'
     publishDir "${params.project_name}/raw_fastqc", mode: 'copy', overwrite: false
 
     input:
