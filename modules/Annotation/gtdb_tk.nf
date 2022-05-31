@@ -1,6 +1,6 @@
 process gtdbtk {
     label 'bigmem'
-    container 'ebird013/gtdbtk:1.5.0'
+    container 'library://edwardbird/bara/gtdbtk:1.5.0'
     publishDir "${params.project_name}/gtdbtk", mode: 'copy', overwrite: false
 
     input:

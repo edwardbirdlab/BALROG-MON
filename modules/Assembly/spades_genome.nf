@@ -1,6 +1,6 @@
 process spades_genome {
     label 'medmem'
-    container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
+    container 'library://edwardbird/bara/spades:3.14.0'
     publishDir "${params.project_name}/spades_genome", mode: 'copy', overwrite: false
 
     input:

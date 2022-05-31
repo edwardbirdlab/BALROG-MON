@@ -1,6 +1,6 @@
 process resfinder_plasmid {
    label 'lowmem'
-    container 'ebird013/resfinder:4.0'
+    container 'library://edwardbird/bara/resfinder:4.0'
     publishDir "${params.project_name}/resfinder_plasmid", mode: 'copy', overwrite: false
 
     input:

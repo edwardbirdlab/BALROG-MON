@@ -1,6 +1,6 @@
 process busco {
     label 'lowmem'
-    container 'ezlabgva/busco:v5.2.2_cv2'
+    container 'library://edwardbird/bara/busco:5.2.2'
     publishDir "${params.project_name}/busco", mode: 'copy', overwrite: false
 
     input:

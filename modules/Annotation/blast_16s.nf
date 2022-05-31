@@ -1,6 +1,6 @@
 process blast_16s {
     label 'lowmem'
-    container 'ncbi/blast'
+    container 'library://edwardbird/bara/ncbi_blast:1.0'
     publishDir "${params.project_name}/ncbi_16s", mode: 'copy', overwrite: false
 
     input:

@@ -1,6 +1,6 @@
 process trim_galore {
     label 'lowmem'
-	container 'quay.io/biocontainers/trim-galore:0.6.7--hdfd78af_0'
+	container 'library://edwardbird/bara/trimgalore:0.6.7'
     publishDir "${params.project_name}/trim_galore", mode: 'copy', overwrite: false
 
     input:

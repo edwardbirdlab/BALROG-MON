@@ -1,6 +1,6 @@
 process barrnap {
     label 'lowmem'
-    container 'ebird013/barrnap:0.9'
+    container 'library://edwardbird/bara/barrnap:0.9'
     publishDir "${params.project_name}/barrnap", mode: 'copy', overwrite: false
 
     input:

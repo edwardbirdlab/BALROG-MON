@@ -1,6 +1,6 @@
 process amrfinder_plasmid {
    label 'lowmem'
-    container 'staphb/ncbi-amrfinderplus'
+    container 'library://edwardbird/bara/ncbi-amrfinderplus:1.0'
     publishDir "${params.project_name}/AMRFinder_plasmid", mode: 'copy', overwrite: false
 
     input:

@@ -1,6 +1,6 @@
 process resfinder_db {
     label 'small'
-    container 'ebird013/resfinder:4.0'
+    container 'library://edwardbird/bara/resfinder:4.0'
     publishDir "${params.project_name}/resfinder_DB", mode: 'copy', overwrite: false
 
     output:

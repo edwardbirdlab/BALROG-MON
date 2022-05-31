@@ -1,6 +1,6 @@
 process quast {
         label 'lowmem'
-    container 'quay.io/biocontainers/quast:5.0.2--py37pl526hb5aa323_2'
+    container 'library://edwardbird/bara/quast:5.0.2'
     publishDir "${params.project_name}/quast_plasmid", mode: 'copy', overwrite: false
 
     input:

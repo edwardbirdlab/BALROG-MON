@@ -1,6 +1,6 @@
 process prokka_plasmid {
     label 'lowmem'
-    container 'staphb/prokka:1.14.5'
+    container 'library://edwardbird/bara/prokka:1.14.5'
     publishDir "${params.project_name}/prokka_plasmid", mode: 'copy', overwrite: false
 
     input:

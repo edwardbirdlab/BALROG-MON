@@ -1,6 +1,6 @@
 process card_plasmid {
    label 'lowmem'
-    container 'quay.io/biocontainers/rgi:5.1.1--py_0'
+    container 'library://edwardbird/bara/rgi:5.1.1'
     publishDir "${params.project_name}/CARD_plasmid", mode: 'copy', overwrite: false
 
     input:
