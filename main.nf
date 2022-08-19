@@ -29,7 +29,7 @@ nextflow.enable.dsl=2
 /* Temp while testing */
 
 
-input_folder = "/homes/vlpicken/data/bacterial_isolates"
+input_folder = "/work/Github/Data/bacterial_isolates"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BARA_Out'
 params.thread_max  = '19'
