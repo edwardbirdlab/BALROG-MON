@@ -1,3 +1,16 @@
+/*
+#######################################
+  ____               _____             
+ |  _ \      /\     |  __ \      /\    
+ | |_) |    /  \    | |__) |    /  \   
+ |  _ <    / /\ \   |  _  /    / /\ \  
+ | |_) |  / ____ \  | | \ \   / ____ \ 
+ |____/  /_/    \_\ |_|  \_\ /_/    \_\
+#######################################                                      
+*/                                      
+
+
+
 #!/usr/bin/env nextflow
 /*
 ========================================================================================
@@ -13,7 +26,7 @@
 def helpMessage() {
     //log.info
     log.info"""
-    add instructions here
+    add instructions here, this isnt really a help message yet is it
     """.stripIndent()
 }
 
@@ -29,7 +42,7 @@ nextflow.enable.dsl=2
 /* Temp while testing */
 
 
-input_folder = "/work/Github/Data/bacterial_isolates"
+input_folder = "/scratch/edwardbird/bact_iso_test"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BARA_Out'
 params.thread_max  = '19'
@@ -86,7 +99,5 @@ workflow {
     blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
     amrfinder_genome(spades_genome.out.genome)
     amrfinder_plasmid(spades_plasmid.out.plasmids)
-    resfinder_genome(spades_genome.out.genome, resfinder_db.out.resfinder_DB)
-    resfinder_plasmid(spades_plasmid.out.plasmids, resfinder_db.out.resfinder_DB)
     gtdbtk(spades_genome.out.genome, gtdbtk_db.out.DB)
 }
