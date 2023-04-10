@@ -11,6 +11,6 @@ process amrfinder_plasmid {
     script:
 
     """
-    amrfinder -n ${fasta} -o ${sample}_AMRFinder.tsv
+    amrfinder -n ${fasta} -o ${sample}_AMRFinder.tsv -u
     """
 }

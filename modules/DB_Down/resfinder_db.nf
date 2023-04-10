@@ -5,6 +5,7 @@ process resfinder_db {
 
     output:
         path("./db_resfinder"), emit: resfinder_DB
+        path("all.fasta"), emit: resfinder_fasta
 
     script:
 
@@ -12,6 +13,7 @@ process resfinder_db {
     git clone https://git@bitbucket.org/genomicepidemiology/resfinder_db.git db_resfinder
     cd db_resfinder
     python3 INSTALL.py kma_index non_interactive
+    cp all.fsa ../all.fasta
     cd ..
     """
 }

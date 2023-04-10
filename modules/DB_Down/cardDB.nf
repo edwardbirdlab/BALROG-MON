@@ -4,13 +4,16 @@ process card_DB {
 
     output:
         path("./localDB"), emit: card_DB
+        path("nucleotide_fasta_protein_homolog_model.fasta"), emit: card_nucleotide_PHM_fasta
+        path("protein_fasta_protein_homolog_model.fasta"), emit: card_protein_PHM_fasta
+
 
     script:
 
     """
     mkdir localDB
-    cd localDB
     wget https://card.mcmaster.ca/latest/data
-    tar -xvf data ./card.json
+    tar -xvf data
+    cp card.json ./localDB
     """
 }
