@@ -1,6 +1,6 @@
 process amrfinder_db {
    label 'lowmem'
-    container 'library://edwardbird/bara/ncbi-amrfinderplus:1.0'
+    container 'library://edwardbirdlab/bara/amrfinderplus:latest'
     publishDir "${params.project_name}/AMRFinder_db", mode: 'copy', overwrite: false
 
     input:

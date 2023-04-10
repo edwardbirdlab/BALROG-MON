@@ -92,7 +92,7 @@ workflow {
     card_DB()
     pfam_db()
     platon_db()
-//    amrfinder_db()
+    amrfinder_db()
     raw_fqc(fastqs)
     trim_galore(fastqs)
     spades_genome(trim_galore.out.trimmed_fastq)
