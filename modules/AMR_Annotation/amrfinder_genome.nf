@@ -1,6 +1,6 @@
 process amrfinder_genome {
    label 'lowmem'
-    container 'library://edwardbirdlab/bara/amrfinderplus:latest'
+    container 'library://edwardbirdlab/bara/amrfinderplus:3.11.4'
     publishDir "${params.project_name}/AMRFinder_genome", mode: 'copy', overwrite: false
 
     input:
