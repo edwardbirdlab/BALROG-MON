@@ -1,0 +1,29 @@
+Bootstrap: library
+From: library://mirjunaid26/base/conda:latest
+
+%labels
+    MAINTAINER="Your Name "
+
+%environment
+
+
+%post
+
+    # Install Git
+    apt-get install -y git
+
+    # Clone argdit
+    cd /opt
+    git clone https://github.com/phglab/ARGDIT.git
+    cd ARGDIT
+    chmod u+x *.py *.sh
+    conda update conda
+    conda env create -n argdit --file ./argdit-conda-linux.yml
+    conda activate argdit
+    ./conda-install-od-seq-linux.sh
+
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+%runscript
