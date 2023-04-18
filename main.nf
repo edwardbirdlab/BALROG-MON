@@ -24,20 +24,6 @@
 */
 
 
-def helpMessage() {
-    //log.info
-    log.info"""
-    add instructions here, this isnt really a help message yet is it
-    """.stripIndent()
-}
-
-
-// Show help emssage
-if (params.help){
-    helpMessage()
-    exit 0
-}
-
 nextflow.enable.dsl=2
 
 /* Temp while testing */
@@ -84,7 +70,16 @@ include { argannot_db as argannot_db } from './modules/DB_Down/argannot_db.nf'
 
 
 workflow {
+
+/*
+Input
+*/
+
     take fastqs
+
+/*
+Database Downloading
+*/
     gtdbtk_db()
     resfinder_db()
     argannot_db()
@@ -93,21 +88,49 @@ workflow {
     pfam_db()
     platon_db()
     amrfinder_db()
+
+
+/*
+QC & Trimming
+*/   
     raw_fqc(fastqs)
     trim_galore(fastqs)
+
+/*
+Assembly & Plasmid Prediciton + QC
+*/
     spades_genome(trim_galore.out.trimmed_fastq)
     platon(spades_genome.out.genome, platon_db.out.platon_DB)
     quast_genome(platon.out.predict_chr)
     quast_plasmid(platon.out.predict_plas)
     busco_genome(platon.out.predict_chr)
+    viralverify(platon.out.predict_plas, pfam_db.out.pfam_DB)
+
+/*
+Quick Functional Annotation
+*/
     prokka_genome(platon.out.predict_chr)
     prokka_plasmid(platon.out.predict_plas)
-    viralverify(platon.out.predict_plas, pfam_db.out.pfam_DB)
-    card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
-    card_genome(platon.out.predict_chr, card_DB.out.card_DB)
+
+/*
+AMR Database Prep
+*/ 
+    arg_dbs = amrfinder_db.out.amrfinder_db_cds.mix(argannot_db.out.argannot_fasta, card_DB.out.card_nucleotide_PHM_fasta, resfinder_db.out.resfinder_fasta)
+    arg_dbs.view()
+
+
+/*
+Identification
+*/
     barrnap(platon.out.predict_chr)
     blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
+    gtdbtk(platon.out.predict_chr, gtdbtk_db.out.DB)
+
+/*
+ARG Annotation
+*/
+//    card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
+//    card_genome(platon.out.predict_chr, card_DB.out.card_DB)
 //    amrfinder_genome(platon.out.predict_chr)
 //    amrfinder_plasmid(platon.out.predict_plas)
-    gtdbtk(platon.out.predict_chr, gtdbtk_db.out.DB)
 }
