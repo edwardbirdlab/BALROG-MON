@@ -53,7 +53,7 @@ include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
 include { spades_genome as spades_genome } from './modules/Assembly/spades_genome.nf'
 include { quast as quast_genome} from './modules/Assembly/quast_genome.nf'
 include { quast as quast_plasmid} from './modules/Assembly/quast_plasmid.nf'
-include { card_DB as card_DB} from './modules/DB_Down/cardDB.nf'
+include { card_DB as card_DB} from './modules/ARG_db_download/cardDB.nf'
 include { busco as busco_genome } from './modules/Assembly/busco.nf'
 include { prokka_genome as prokka_genome } from './modules/Annotation/prokka_genome.nf'
 include { prokka_plasmid as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
@@ -65,7 +65,7 @@ include { blast_16s as blast_16s } from './modules/Annotation/blast_16s.nf'
 include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/amrfinder_genome.nf'
 include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
 include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
-include { resfinder_db as resfinder_db } from './modules/DB_Down/resfinder_db.nf'
+include { resfinder_db as resfinder_db } from './modules/ARG_db_download/resfinder_db.nf'
 include { resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
 include { gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
 include { gtdbtk_db as gtdbtk_db } from './modules/DB_Down/gtdbtk_db.nf'
@@ -73,11 +73,14 @@ include { platon as platon } from './modules/Assembly/platon.nf'
 include { platon_db as platon_db } from './modules/DB_Down/platon_db.nf'
 include { pfam_db as pfam_db } from './modules/DB_Down/pfam_db.nf'
 include { viralverify as viralverify } from './modules/Assembly/viralverify.nf'
-include { amrfinder_db as amrfinder_db } from './modules/DB_Down/amrfinder_db.nf'
-include { argannot_db as argannot_db } from './modules/DB_Down/argannot_db.nf'
+include { amrfinder_db as amrfinder_db } from './modules/ARG_db_download/amrfinder_db.nf'
+include { argannot_db as argannot_db } from './modules/ARG_db_download/argannot_db.nf'
 include {argdit_config as argdit_config} from './modules/ARG_db_prep/argdit_config.nf'
 include {argdit_checkdb_nt as argdit_checkdb_nt} from './modules/ARG_db_prep/argdit_checkdb_nt.nf'
 include {argdit_merge as argdit_merge} from './modules/ARG_db_prep/argdit_merge.nf'
+include { megares as megares } from './modules/ARG_db_download/megares_db.nf'
+include {argdit_schema_check as argdit_schema_check} from './modules/ARG_db_prep/argdit_schema_check.nf'
+
 
 
 
@@ -101,6 +104,7 @@ Database Downloading
     pfam_db()
     platon_db()
     amrfinder_db()
+    megares()
 
 
 /*
@@ -128,11 +132,11 @@ Quick Functional Annotation
 /*
 AMR Database Prep
 */ 
-    arg_dbs = amrfinder_db.out.amrfinder_db_cds.mix(argannot_db.out.argannot_fasta, card_DB.out.card_nucleotide_PHM_fasta, resfinder_db.out.resfinder_fasta)
+    arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
     argdit_config()
-    argdit_checkdb_nt(argdit_config.out.config, arg_dbs)
-    arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa)
-    argdit_merge(argdit_config.out.config, arg_only_fa.collect())
+    argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
+    argdit_schema_check(argdit_config.out.config, megares.out.only_sc)
+//    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), megares.out.only_sc)
 
 
 /*

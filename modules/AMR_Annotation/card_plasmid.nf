@@ -1,7 +1,7 @@
 process card_plasmid {
    label 'lowmem'
     container 'library://edwardbird/bara/rgi:5.1.1'
-    publishDir "${params.project_name}/CARD_plasmid", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/AMR_Annotation/CARD_plasmid", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

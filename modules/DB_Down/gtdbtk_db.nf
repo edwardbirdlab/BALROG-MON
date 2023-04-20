@@ -1,7 +1,7 @@
 process gtdbtk_db {
     label 'small'
     container 'library://edwardbird/bara/gtdbtk:1.5.0'
-    publishDir "${params.project_name}/gtdbtk_DB", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/DB_Download/gtdbtk_DB", mode: 'copy', overwrite: false
 
     output:
         path("./out_db"), emit: DB

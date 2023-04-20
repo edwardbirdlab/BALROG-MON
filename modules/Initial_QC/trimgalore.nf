@@ -1,7 +1,7 @@
 process trim_galore {
     label 'lowmem'
 	container 'library://edwardbird/bara/trimgalore:0.6.7'
-    publishDir "${params.project_name}/trim_galore", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Pre_Processing/trim_galore", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fastqs)

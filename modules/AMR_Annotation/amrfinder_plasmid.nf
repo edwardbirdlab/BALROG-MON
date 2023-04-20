@@ -1,7 +1,7 @@
 process amrfinder_plasmid {
    label 'lowmem'
     container 'library://edwardbirdlab/bara/amrfinderplus:3.11.4'
-    publishDir "${params.project_name}/AMRFinder_plasmid", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/AMR_Annotation/AMRFinder_plasmid", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

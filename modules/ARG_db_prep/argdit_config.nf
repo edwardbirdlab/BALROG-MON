@@ -1,7 +1,7 @@
 process argdit_config {
     label 'lowmem'
-    container 'library://edwardbirdlab/bara/argdit:custom_1.0'
-    publishDir "${params.project_name}/argdit_config", mode: 'copy', overwrite: false
+    container 'library://edwardbirdlab/bara/argdit:odseq.1.0'
+    publishDir "${params.project_name}/ARG_Database_Merge/argdit_config", mode: 'copy', overwrite: false
 
     output:
         tuple val('config'), path('config.ini'), emit: config

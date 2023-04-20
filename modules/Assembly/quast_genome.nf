@@ -1,7 +1,7 @@
 process quast {
     label 'lowmem'
     container 'library://edwardbird/bara/quast:5.0.2'
-    publishDir "${params.project_name}/quast_genome", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Assembly/quast_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

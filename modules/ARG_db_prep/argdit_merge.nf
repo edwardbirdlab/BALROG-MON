@@ -1,11 +1,12 @@
 process argdit_merge {
     label 'lowmem'
-    container 'library://edwardbirdlab/bara/argdit:1.0'
-    publishDir "${params.project_name}/argdit_merge", mode: 'copy', overwrite: false
+    container 'library://edwardbirdlab/bara/argdit:odseq.1.0'
+    publishDir "${params.project_name}/ARG_Database_Merge/argdit_merge", mode: 'copy', overwrite: false
 
     input:
         tuple val(config_val), path(argdit_config)
-        tuple file(db_1), file(db_2), file(db_3), file(db_4)
+        tuple file(db_1), file(db_2), file(db_3), file(db_4), file(db_5)
+        file(schema_db)
 
 
     output:
@@ -24,6 +25,6 @@ process argdit_merge {
     rm -rf config.ini
     cp ../config.ini .
     cd ..
-    ./ARGDIT/merge_arg_db.py -a -p -e *.fasta -o arg_merge_db.fasta
+    ./ARGDIT/merge_arg_db.py -a -e -s $schema_db 3-4 -o arg_merge_db.fasta *.fasta
     """
 }

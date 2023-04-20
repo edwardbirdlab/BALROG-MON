@@ -1,7 +1,7 @@
 process spades_plasmid {
     label 'medmem'
     container 'library://edwardbird/bara/spades:3.14.0'
-    publishDir "${params.project_name}/spades_plasmid", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Assembly/spades_plasmid", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), path(fastq1), path(fastq2)

@@ -1,7 +1,7 @@
 process plasmidverify {
     label 'lowmem'
     container 'library://edwardbird/bara/plasmid_verify:1.0.1'
-    publishDir "${params.project_name}/plasmid_verify", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Assembly/plasmid_verify", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

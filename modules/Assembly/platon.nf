@@ -1,7 +1,7 @@
 process platon {
     label 'lowmem'
     container 'library://edwardbirdlab/bara/platon:latest'
-    publishDir "${params.project_name}/platon", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Assembly/platon", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

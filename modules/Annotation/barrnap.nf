@@ -1,7 +1,7 @@
 process barrnap {
     label 'lowmem'
     container 'library://edwardbird/bara/barrnap:0.9'
-    publishDir "${params.project_name}/barrnap", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Identificaiton/barrnap", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

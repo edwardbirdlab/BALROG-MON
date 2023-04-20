@@ -1,7 +1,7 @@
 process busco {
     label 'lowmem'
     container 'library://edwardbird/bara/busco:5.2.2'
-    publishDir "${params.project_name}/busco", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Assembly/busco", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

@@ -1,7 +1,7 @@
 process gtdbtk {
     label 'bigmem'
     container 'library://edwardbirdlab/bara/gtdbtk_2:latest'
-    publishDir "${params.project_name}/gtdbtk", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Identificaiton/gtdbtk", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)
