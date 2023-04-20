@@ -3,9 +3,10 @@ process card_DB {
     publishDir "${params.project_name}/card_DB", mode: 'copy', overwrite: false
 
     output:
-        path("./localDB"), emit: card_DB
-        path("nucleotide_fasta_protein_homolog_model.fasta"), emit: card_nucleotide_PHM_fasta
-        path("protein_fasta_protein_homolog_model.fasta"), emit: card_protein_PHM_fasta
+        tuple val('card'), path("./localDB"), emit: card_DB
+        tuple val('card'), path("nucleotide_fasta_protein_homolog_model.fasta"), emit: card_nucleotide_PHM_fasta
+        path("nucleotide_fasta_protein_homolog_model.fasta"), emit: only_fa
+        tuple val('card'), path("protein_fasta_protein_homolog_model.fasta"), emit: card_protein_PHM_fasta
 
 
     script:

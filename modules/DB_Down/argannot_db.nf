@@ -3,7 +3,8 @@ process argannot_db {
     publishDir "${params.project_name}/argannot_db", mode: 'copy', overwrite: false
 
     output:
-        path("argannot_nt_v6.fasta"), emit: argannot_fasta
+        tuple val('argannot'), path("argannot_nt_v6.fasta"), emit: argannot_fasta
+        path("argannot_nt_v6.fasta"), emit: only_fa
 
 
     script:

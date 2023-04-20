@@ -24,6 +24,16 @@
 */
 
 
+/* Settings for argdit */
+params.argdit_FastaHeaderFieldSeparator = '|'
+params.argdit_OperationalFieldSeparator = '__'
+params.argdit_MinSequenceCount = '3'
+params.argdit_BootstrapFactor = '1000'
+params.argdit_Email = 'edwardbirdlab@gmail.com'
+params.argdit_DefaultGeneticCode = '11'
+
+
+
 nextflow.enable.dsl=2
 
 /* Temp while testing */
@@ -65,6 +75,9 @@ include { pfam_db as pfam_db } from './modules/DB_Down/pfam_db.nf'
 include { viralverify as viralverify } from './modules/Assembly/viralverify.nf'
 include { amrfinder_db as amrfinder_db } from './modules/DB_Down/amrfinder_db.nf'
 include { argannot_db as argannot_db } from './modules/DB_Down/argannot_db.nf'
+include {argdit_config as argdit_config} from './modules/ARG_db_prep/argdit_config.nf'
+include {argdit_checkdb_nt as argdit_checkdb_nt} from './modules/ARG_db_prep/argdit_checkdb_nt.nf'
+include {argdit_merge as argdit_merge} from './modules/ARG_db_prep/argdit_merge.nf'
 
 
 
@@ -116,7 +129,10 @@ Quick Functional Annotation
 AMR Database Prep
 */ 
     arg_dbs = amrfinder_db.out.amrfinder_db_cds.mix(argannot_db.out.argannot_fasta, card_DB.out.card_nucleotide_PHM_fasta, resfinder_db.out.resfinder_fasta)
-    arg_dbs.view()
+    argdit_config()
+    argdit_checkdb_nt(argdit_config.out.config, arg_dbs)
+    arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa)
+    argdit_merge(argdit_config.out.config, arg_only_fa.collect())
 
 
 /*

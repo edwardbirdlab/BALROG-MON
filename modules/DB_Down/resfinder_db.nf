@@ -4,8 +4,9 @@ process resfinder_db {
     publishDir "${params.project_name}/resfinder_DB", mode: 'copy', overwrite: false
 
     output:
-        path("./db_resfinder"), emit: resfinder_DB
-        path("all.fasta"), emit: resfinder_fasta
+        tuple val('resfinder'), path("./db_resfinder"), emit: resfinder_DB
+        tuple val('resfinder'), path("all.fasta"), emit: resfinder_fasta
+        path("all.fasta"), emit: only_fa
 
     script:
 

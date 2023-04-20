@@ -6,10 +6,11 @@ process amrfinder_db {
     input:
 
     output:
-        path("amr_finder_cds.fasta"), emit: amrfinder_db_cds
-        path("ReferenceGeneCatalog.txt"), emit: amrfinder_db_reference
-        path("amr_targets.fasta"), emit: amrfinder_db_targets
-        path("version.txt"), emit: amrfinder_db_version
+        tuple val('amrfinder'), path("amr_finder_cds.fasta"), emit: amrfinder_db_cds
+        path("amr_finder_cds.fasta"), emit: only_fa
+        tuple val('amrfinder'), path("ReferenceGeneCatalog.txt"), emit: amrfinder_db_reference
+        tuple val('amrfinder'), path("amr_targets.fasta"), emit: amrfinder_db_targets
+        tuple val('amrfinder'), path("version.txt"), emit: amrfinder_db_version
 
     script:
 
