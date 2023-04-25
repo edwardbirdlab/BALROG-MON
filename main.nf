@@ -43,8 +43,8 @@ input_folder = "/homes/edwardbird/data/bacterial_testdata"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BALRROG_Testing'
 params.thread_max  = '19'
-
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
+bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 
 
 
@@ -80,6 +80,7 @@ include {argdit_checkdb_nt as argdit_checkdb_nt} from './modules/ARG_db_prep/arg
 include {argdit_merge as argdit_merge} from './modules/ARG_db_prep/argdit_merge.nf'
 include { megares as megares } from './modules/ARG_db_download/megares_db.nf'
 include {argdit_schema_check as argdit_schema_check} from './modules/ARG_db_prep/argdit_schema_check.nf'
+include {argdit_uniprot as argdit_uniprot} from './modules/ARG_db_prep/argdit_uniprot.nf'
 
 
 
@@ -92,6 +93,7 @@ Input
 */
 
     take fastqs
+    take bacscan
 
 /*
 Database Downloading
@@ -135,8 +137,9 @@ AMR Database Prep
     arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
     argdit_config()
     argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
-    argdit_schema_check(argdit_config.out.config, megares.out.only_sc)
-//    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), megares.out.only_sc)
+//    argdit_uniprot(argdit_config.out.config, bacscan)
+//    argdit_schema_check(argdit_config.out.config, bacscan)
+    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
 
 
 /*

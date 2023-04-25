@@ -25,6 +25,8 @@ process argdit_merge {
     rm -rf config.ini
     cp ../config.ini .
     cd ..
-    ./ARGDIT/merge_arg_db.py -a -e -s $schema_db 3-4 -o arg_merge_db.fasta *.fasta
+    ./ARGDIT/merge_arg_db.py -a -e -o -s $schema_db 2 arg_merge_db.fasta *.fasta
     """
 }
+
+// -s $schema_db 3-4 

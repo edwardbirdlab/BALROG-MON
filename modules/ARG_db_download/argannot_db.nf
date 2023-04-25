@@ -11,6 +11,7 @@ process argannot_db {
 
     """
     wget https://www.mediterranee-infection.com/wp-content/uploads/2019/09/ARG-ANNOT_NT_V6_July2019.txt
+    sed -i 's/:/|/g' ARG-ANNOT_NT_V6_July2019.txt
     cat ARG-ANNOT_NT_V6_July2019.txt > argannot_nt_v6_db.fasta
     """
 }
