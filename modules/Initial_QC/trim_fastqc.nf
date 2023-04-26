@@ -4,14 +4,14 @@ process fastqc {
     publishDir "${params.project_name}/Pre_Processing/raw_fastqc", mode: 'copy', overwrite: false
 
     input:
-        tuple val(sample), file(fastqs)
+        tuple val(sample), file(R1), file(R2)
     output:
-        path("./${sample}_fastqc"), emit: rawfastq
+        tuple val(sample), path("./${sample}_fastqc"), emit: fastq
 
     script:
 
     """
     mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastqs[0]} ${fastqs[1]}
+    fastqc -o ${sample}_fastqc -t 19 ${R1} ${R2}
     """
 }

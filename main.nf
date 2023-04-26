@@ -31,6 +31,7 @@ params.argdit_MinSequenceCount = '3'
 params.argdit_BootstrapFactor = '1000'
 params.argdit_Email = 'edwardbirdlab@gmail.com'
 params.argdit_DefaultGeneticCode = '11'
+params.fastp_q = '20'
 
 
 
@@ -48,7 +49,9 @@ bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_unip
 
 
 
-include { fastqc as raw_fqc } from './modules/Initial_QC/fastqc.nf'
+include { fastqc as raw_fqc } from './modules/Initial_QC/raw_fastqc.nf'
+include { fastqc as trim_fqc } from './modules/Initial_QC/trim_fastqc.nf'
+include { fastp as fastp } from './modules/Initial_QC/fastp.nf'
 include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
 include { spades_genome as spades_genome } from './modules/Assembly/spades_genome.nf'
 include { quast as quast_genome} from './modules/Assembly/quast_genome.nf'
@@ -81,6 +84,8 @@ include {argdit_merge as argdit_merge} from './modules/ARG_db_prep/argdit_merge.
 include { megares as megares } from './modules/ARG_db_download/megares_db.nf'
 include {argdit_schema_check as argdit_schema_check} from './modules/ARG_db_prep/argdit_schema_check.nf'
 include {argdit_uniprot as argdit_uniprot} from './modules/ARG_db_prep/argdit_uniprot.nf'
+include { kracken_db as kracken_db } from './modules/DB_Down/kracken_db.nf'
+include {krackenuni as krackenuni} from './modules/Initial_QC/krackenuni.nf'
 
 
 
@@ -107,18 +112,21 @@ Database Downloading
     platon_db()
     amrfinder_db()
     megares()
+    kracken_db()
 
 
 /*
 QC & Trimming
 */   
     raw_fqc(fastqs)
-    trim_galore(fastqs)
+    fastp(fastqs)
+    trim_fqc(fastp.out.trimmed_fastq)
+    krackenuni(fastp.out.trimmed_fastq, kracken_db.out.kracken_DB)
 
 /*
 Assembly & Plasmid Prediciton + QC
 */
-    spades_genome(trim_galore.out.trimmed_fastq)
+    spades_genome(fastp.out.trimmed_fastq)
     platon(spades_genome.out.genome, platon_db.out.platon_DB)
     quast_genome(platon.out.predict_chr)
     quast_plasmid(platon.out.predict_plas)
@@ -139,7 +147,7 @@ AMR Database Prep
     argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
 //    argdit_uniprot(argdit_config.out.config, bacscan)
 //    argdit_schema_check(argdit_config.out.config, bacscan)
-    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
+//    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
 
 
 /*
