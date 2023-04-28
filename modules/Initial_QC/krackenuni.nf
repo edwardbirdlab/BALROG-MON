@@ -7,7 +7,7 @@ process krackenuni {
         tuple val(sample), file(R1), file(R2)
         tuple val(kracken_db), file(kdb), file(db)
     output:
-	    tuple val(sample), file('READCLASSIFICATION.tsv'), emit: tsv
+	    tuple val(sample), file('*.tsv'), emit: tsv
 
     script:
 
@@ -20,6 +20,6 @@ process krackenuni {
     cd krackendb
     tar zxvf $db
     cd ..
-    krakenuniq --db krackendb --threads 16 --report-file ${out_name} --fastq-input *.fq.gz
+    krakenuniq --db krackendb --threads 16 --report-file ${out_name} --preload-size 16G --fastq-input *.fq.gz
     """
 }

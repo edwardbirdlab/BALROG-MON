@@ -73,6 +73,7 @@ include { resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotatio
 include { gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
 include { gtdbtk_db as gtdbtk_db } from './modules/DB_Down/gtdbtk_db.nf'
 include { platon as platon } from './modules/Assembly/platon.nf'
+include { platon_meta as platon_meta } from './modules/Assembly/platon_meta.nf'
 include { platon_db as platon_db } from './modules/DB_Down/platon_db.nf'
 include { pfam_db as pfam_db } from './modules/DB_Down/pfam_db.nf'
 include { viralverify as viralverify } from './modules/Assembly/viralverify.nf'
@@ -88,8 +89,111 @@ include { kracken_db as kracken_db } from './modules/DB_Down/kracken_db.nf'
 include {krackenuni as krackenuni} from './modules/Initial_QC/krackenuni.nf'
 
 
+workflow short_read_assembly {
+    take:
+        fastqs_short
+    main:
+        platon_db()
+        raw_fqc(fastqs_short)
+        fastp(fastqs_short)
+        trim_fqc(fastp.out.trimmed_fastq)
+        spades_genome(fastp.out.trimmed_fastq)
+        platon(spades_genome.out.genome, platon_db.out.platon_DB)
+    emit:
+        platon.out.predict_chr
+        platon.out.predict_plas
+
+}
+
+workflow hybrid_assembly {
+    take:
+        fastqs_short_meta
+    main:
+        platon_db()
+        raw_fqc(fastqs_short_meta)
+        fastp(fastqs_short_meta)
+        trim_fqc(fastp.out.trimmed_fastq)
+        spades_metagenome(fastp.out.trimmed_fastq)
+        platon_meta(spades_metagenome.out.genome, platon_db.out.platon_DB)
+    emit:
+        platon_meta.out.predict_chr
+        platon_meta.out.predict_plas
+    
+}
+
+workflow long_read_assembly {
+    
+    
+}
+
+workflow isolate_annotation {
+    take:
+        genome_assembly
+        plasmid_assembly
+    main:
+    /*
+    Database Downloading
+    */
+        gtdbtk_db()
+        resfinder_db()
+        argannot_db()
+        db_16s()
+        card_DB()
+        pfam_db()
+        amrfinder_db()
+        megares()
+        kracken_db()
+
+    /*
+    Assembly QC
+    */
+        quast_genome(genome_assembly)
+        quast_plasmid(plasmid_assembly)
+        busco_genome(genome_assembly)
+        viralverify(plasmid_assembly, pfam_db.out.pfam_DB)
+
+    /*
+    Quick Functional Annotation
+    */
+        prokka_genome(genome_assembly)
+        prokka_plasmid(plasmid_assembly)
+
+    /*
+    AMR Database Prep
+    */ 
+        arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
+        argdit_config()
+        argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
+    //    argdit_uniprot(argdit_config.out.config, bacscan)
+    //    argdit_schema_check(argdit_config.out.config, bacscan)
+    //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
 
 
+    /*
+    Identification
+    */
+        barrnap(genome_assembly)
+        blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
+        gtdbtk(genome_assembly, gtdbtk_db.out.DB)
+
+    /*
+    ARG Annotation
+    */
+    //    card_plasmid(plasmid_assembly, card_DB.out.card_DB)
+    //    card_genome(genome_assembly, card_DB.out.card_DB)
+    //    amrfinder_genome(genome_assembly)
+    //    amrfinder_plasmid(plasmid_assembly)
+
+    
+    emit:
+        
+    
+}
+
+workflow metagenome_annotation {
+    
+    
+}
 
 workflow {
 
