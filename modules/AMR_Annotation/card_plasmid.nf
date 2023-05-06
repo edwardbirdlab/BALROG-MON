@@ -5,7 +5,7 @@ process card_plasmid {
 
     input:
         tuple val(sample), file(fasta)
-        path(db)
+        tuple val(db_name), path(db)
     output:
         path("./${sample}"), emit: card_plasmid_results
 

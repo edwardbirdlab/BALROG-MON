@@ -5,7 +5,7 @@ process card_genome {
 
     input:
         tuple val(sample), file(fasta)
-        path(db)
+        tuple val(db_name), path(db)
     output:
         path("./${sample}"), emit: card_genome_results
 

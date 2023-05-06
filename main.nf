@@ -40,12 +40,13 @@ nextflow.enable.dsl=2
 /* Temp while testing */
 
 
-input_folder = "/homes/edwardbird/data/bacterial_testdata"
+input_folder = "/homes/edwardbird/data/bacterial_isolates"
 file_glob = "*_[1,2].fq.gz"
-params.project_name = 'BALRROG_Testing'
-params.thread_max  = '19'
+params.project_name = 'BALRROG_CARD_AMRFINDER'
+params.thread_max = '16'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
+bacscan_nhmm = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/nARGhmm.tar.gz' )
 
 
 
@@ -87,6 +88,8 @@ include {argdit_schema_check as argdit_schema_check} from './modules/ARG_db_prep
 include {argdit_uniprot as argdit_uniprot} from './modules/ARG_db_prep/argdit_uniprot.nf'
 include { kracken_db as kracken_db } from './modules/DB_Down/kracken_db.nf'
 include {krackenuni as krackenuni} from './modules/Initial_QC/krackenuni.nf'
+include {cdhit_merge as cdhit_merge} from './modules/ARG_db_prep/cdhit_merge.nf'
+include {nhmmscan as nhmmscan} from './modules/ARG_db_prep/nhmmscan.nf'
 
 
 workflow short_read_assembly {
@@ -121,6 +124,36 @@ workflow hybrid_assembly {
     
 }
 
+workflow ARG_Database {
+    take:
+        take bacscan
+    main:
+
+    /*
+    Database Downloading
+    */
+        resfinder_db()
+        argannot_db()
+        card_DB()
+        amrfinder_db()
+        megares()
+
+    /*
+    AMR Database Prep
+    */ 
+        arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
+        argdit_config()
+        argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
+    //    argdit_uniprot(argdit_config.out.config, bacscan)
+    //    argdit_schema_check(argdit_config.out.config, bacscan)
+    //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
+
+//    emit:
+//        platon_meta.out.predict_chr
+//        platon_meta.out.predict_plas
+
+}
+
 workflow long_read_assembly {
     
     
@@ -131,18 +164,13 @@ workflow isolate_annotation {
         genome_assembly
         plasmid_assembly
     main:
+
     /*
     Database Downloading
     */
         gtdbtk_db()
-        resfinder_db()
-        argannot_db()
         db_16s()
-        card_DB()
         pfam_db()
-        amrfinder_db()
-        megares()
-        kracken_db()
 
     /*
     Assembly QC
@@ -157,16 +185,6 @@ workflow isolate_annotation {
     */
         prokka_genome(genome_assembly)
         prokka_plasmid(plasmid_assembly)
-
-    /*
-    AMR Database Prep
-    */ 
-        arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
-        argdit_config()
-        argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
-    //    argdit_uniprot(argdit_config.out.config, bacscan)
-    //    argdit_schema_check(argdit_config.out.config, bacscan)
-    //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
 
 
     /*
@@ -183,9 +201,6 @@ workflow isolate_annotation {
     //    card_genome(genome_assembly, card_DB.out.card_DB)
     //    amrfinder_genome(genome_assembly)
     //    amrfinder_plasmid(plasmid_assembly)
-
-    
-    emit:
         
     
 }
@@ -225,7 +240,7 @@ QC & Trimming
     raw_fqc(fastqs)
     fastp(fastqs)
     trim_fqc(fastp.out.trimmed_fastq)
-    krackenuni(fastp.out.trimmed_fastq, kracken_db.out.kracken_DB)
+//    krackenuni(fastp.out.trimmed_fastq, kracken_db.out.kracken_DB)
 
 /*
 Assembly & Plasmid Prediciton + QC
@@ -247,11 +262,13 @@ Quick Functional Annotation
 AMR Database Prep
 */ 
     arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
-    argdit_config()
-    argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
+//    argdit_config()
+//    argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
 //    argdit_uniprot(argdit_config.out.config, bacscan)
 //    argdit_schema_check(argdit_config.out.config, bacscan)
 //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
+    cdhit_merge(arg_only_fa.collect())
+    nhmmscan(cdhit_merge.out.cdhit_db, bacscan_nhmm)
 
 
 /*
@@ -264,8 +281,8 @@ Identification
 /*
 ARG Annotation
 */
-//    card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
-//    card_genome(platon.out.predict_chr, card_DB.out.card_DB)
-//    amrfinder_genome(platon.out.predict_chr)
-//    amrfinder_plasmid(platon.out.predict_plas)
+    card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
+    card_genome(platon.out.predict_chr, card_DB.out.card_DB)
+    amrfinder_genome(platon.out.predict_chr)
+    amrfinder_plasmid(platon.out.predict_plas)
 }
