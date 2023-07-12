@@ -11,6 +11,6 @@ process quast {
     script:
 
     """
-    quast.py -o ${sample} ${fasta} --threads ${params.thread_max}
+    quast.py -o ${sample} ${fasta} --threads ${task.cpus}
     """
 }

@@ -12,7 +12,7 @@ process spades_genome {
     script:
 
     """
-    spades.py --isolate -m 16 --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t 16
+    spades.py --isolate -m ${task.memory.toGiga()} --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t ${task.cpus}
     cp ${sample}/scaffolds.fasta ${sample}_scaffolds.fasta 
     """
 }

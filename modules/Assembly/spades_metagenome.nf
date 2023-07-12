@@ -12,7 +12,7 @@ process spades_metagenome {
     script:
 
     """
-    spades.py --meta -m 16 --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t 16
+    spades.py --meta -m ${task.memory.toGiga()} --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t ${task.cpus}
     cp ${sample}/scaffolds.fasta ${sample}_scaffolds.fasta 
     """
 }

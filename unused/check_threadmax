@@ -1,0 +1,18 @@
+#!/bin/bash
+
+search_dir="."  # Replace with your desired directory
+search_string="thread_max"  # Replace with the string you want to search
+
+# Find all .nf files recursively in the search directory
+nf_files=$(find "$search_dir" -type f -name "*.nf")
+
+# Iterate over each .nf file and search for the string
+for nf_file in $nf_files; do
+  # Use grep to search for the string in the file
+  grep -q "$search_string" "$nf_file"
+
+  # Check the exit code of grep
+  if [ $? -eq 0 ]; then
+    echo "Found in file: $nf_file"
+  fi
+done

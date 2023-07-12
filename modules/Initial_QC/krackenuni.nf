@@ -20,6 +20,6 @@ process krackenuni {
     cd krackendb
     tar zxvf $db
     cd ..
-    krakenuniq --db krackendb --threads 16 --report-file ${out_name} --fastq-input *.fq.gz
+    krakenuniq --db krackendb --threads ${task.cpus} --report-file ${out_name} --fastq-input *.fq.gz
     """
 }

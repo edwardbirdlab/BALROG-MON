@@ -31,19 +31,23 @@ params.argdit_MinSequenceCount = '3'
 params.argdit_BootstrapFactor = '1000'
 params.argdit_Email = 'edwardbirdlab@gmail.com'
 params.argdit_DefaultGeneticCode = '11'
+
+/* Other program Settings */
 params.fastp_q = '20'
+params.chdit_ident = '0.95'
+params.chdit_word_size = '8'
+params.platon_mode = 'sensitivity'
+params.bacscan_nhmm_eval = '0.000001'
+
 
 
 
 nextflow.enable.dsl=2
 
-/* Temp while testing */
-
-
+/* Temp Input while testing */
 input_folder = "/homes/edwardbird/data/bacterial_isolates"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BALRROG_CARD_AMRFINDER'
-params.thread_max = '16'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/nARGhmm.tar.gz' )
@@ -70,8 +74,8 @@ include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/
 include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
 include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
 include { resfinder_db as resfinder_db } from './modules/ARG_db_download/resfinder_db.nf'
-include { resfinder_plasmid as resfinder_plasmid } from "./modules/AMR_Annotation/resfinder_plasmid.nf"
-include { gtdbtk as gtdbtk } from "./modules/Annotation/gtdb_tk.nf"
+include { resfinder_plasmid as resfinder_plasmid } from './modules/AMR_Annotation/resfinder_plasmid.nf'
+include { gtdbtk as gtdbtk } from './modules/Annotation/gtdb_tk.nf'
 include { gtdbtk_db as gtdbtk_db } from './modules/DB_Down/gtdbtk_db.nf'
 include { platon as platon } from './modules/Assembly/platon.nf'
 include { platon_meta as platon_meta } from './modules/Assembly/platon_meta.nf'
@@ -90,6 +94,12 @@ include { kracken_db as kracken_db } from './modules/DB_Down/kracken_db.nf'
 include {krackenuni as krackenuni} from './modules/Initial_QC/krackenuni.nf'
 include {cdhit_merge as cdhit_merge} from './modules/ARG_db_prep/cdhit_merge.nf'
 include {nhmmscan as nhmmscan} from './modules/ARG_db_prep/nhmmscan.nf'
+include { mef_genome as mef_genome } from './modules/Annotation/mef_genome.nf'
+include { mef_plasmid as mef_plasmid } from './modules/Annotation/mef_plasmid.nf'
+include { card_genome_mef as card_genome_mef} from './modules/AMR_Annotation/card_genome_mef.nf'
+include { card_plasmid_mef as card_plasmid_mef } from './modules/AMR_Annotation/card_plasmid_mef.nf'
+include { kraken2_db as kraken2_db } from './modules/DB_Down/kraken2_db.nf'
+include { kraken2 as kraken2 } from './modules/Assembly/kraken2.nf'
 
 
 workflow short_read_assembly {
@@ -231,7 +241,8 @@ Database Downloading
     platon_db()
     amrfinder_db()
     megares()
-    kracken_db()
+    //kracken_db()
+    kraken2_db()
 
 
 /*
@@ -249,14 +260,17 @@ Assembly & Plasmid Prediciton + QC
     platon(spades_genome.out.genome, platon_db.out.platon_DB)
     quast_genome(platon.out.predict_chr)
     quast_plasmid(platon.out.predict_plas)
-    busco_genome(platon.out.predict_chr)
+//    busco_genome(platon.out.predict_chr)
     viralverify(platon.out.predict_plas, pfam_db.out.pfam_DB)
+    kraken2(spades_genome.out.genome, kraken2_db.out.kraken2_DB)
 
 /*
 Quick Functional Annotation
 */
     prokka_genome(platon.out.predict_chr)
     prokka_plasmid(platon.out.predict_plas)
+    mef_plasmid(platon.out.predict_plas)
+    mef_genome(platon.out.predict_chr)
 
 /*
 AMR Database Prep
@@ -276,13 +290,15 @@ Identification
 */
     barrnap(platon.out.predict_chr)
     blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
-    gtdbtk(platon.out.predict_chr, gtdbtk_db.out.DB)
+//    gtdbtk(platon.out.predict_chr, gtdbtk_db.out.DB)
 
 /*
 ARG Annotation
 */
     card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
     card_genome(platon.out.predict_chr, card_DB.out.card_DB)
+    card_plasmid_mef(mef_plasmid.out.mef_fna, card_DB.out.card_DB)
+    card_genome_mef(mef_genome.out.mef_fna, card_DB.out.card_DB)
     amrfinder_genome(platon.out.predict_chr)
     amrfinder_plasmid(platon.out.predict_plas)
 }

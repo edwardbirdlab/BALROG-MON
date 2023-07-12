@@ -15,7 +15,7 @@ process trim_galore {
 
     """
     trim_galore \\
-            --cores 4 \\
+            --cores ${task.cpus} \\
             --paired \\
             --basename ${sample} \\
             ${fastqs[0]} \\
@@ -24,4 +24,3 @@ process trim_galore {
 }
 
 /* At some point add in option for clipping of 3' and 5'. */
-/* Add in function for determining core number */

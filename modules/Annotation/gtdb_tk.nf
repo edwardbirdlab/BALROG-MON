@@ -7,7 +7,7 @@ process gtdbtk {
         tuple val(sample), file(fasta)
         path(db)
     output:
-        path("./${sample}"), emit: prokka_results
+        path("./${sample}"), emit: results
 
 
     script:
@@ -15,6 +15,6 @@ process gtdbtk {
     GTDBTK_DATA_PATH="./${db}/release207_v2"
     mkdir fasta_dir
     cp ${fasta} fasta_dir
-    gtdbtk classify_wf --out_dir ${sample} --prefix ${sample} --genome_dir fasta_dir --cpus 1 --extension fasta
+    gtdbtk classify_wf --out_dir ${sample} --prefix ${sample} --genome_dir fasta_dir --cpus ${task.cpus} --extension fasta
     """
 }

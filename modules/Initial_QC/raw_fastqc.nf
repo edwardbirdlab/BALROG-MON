@@ -12,6 +12,6 @@ process fastqc {
 
     """
     mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t 19 ${fastqs[0]} ${fastqs[1]}
+    fastqc -o ${sample}_fastqc -t ${task.cpus} ${fastqs[0]} ${fastqs[1]}
     """
 }

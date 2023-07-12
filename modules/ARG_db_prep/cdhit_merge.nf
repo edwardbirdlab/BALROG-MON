@@ -8,8 +8,8 @@ process cdhit_merge {
 
 
     output:
-        path('merged_db_95.fasta'), emit: cdhit_db
-        path('merged_db_95.fasta.clstr'), emit: cdhit_cluster
+        path("merged_db_${params.chdit_ident}.fasta"), emit: cdhit_db
+        path("merged_db_${params.chdit_ident}.fasta.clstr"), emit: cdhit_cluster
         path('.command.out'), emit: cdhit_report
 
 
@@ -20,6 +20,6 @@ process cdhit_merge {
 
     """
     cat *.fasta > merged.fasta
-    cd-hit-est -i merged.fasta -o merged_db_95.fasta -c 0.99 -n 8
+    cd-hit-est -i merged.fasta -o merged_db_${params.chdit_ident}.fasta -c ${params.chdit_ident} -n ${params.chdit_word_size}
     """
 }

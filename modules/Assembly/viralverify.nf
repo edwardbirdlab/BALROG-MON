@@ -12,6 +12,6 @@ process viralverify {
     script:
 
     """
-    viralverify -f ${fasta} -o ${sample} --hmm ${DB} -t ${params.thread_max} -p
+    viralverify -f ${fasta} -o ${sample} --hmm ${DB} -t ${task.cpus} -p
     """
 }

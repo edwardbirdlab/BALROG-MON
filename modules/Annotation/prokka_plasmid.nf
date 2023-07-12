@@ -11,6 +11,6 @@ process prokka_plasmid {
     script:
 
     """
-    prokka --outdir ${sample} --prefix ${sample} ${fasta} --cpus 19 --centre X --compliant
+    prokka --outdir ${sample} --prefix ${sample} ${fasta} --cpus ${task.cpus} --centre X --compliant
     """
 }

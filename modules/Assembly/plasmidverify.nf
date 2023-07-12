@@ -12,6 +12,6 @@ process plasmidverify {
     script:
 
     """
-    plasmidverify.py -f ${fasta} -o ${sample} --hmm ${DB} -t ${params.thread_max}
+    plasmidverify.py -f ${fasta} -o ${sample} --hmm ${DB} -t ${task.cpus}
     """
 }

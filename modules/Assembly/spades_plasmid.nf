@@ -12,7 +12,7 @@ process spades_plasmid {
     script:
 
     """
-    spades.py -k 21,33,55,77 --careful --only-assembler -m 16 --plasmid --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t 19
+    spades.py -k 21,33,55,77 --careful --only-assembler -m ${task.memory.toGiga()} --plasmid --pe1-1 ${fastq1} --pe1-2 ${fastq2} -o ${sample} -t ${task.cpus}
     cp ${sample}/scaffolds.fasta ${sample}_scaffolds.fasta 
     """
 }
