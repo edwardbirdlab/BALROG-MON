@@ -20,6 +20,6 @@ process platon {
 
     """
     tar -xzf $DB
-    platon --db db --output platon_${sample} --mode ${params.platon_mode} --threads ${task.cpus} ${fasta}
+    platon --db db --meta --output platon_${sample} --mode ${params.platon_mode} --threads ${task.cpus} ${fasta}
     """
 }
