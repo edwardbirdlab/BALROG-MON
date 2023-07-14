@@ -36,10 +36,13 @@ params.argdit_DefaultGeneticCode = '11'
 params.fastp_q = '20'
 params.chdit_ident = '0.95'
 params.chdit_word_size = '8'
-params.platon_mode = 'sensitivity'
+params.platon_mode = 'accuracy'
 params.bacscan_nhmm_eval = '0.000001'
-
-
+params.platon_meta = 'True'
+params.min_contig_size = '500'
+params.min_contig_cov = '2'
+params.plasmer_min_len = '300'
+params.plasmer_miax_len = '500000'
 
 
 nextflow.enable.dsl=2
@@ -50,7 +53,7 @@ file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BALRROG_CARD_AMRFINDER'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
-bacscan_nhmm = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/nARGhmm.tar.gz' )
+bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/nARGhmm.tar.gz' )
 
 
 
@@ -100,6 +103,8 @@ include { card_genome_mef as card_genome_mef} from './modules/AMR_Annotation/car
 include { card_plasmid_mef as card_plasmid_mef } from './modules/AMR_Annotation/card_plasmid_mef.nf'
 include { kraken2_db as kraken2_db } from './modules/DB_Down/kraken2_db.nf'
 include { kraken2 as kraken2 } from './modules/Assembly/kraken2.nf'
+include { plasmer as plasmer } from './modules/Assembly/plasmer.nf'
+include { plasmer_db as plasmer_db } from './modules/DB_Down/plasmer_db.nf'
 
 
 workflow short_read_assembly {
@@ -243,6 +248,7 @@ Database Downloading
     megares()
     //kracken_db()
     kraken2_db()
+    plasmer_db()
 
 
 /*
@@ -257,20 +263,21 @@ QC & Trimming
 Assembly & Plasmid Prediciton + QC
 */
     spades_genome(fastp.out.trimmed_fastq)
-    platon(spades_genome.out.genome, platon_db.out.platon_DB)
-    quast_genome(platon.out.predict_chr)
-    quast_plasmid(platon.out.predict_plas)
+    //platon(spades_genome.out.genome, platon_db.out.platon_DB)
+    plasmer(spades_genome.out.genome, plasmer_db.out.plasmer_DB)
+    //quast_genome(platon.out.predict_chr)
+//    quast_plasmid(platon.out.predict_plas)
 //    busco_genome(platon.out.predict_chr)
-    viralverify(platon.out.predict_plas, pfam_db.out.pfam_DB)
-    kraken2(spades_genome.out.genome, kraken2_db.out.kraken2_DB)
+    //viralverify(platon.out.predict_plas, pfam_db.out.pfam_DB)
+    //kraken2(spades_genome.out.genome, kraken2_db.out.kraken2_DB)
 
 /*
 Quick Functional Annotation
 */
-    prokka_genome(platon.out.predict_chr)
-    prokka_plasmid(platon.out.predict_plas)
-    mef_plasmid(platon.out.predict_plas)
-    mef_genome(platon.out.predict_chr)
+    //prokka_genome(platon.out.predict_chr)
+    //prokka_plasmid(platon.out.predict_plas)
+    //mef_plasmid(platon.out.predict_plas)
+    //mef_genome(platon.out.predict_chr)
 
 /*
 AMR Database Prep
@@ -288,17 +295,17 @@ AMR Database Prep
 /*
 Identification
 */
-    barrnap(platon.out.predict_chr)
-    blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
+    //barrnap(platon.out.predict_chr)
+    //blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
 //    gtdbtk(platon.out.predict_chr, gtdbtk_db.out.DB)
 
 /*
 ARG Annotation
 */
-    card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
-    card_genome(platon.out.predict_chr, card_DB.out.card_DB)
-    card_plasmid_mef(mef_plasmid.out.mef_fna, card_DB.out.card_DB)
-    card_genome_mef(mef_genome.out.mef_fna, card_DB.out.card_DB)
-    amrfinder_genome(platon.out.predict_chr)
-    amrfinder_plasmid(platon.out.predict_plas)
+    //card_plasmid(platon.out.predict_plas, card_DB.out.card_DB)
+    //card_genome(platon.out.predict_chr, card_DB.out.card_DB)
+    //card_plasmid_mef(mef_plasmid.out.mef_fna, card_DB.out.card_DB)
+    //card_genome_mef(mef_genome.out.mef_fna, card_DB.out.card_DB)
+    //amrfinder_genome(platon.out.predict_chr)
+    //amrfinder_plasmid(platon.out.predict_plas)
 }

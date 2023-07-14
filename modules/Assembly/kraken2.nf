@@ -1,10 +1,10 @@
 process kraken2 {
     label 'lowmemlong'
 	container 'ebird013/kracken2:2.1.3'
-    publishDir "${params.project_name}/kraken2", mode: 'copy', overwrite: true
+    publishDir "${params.project_name}/Assembly/kraken2/${sample}", mode: 'copy', overwrite: true
 
     input:
-        val(ref)
+        tuple val(sample), file(ref)
         tuple val(kracken_db), file(txt), file(db)
     output:
 	   path('*.tsv'), emit: tsv
