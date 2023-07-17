@@ -20,6 +20,6 @@ process nhmmscan {
 
     """
     tar -xf ${bacrascan_nhmm}
-    nhmmscan --cpu ${task.cpus} -E ${params.bacscan_eval} --tblout merge_db_predictions.out nARGhmm/254_nARG.hmm ${merge_db}
+    nhmmscan --cpu ${task.cpus} -E ${params.bacscan_nhmm_eval} --tblout merge_db_predictions.out nARGhmm/254_nARG.hmm ${merge_db}
     """
 }

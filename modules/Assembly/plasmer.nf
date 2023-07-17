@@ -1,5 +1,5 @@
 process plasmer {
-    label 'medmem'
+    label 'plasmer'
     container 'nekokoe/plasmer:23.04.20'
     publishDir "${params.project_name}/Assembly/plasmer", mode: 'copy', overwrite: false
 
@@ -7,10 +7,12 @@ process plasmer {
         tuple val(sample), file(fasta)
         tuple file(k2_db), file(main_db)
     output:
-        tuple val(sample), path("platon_${sample}/*.tsv"), emit: report
-        tuple val(sample), path("platon_${sample}/*.log"), emit: log
-        tuple val(sm_gen), path("platon_${sample}/*.chromosome.fasta"), emit: predict_chr
-        tuple val(sm_plas), path("platon_${sample}/*.plasmid.fasta"), emit: predict_plas
+        tuple val(sample), path("*.shorterM.fasta"), emit: too_short, optional: true
+        tuple val(sample), path("*.Plasmids.fa"), emit: pred_plasmids, optional: true
+        tuple val(sample), path("*.predClass.tsv"), emit: pred_class
+        tuple val(sample), path("*.predProb.tsv"), emit: probability
+        tuple val(sample), path("*.predPlasmids.taxon"), emit: pred_taxon, optional: true
+
         
     script:
 
@@ -20,8 +22,12 @@ process plasmer {
     cp ${k2_db} db
     cp ${main_db} db
     cd db
-    tar -xf *
+    tar -xf ${k2_db}
+    tar -xf ${main_db}
     cd ..
-    Plasmer -g ${fasta} -p ${sample} -d db -t ${task.cpus} -m ${params.plasmer_min_len} -l ${params.plasmer_max_len} -o .
+    /scripts/Plasmer -g ${fasta} -p ${sample} -d db -t ${task.cpus} -m ${params.plasmer_min_len} -l ${params.plasmer_max_len} -o .
+    cd results
+    cp * ..
+    cd ..
     """
 }

@@ -42,7 +42,7 @@ params.platon_meta = 'True'
 params.min_contig_size = '500'
 params.min_contig_cov = '2'
 params.plasmer_min_len = '300'
-params.plasmer_miax_len = '500000'
+params.plasmer_max_len = '500000'
 
 
 nextflow.enable.dsl=2
@@ -53,7 +53,7 @@ file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BALRROG_CARD_AMRFINDER'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
-bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/nARGhmm.tar.gz' )
+bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
 
 
 
@@ -233,6 +233,7 @@ Input
 
     take fastqs
     take bacscan
+    take bacscan_nhmm
 
 /*
 Database Downloading

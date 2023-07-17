@@ -6,7 +6,7 @@ process plasmer_db {
     script:
 
     """
-    wget https://zenodo.org/record/7030675/files/customizedKraken2DB.tar.xz?download=1
-    wget https://zenodo.org/record/7030675/files/plasmerMainDB.tar.xz?download=1
+    wget https://zenodo.org/record/7030675/files/customizedKraken2DB.tar.xz
+    wget https://zenodo.org/record/7030675/files/plasmerMainDB.tar.xz
     """
 }
