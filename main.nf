@@ -39,16 +39,57 @@ params.chdit_word_size = '8'
 params.platon_mode = 'accuracy'
 params.bacscan_nhmm_eval = '0.000001'
 params.platon_meta = 'True'
-params.min_contig_size = '500'
-params.min_contig_cov = '2'
-params.plasmer_min_len = '300'
-params.plasmer_max_len = '500000'
+params.min_contig_size = '500'           //==  combined with coverage to filter out small lov cov contigs
+params.min_contig_cov = '2'              //==  conbined with size to filter out small lov cov contigs
+params.plasmer_min_len = '300'           //==  Setting the minimum size to be classified in plasmer (defualt/recommended = 500)
+params.plasmer_max_len = '500000'        //==  Setting the length at which all contigs greater than this size are automatically considered chromomosomal in orgin (defualt = 500000)
+
+
+
+/*
+Database Settings (True = autodownload, False = supplied in corresponding folder)
+*/
+
+params.database_dir = ''
+
+//Plasmer (recommend autodownload)
+params.db_plasmer = true
+
+//Kracken2 (recommend autodownload) If different database is used change RAM requirements as needed in config
+params.db_kraken2 = true
+
+//ViralVerify_pfam_db (Can be updated for more up to date plasmid searching, dependent on use)
+params.db_viralverify = true
+
+//GTDBtk (Can be updated for more up to date genome identification)
+params.db_gtdbtk = true
+
+//ViralVerify_pfam_db (Can be updated for more up to date plasmid searching, dependent on use)
+params.db_ncbi16S = true
+
+//resfinder (Reccomend updating for most up to date ARGs)
+params.db_resfinder = true
+
+//amrfinder (Reccomend updating for most up to date ARGs)
+params.db_amrfinder = true
+
+//argannot (Reccomend updating for most up to date ARGs)
+params.db_argannot = true
+
+//card (Reccomend updating for most up to date ARGs)
+params.db_card = true
+
+//egares (Reccomend updating for most up to date ARGs)
+params.db_megares = true
+
+
+
 
 
 nextflow.enable.dsl=2
 
 /* Temp Input while testing */
-input_folder = "/homes/edwardbird/data/bacterial_isolates"
+input_folder = "/homes/edwardbird/data/bacterial_testdata"
 file_glob = "*_[1,2].fq.gz"
 params.project_name = 'BALRROG_CARD_AMRFINDER'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
@@ -57,215 +98,65 @@ bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz
 
 
 
-include { fastqc as raw_fqc } from './modules/Initial_QC/raw_fastqc.nf'
-include { fastqc as trim_fqc } from './modules/Initial_QC/trim_fastqc.nf'
-include { fastp as fastp } from './modules/Initial_QC/fastp.nf'
-include { trim_galore as trim_galore } from './modules/Initial_QC/trimgalore.nf'
-include { spades_genome as spades_genome } from './modules/Assembly/spades_genome.nf'
-include { quast as quast_genome} from './modules/Assembly/quast_genome.nf'
-include { quast as quast_plasmid} from './modules/Assembly/quast_plasmid.nf'
-include { card_DB as card_DB} from './modules/ARG_db_download/cardDB.nf'
-include { busco as busco_genome } from './modules/Assembly/busco.nf'
-include { prokka_genome as prokka_genome } from './modules/Annotation/prokka_genome.nf'
-include { prokka_plasmid as prokka_plasmid } from './modules/Annotation/prokka_plasmid.nf'
-include { card_genome as card_genome} from './modules/AMR_Annotation/card_genome.nf'
-include { card_plasmid as card_plasmid } from './modules/AMR_Annotation/card_plasmid.nf'
-include { barrnap as barrnap } from './modules/Annotation/barrnap.nf'
-include { db_16s as db_16s } from './modules/DB_Down/ncbi_16s.nf'
-include { blast_16s as blast_16s } from './modules/Annotation/blast_16s.nf'
-include { amrfinder_genome as amrfinder_genome } from './modules/AMR_Annotation/amrfinder_genome.nf'
-include { amrfinder_plasmid as amrfinder_plasmid } from './modules/AMR_Annotation/amrfinder_plasmid.nf'
-include { resfinder_genome as resfinder_genome } from './modules/AMR_Annotation/resfinder_genome.nf'
-include { resfinder_db as resfinder_db } from './modules/ARG_db_download/resfinder_db.nf'
-include { resfinder_plasmid as resfinder_plasmid } from './modules/AMR_Annotation/resfinder_plasmid.nf'
-include { gtdbtk as gtdbtk } from './modules/Annotation/gtdb_tk.nf'
-include { gtdbtk_db as gtdbtk_db } from './modules/DB_Down/gtdbtk_db.nf'
-include { platon as platon } from './modules/Assembly/platon.nf'
-include { platon_meta as platon_meta } from './modules/Assembly/platon_meta.nf'
-include { platon_db as platon_db } from './modules/DB_Down/platon_db.nf'
-include { pfam_db as pfam_db } from './modules/DB_Down/pfam_db.nf'
-include { viralverify as viralverify } from './modules/Assembly/viralverify.nf'
-include { amrfinder_db as amrfinder_db } from './modules/ARG_db_download/amrfinder_db.nf'
-include { argannot_db as argannot_db } from './modules/ARG_db_download/argannot_db.nf'
-include {argdit_config as argdit_config} from './modules/ARG_db_prep/argdit_config.nf'
-include {argdit_checkdb_nt as argdit_checkdb_nt} from './modules/ARG_db_prep/argdit_checkdb_nt.nf'
-include {argdit_merge as argdit_merge} from './modules/ARG_db_prep/argdit_merge.nf'
-include { megares as megares } from './modules/ARG_db_download/megares_db.nf'
-include {argdit_schema_check as argdit_schema_check} from './modules/ARG_db_prep/argdit_schema_check.nf'
-include {argdit_uniprot as argdit_uniprot} from './modules/ARG_db_prep/argdit_uniprot.nf'
-include { kracken_db as kracken_db } from './modules/DB_Down/kracken_db.nf'
-include {krackenuni as krackenuni} from './modules/Initial_QC/krackenuni.nf'
-include {cdhit_merge as cdhit_merge} from './modules/ARG_db_prep/cdhit_merge.nf'
-include {nhmmscan as nhmmscan} from './modules/ARG_db_prep/nhmmscan.nf'
-include { mef_genome as mef_genome } from './modules/Annotation/mef_genome.nf'
-include { mef_plasmid as mef_plasmid } from './modules/Annotation/mef_plasmid.nf'
-include { card_genome_mef as card_genome_mef} from './modules/AMR_Annotation/card_genome_mef.nf'
-include { card_plasmid_mef as card_plasmid_mef } from './modules/AMR_Annotation/card_plasmid_mef.nf'
-include { kraken2_db as kraken2_db } from './modules/DB_Down/kraken2_db.nf'
-include { kraken2 as kraken2 } from './modules/Assembly/kraken2.nf'
-include { plasmer as plasmer } from './modules/Assembly/plasmer.nf'
-include { plasmer_db as plasmer_db } from './modules/DB_Down/plasmer_db.nf'
-
-
-workflow short_read_assembly {
-    take:
-        fastqs_short
-    main:
-        platon_db()
-        raw_fqc(fastqs_short)
-        fastp(fastqs_short)
-        trim_fqc(fastp.out.trimmed_fastq)
-        spades_genome(fastp.out.trimmed_fastq)
-        platon(spades_genome.out.genome, platon_db.out.platon_DB)
-    emit:
-        platon.out.predict_chr
-        platon.out.predict_plas
-
-}
-
-workflow hybrid_assembly {
-    take:
-        fastqs_short_meta
-    main:
-        platon_db()
-        raw_fqc(fastqs_short_meta)
-        fastp(fastqs_short_meta)
-        trim_fqc(fastp.out.trimmed_fastq)
-        spades_metagenome(fastp.out.trimmed_fastq)
-        platon_meta(spades_metagenome.out.genome, platon_db.out.platon_DB)
-    emit:
-        platon_meta.out.predict_chr
-        platon_meta.out.predict_plas
-    
-}
-
-workflow ARG_Database {
-    take:
-        take bacscan
-    main:
-
-    /*
-    Database Downloading
-    */
-        resfinder_db()
-        argannot_db()
-        card_DB()
-        amrfinder_db()
-        megares()
-
-    /*
-    AMR Database Prep
-    */ 
-        arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
-        argdit_config()
-        argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
-    //    argdit_uniprot(argdit_config.out.config, bacscan)
-    //    argdit_schema_check(argdit_config.out.config, bacscan)
-    //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
-
-//    emit:
-//        platon_meta.out.predict_chr
-//        platon_meta.out.predict_plas
-
-}
-
-workflow long_read_assembly {
-    
-    
-}
-
-workflow isolate_annotation {
-    take:
-        genome_assembly
-        plasmid_assembly
-    main:
-
-    /*
-    Database Downloading
-    */
-        gtdbtk_db()
-        db_16s()
-        pfam_db()
-
-    /*
-    Assembly QC
-    */
-        quast_genome(genome_assembly)
-        quast_plasmid(plasmid_assembly)
-        busco_genome(genome_assembly)
-        viralverify(plasmid_assembly, pfam_db.out.pfam_DB)
-
-    /*
-    Quick Functional Annotation
-    */
-        prokka_genome(genome_assembly)
-        prokka_plasmid(plasmid_assembly)
-
-
-    /*
-    Identification
-    */
-        barrnap(genome_assembly)
-        blast_16s(barrnap.out.barrnap_results, db_16s.out.db_16s)
-        gtdbtk(genome_assembly, gtdbtk_db.out.DB)
-
-    /*
-    ARG Annotation
-    */
-    //    card_plasmid(plasmid_assembly, card_DB.out.card_DB)
-    //    card_genome(genome_assembly, card_DB.out.card_DB)
-    //    amrfinder_genome(genome_assembly)
-    //    amrfinder_plasmid(plasmid_assembly)
-        
-    
-}
-
-workflow metagenome_annotation {
-    
-    
-}
+include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
 
 workflow {
+    SHORT_READ_ISOLATE (fastqs)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//workflow {
 
 /*
 Input
 */
 
-    take fastqs
-    take bacscan
-    take bacscan_nhmm
+//    take fastqs
+//    take bacscan
+//    take bacscan_nhmm
 
 /*
 Database Downloading
 */
-    gtdbtk_db()
-    resfinder_db()
-    argannot_db()
-    db_16s()
-    card_DB()
-    pfam_db()
-    platon_db()
-    amrfinder_db()
-    megares()
-    //kracken_db()
-    kraken2_db()
-    plasmer_db()
+//    gtdbtk_db()
+//    resfinder_db()
+//    argannot_db()
+//    db_16s()
+//    card_DB()
+//    pfam_db()
+//    platon_db()
+//    amrfinder_db()
+//    megares()
+//    //kracken_db()
+//    kraken2_db()
+//    plasmer_db()
 
 
 /*
 QC & Trimming
 */   
-    raw_fqc(fastqs)
-    fastp(fastqs)
-    trim_fqc(fastp.out.trimmed_fastq)
+//    raw_fqc(fastqs)
+//    fastp(fastqs)
+//    trim_fqc(fastp.out.trimmed_fastq)
 //    krackenuni(fastp.out.trimmed_fastq, kracken_db.out.kracken_DB)
 
 /*
 Assembly & Plasmid Prediciton + QC
 */
-    spades_genome(fastp.out.trimmed_fastq)
+//    spades_genome(fastp.out.trimmed_fastq)
     //platon(spades_genome.out.genome, platon_db.out.platon_DB)
-    plasmer(spades_genome.out.genome, plasmer_db.out.plasmer_DB)
+//    plasmer(spades_genome.out.genome, plasmer_db.out.plasmer_DB)
     //quast_genome(platon.out.predict_chr)
 //    quast_plasmid(platon.out.predict_plas)
 //    busco_genome(platon.out.predict_chr)
@@ -283,14 +174,14 @@ Quick Functional Annotation
 /*
 AMR Database Prep
 */ 
-    arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
+// +    arg_only_fa = amrfinder_db.out.only_fa.mix(argannot_db.out.only_fa, card_DB.out.only_fa, resfinder_db.out.only_fa, megares.out.only_fa)
 //    argdit_config()
 //    argdit_checkdb_nt(argdit_config.out.config, arg_only_fa)
 //    argdit_uniprot(argdit_config.out.config, bacscan)
 //    argdit_schema_check(argdit_config.out.config, bacscan)
 //    argdit_merge(argdit_config.out.config, arg_only_fa.collect(), bacscan)
-    cdhit_merge(arg_only_fa.collect())
-    nhmmscan(cdhit_merge.out.cdhit_db, bacscan_nhmm)
+// +    cdhit_merge(arg_only_fa.collect())
+// +    nhmmscan(cdhit_merge.out.cdhit_db, bacscan_nhmm)
 
 
 /*
@@ -309,4 +200,4 @@ ARG Annotation
     //card_genome_mef(mef_genome.out.mef_fna, card_DB.out.card_DB)
     //amrfinder_genome(platon.out.predict_chr)
     //amrfinder_plasmid(platon.out.predict_plas)
-}
+//}
