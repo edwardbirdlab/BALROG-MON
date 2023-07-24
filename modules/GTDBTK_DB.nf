@@ -4,7 +4,7 @@ process GTDBTK_DB {
     publishDir "${params.project_name}/DB_Download/gtdbtk_DB", mode: 'copy', overwrite: false
 
     output:
-        path("./out_db"), emit: DB
+        path("*.tar.gz"), emit: DB
 
     script:
 
