@@ -112,10 +112,14 @@ def sort_contigs(contigs, predict, prob, contig_name):
     
     merged_dict = Merge(Plasmid_Dict, Chromo_Dict, Too_Short_Dict)
     
-    write_fasta(Plasmid_Dict, get_fasta_name(contig_name, 'plasmid'))
-    write_fasta(Chromo_Dict, get_fasta_name(contig_name, 'chromosome'))
-    write_fasta(Too_Short_Dict, get_fasta_name(contig_name, 'tooshort'))
-    write_fasta(merged_dict, get_fasta_name(contig_name, 'allclass'))
+    if len(Plasmid_Dict) > 0:
+        write_fasta(Plasmid_Dict, get_fasta_name(contig_name, 'plasmid'))
+    if len(Chromo_Dict) > 0:
+        write_fasta(Chromo_Dict, get_fasta_name(contig_name, 'chromosome'))
+    if len(Too_Short_Dict) > 0:
+        write_fasta(Too_Short_Dict, get_fasta_name(contig_name, 'tooshort'))
+    if len(merged_dict) > 0:
+        write_fasta(merged_dict, get_fasta_name(contig_name, 'allclass'))
     
     print('There are ' + str(len(Plasmid_Dict)) + ' plasmid sequences')
     print('There are ' + str(len(Chromo_Dict)) + ' chromosome sequences')

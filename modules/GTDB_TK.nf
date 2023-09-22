@@ -1,5 +1,5 @@
 process GTDB_TK {
-    label 'bigmem'
+    label 'plasmer'
     container 'library://edwardbirdlab/bara/gtdbtk_2:latest'
     publishDir "${params.project_name}/Identificaiton/gtdbtk", mode: 'copy', overwrite: false
 

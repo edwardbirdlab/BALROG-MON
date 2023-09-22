@@ -1,4 +1,4 @@
-process cdhit_merge {
+process CDHIT_MERGE {
     label 'lowmem'
     container 'ebird013/cdhit:4.8.1'
     publishDir "${params.project_name}/ARG_Database_Merge/cdhit_merge", mode: 'copy', overwrite: false

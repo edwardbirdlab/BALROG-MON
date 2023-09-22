@@ -91,7 +91,7 @@ nextflow.enable.dsl=2
 /* Temp Input while testing */
 input_folder = "/homes/edwardbird/data/bacterial_testdata"
 file_glob = "*_[1,2].fq.gz"
-params.project_name = 'BALRROG_CARD_AMRFINDER'
+params.project_name = 'BALRROG_MEF'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )

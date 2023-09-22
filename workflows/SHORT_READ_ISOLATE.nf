@@ -11,6 +11,7 @@ include { FUNCTIONAL_ANNOTATION as FUNCTIONAL_ANNOTATION } from '../subworkflows
 include { ASSEMBLY_QC as ASSEMBLY_QC } from '../subworkflows/ASSEMBLY_QC.nf'
 include { IDENTIFICATION as IDENTIFICATION } from '../subworkflows/IDENTIFICATION.nf'
 include { ARG_GET_DBS as ARG_GET_DBS } from '../subworkflows/ARG_GET_DBS.nf'
+include { CUSTOM_ARG_DB as CUSTOM_ARG_DB } from '../subworkflows/CUSTOM_ARG_DB.nf'
 
 workflow SHORT_READ_ISOLATE {
     take:
@@ -30,5 +31,9 @@ workflow SHORT_READ_ISOLATE {
         IDENTIFICATION(PLASMID_PREDICTION.out.chromosomal)
 
         ARG_GET_DBS()
+
+        CUSTOM_ARG_DB(ARG_GET_DBS.out.all_fa)
+
+
 
 }

@@ -85,11 +85,14 @@ workflow ARG_GET_DBS {
 
             }
 
+        ch_arg_only_fa = ch_amrfinder_db.mix(ch_argannot_db, ch_card_db, ch_resfinder_db, ch_megares_db)
+
     emit:
-        card        = ch_card_db      //   channel: val(fasta)
-        argannot    = ch_argannot_db  //   channel: val(fasta)
-        amrfinder   = ch_amrfinder_db //   channel: val(fasta)
-        resfinder   = ch_resfinder_db //   channel: val(fasta)
-        megares     = ch_megares_db   //   channel: val(fasta)
+        card_fa        = ch_card_db      //   channel: path(fasta)
+        argannot_fa    = ch_argannot_db  //   channel: path(fasta)
+        amrfinder_fa   = ch_amrfinder_db //   channel: path(fasta)
+        resfinder_fa   = ch_resfinder_db //   channel: path(fasta)
+        megares_fa     = ch_megares_db   //   channel: path(fasta)
+        all_fa         = ch_arg_only_fa  //   channel: path([fasta1,fast2, ...])
 
 }

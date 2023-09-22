@@ -59,7 +59,7 @@ workflow PLASMID_PREDICTION {
         QUAST_PLASMID(PLASMER_SORT.out.plasmid, 'Plasmid')
         QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome, 'Chromosomal')
         QUAST_SHORT(PLASMER_SORT.out.tooshort, 'Too_Short')
-        VIRALVERIFY(PLASMER_SORT.out.plasmid, ch_viralverify_db)
+        //VIRALVERIFY(PLASMER_SORT.out.plasmid, ch_viralverify_db)
 
     emit:
         plasmids         =       PLASMER_SORT.out.plasmid        // tuple val(sample), path("*plasmid.fasta"), emit: plasmid

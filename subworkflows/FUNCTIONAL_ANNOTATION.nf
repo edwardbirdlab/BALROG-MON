@@ -8,6 +8,7 @@ NONE
 
 include { MEF as MEF } from '../modules/MEF.nf'
 include { PROKKA as PROKKA } from '../modules/PROKKA.nf'
+include { amrfinder_genome as amrfinder_genome } from '../modules/amrfinder_genome.nf'
 
 
 workflow FUNCTIONAL_ANNOTATION {
@@ -18,5 +19,5 @@ workflow FUNCTIONAL_ANNOTATION {
 
         MEF(classified_assembly)
         PROKKA(classified_assembly)
-
+        
 }

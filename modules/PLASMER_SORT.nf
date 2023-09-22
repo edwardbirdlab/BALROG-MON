@@ -8,9 +8,9 @@ process PLASMER_SORT {
         tuple val(sample), path(pred), path(prob), path(contigs)
 
     output:
-        tuple val(sample), path("*plasmid.fasta"), emit: plasmid
-        tuple val(sample), path("*chromosome.fasta"), emit: chromosome
-        tuple val(sample), path("*tooshort.fasta"), emit: tooshort
+        tuple val(sample), path("*plasmid.fasta"), emit: plasmid, optional: true
+        tuple val(sample), path("*chromosome.fasta"), emit: chromosome, optional: true
+        tuple val(sample), path("*tooshort.fasta"), emit: tooshort, optional: true
         tuple val(sample), path("*allclass.fasta"), emit: all
 
 
