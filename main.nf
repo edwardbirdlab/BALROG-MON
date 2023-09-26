@@ -99,9 +99,11 @@ bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz
 
 
 include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
+include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
 
 workflow {
-    SHORT_READ_ISOLATE (fastqs)
+//    SHORT_READ_ISOLATE (fastqs)
+    SHORT_READ_METAGENOMIC(fastqs)
 }
 
 
