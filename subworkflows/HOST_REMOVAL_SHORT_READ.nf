@@ -7,23 +7,24 @@ params.fastp_q  = Q score for trimming
 */
 
 
-include { FASTQC as RAW_FASTQC } from '../modules/RAW_FASTQC.nf'
-include { FASTQC as TRIM_FASTQC } from '../modules/TRIM_FASTQC.nf'
-include { FASTP as FASTP } from '../modules/FASTP.nf'
+include { BOWTIE2 as BOWTIE2 } from '../modules/BOWTIE2.nf'
+include { SAMTOOLS_EXTRACT_UNMAPPED as SAMTOOLS_EXTRACT_UNMAPPED } from '../modules/SAMTOOLS_EXTRACT_UNMAPPED.nf'
+include { FASTQC as FASTQC_HOST_DEP } from '../modules/FASTQC.nf'
 
-
-workflow READ_QC {
+workflow HOST_REMOVAL_SHORT_READ {
     take:
-        fastqs                                          // channel: [val(sample), [fastq_1, fastq_2]]
+        fastqs_trim                // channel: [val(sample), [fastq_1, fastq_2]]
+        ref_fasta                  // channel: fasta
     main:
-        // Create output channels
-        //ch_trimmed_fastq        = Channel.empty()
+
+        for_bowtie = fastqs_trim.combine(ref_fasta)
+
+        BOWTIE2(for_bowtie)
+        SAMTOOLS_EXTRACT_UNMAPPED(BOWTIE2.out.sam)
+        FASTQC_HOST_DEP(SAMTOOLS_EXTRACT_UNMAPPED.out.non_host_reads)
 
 
-        RAW_FASTQC(fastqs)
-        FASTP(fastqs)
-        TRIM_FASTQC(FASTP.out.trimmed_fastq)
     emit:
-        trimmed_fastq    =  FASTP.out.trimmed_fastq  //   channel: [ val(sample), fastq_1, fastq_2]
+        host_depleted_reads    =  SAMTOOLS_EXTRACT_UNMAPPED.out.non_host_reads  //   channel: [ val(sample), fastq_1, fastq_2]
 
 }

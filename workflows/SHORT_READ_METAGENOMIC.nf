@@ -14,14 +14,15 @@ include { ARG_GET_DBS as ARG_GET_DBS } from '../subworkflows/ARG_GET_DBS.nf'
 include { CUSTOM_ARG_DB as CUSTOM_ARG_DB } from '../subworkflows/CUSTOM_ARG_DB.nf'
 include { HOST_REMOVAL_SHORT_READ as HOST_REMOVAL_SHORT_READ } from '../subworkflows/HOST_REMOVAL_SHORT_READ.nf'
 
-workflow SHORT_READ_ISOLATE {
+workflow SHORT_READ_METAGENOMIC {
     take:
         fastqs_short_raw      //    channel: [val(sample), [fastq_1, fastq_2]]
+        host_gen_fasta        //    channel: fna
 
     main:
         READ_QC(fastqs_short_raw)
 
-        HOST_REMOVAL_SHORT_READ(READ_QC.out.trimmed_fastq)
+        HOST_REMOVAL_SHORT_READ(READ_QC.out.trimmed_fastq, host_gen_fasta)
 
 //        SHORT_READ_ISOLATE_ASSEMBLY()
         
