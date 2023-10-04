@@ -7,8 +7,8 @@ params.fastp_q  = Q score for trimming
 */
 
 
-include { FASTQC as RAW_FASTQC } from '../modules/RAW_FASTQC.nf'
-include { FASTQC as TRIM_FASTQC } from '../modules/TRIM_FASTQC.nf'
+include { FASTQC as RAW_FASTQC } from '../modules/FASTQC.nf'
+include { FASTQC as TRIM_FASTQC } from '../modules/FASTQC.nf'
 include { FASTP as FASTP } from '../modules/FASTP.nf'
 
 

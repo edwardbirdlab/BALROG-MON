@@ -79,7 +79,7 @@ params.db_argannot = true
 //card (Reccomend updating for most up to date ARGs)
 params.db_card = true
 
-//egares (Reccomend updating for most up to date ARGs)
+//megares (Reccomend updating for most up to date ARGs)
 params.db_megares = true
 
 
@@ -89,13 +89,13 @@ params.db_megares = true
 nextflow.enable.dsl=2
 
 /* Temp Input while testing */
-input_folder = "/homes/edwardbird/data/bacterial_testdata"
+input_folder = "/homes/edwardbird/data/bacterial_metagenome_testdata"
 file_glob = "*_[1,2].fq.gz"
-params.project_name = 'BALRROG_MEF'
-fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}")
+params.project_name = 'BALRROG_SHORT_META'
+fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-
+host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome/GCF_030504385.1_Musca_domestica.polishedcontigs.V.1.1_genomic.fasta' )
 
 
 include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
@@ -103,7 +103,7 @@ include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/S
 
 workflow {
 //    SHORT_READ_ISOLATE (fastqs)
-    SHORT_READ_METAGENOMIC(fastqs)
+    SHORT_READ_METAGENOMIC(fastqs, host_gen_fasta)
 }
 
 
