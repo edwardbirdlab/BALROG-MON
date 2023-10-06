@@ -1,7 +1,7 @@
 process FASTQC {
     label 'lowmem'
 	container 'library://edwardbird/bara/fastqc:0.11.9'
-    publishDir "${params.project_name}/Pre_Processing/FastQC/${task.process}", mode: 'copy', overwrite: false
+    publishDir "${params.project_name}/Pre_Processing/FastQC/${task.process}", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(R1), file(R2)
