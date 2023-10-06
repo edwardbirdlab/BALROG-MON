@@ -6,8 +6,8 @@ process SPADES_METAGENOME {
     input:
         tuple val(sample), path(fastq1), path(fastq2)
     output:
-        tuple val(sample), path("${sample}_scaffolds.fasta"), emit: spades_metagenome
-        tuple val(sample), path("./${sample}"), emit: spades_metagenome_dir
+        tuple val(sample), path("${sample}_scaffolds.fasta"), emit: metagenome
+        tuple val(sample), path("./${sample}"), emit: metagenome_dir
 
     script:
 
