@@ -1,7 +1,7 @@
 process BOWTIE2 {
-    label 'lowmem'
+    label 'lowmemlong'
     container 'biocontainers/bowtie2:v2.4.1_cv1'
-    publishDir "${params.project_name}/Host_Depletion/Bowtie2", mode: 'symlink', overwrite: false
+    publishDir "${params.project_name}/Host_Depletion/Bowtie2", mode: 'symlink', overwrite: true
 
     input:
         tuple val(sample), file(fq1), file(fq2), file(ref)
@@ -12,6 +12,6 @@ process BOWTIE2 {
 
     """
     bowtie2-build ${ref} host_DB
-    bowtie2 -p 8 -x host_DB -1 ${fq1} -2 ${fq2} -S ${sample}_host_removal.sam
+    bowtie2 -p ${task.cpus}  -x host_DB -1 ${fq1} -2 ${fq2} -S ${sample}_host_removal.sam
     """
 }
