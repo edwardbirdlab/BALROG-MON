@@ -1,4 +1,4 @@
-process KRAKEN2_DB {
+process KRAKEN2_DB_STD16 {
     label 'small'
     output:
         tuple path("inspect.txt"), path('k2_standard_16gb_20230605.tar.gz'), emit: kraken2_DB
