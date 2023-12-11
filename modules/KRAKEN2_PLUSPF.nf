@@ -1,10 +1,10 @@
-process KRAKEN2 {
-    label 'kracken2'
+process KRAKEN2_PLUSPF {
+    label 'kracken2_PlusPF'
 	container 'ebird013/kracken2:2.1.3'
     publishDir "${params.project_name}/Assembly/kraken2/${sample}", mode: 'copy', overwrite: true
 
     input:
-        tuple val(sample), file(ref)
+        tuple val(sample), file(R1), file(R2)
         tuple file(txt), file(db)
     output:
 	   tuple val(sample), path("${sample}_out.tsv"), emit: out
@@ -19,6 +19,6 @@ process KRAKEN2 {
     cd krakendb
     tar zxvf $db
     cd ..
-    kraken2 --db krakendb --threads ${task.cpus} --output ${sample}_out.tsv --report ${sample}_report.tsv ${ref}
+    kraken2 --db krakendb --threads ${task.cpus} --output ${sample}_out.tsv --report ${sample}_report.tsv --report-minimizer-data --minimum-hit-groups 3 ${R1} ${R2}
     """
 }

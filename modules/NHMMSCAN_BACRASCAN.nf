@@ -1,4 +1,4 @@
-process NHMMSCAN {
+process NHMMSCAN_BACRASCAN {
     label 'lowmem'
     container 'ebird013/hmmer:3.3.1'
     publishDir "${params.project_name}/ARG_Database_Merge/nhmmscan", mode: 'copy', overwrite: false

@@ -6,6 +6,7 @@ Subworkflow for doanloading of mutiple AMR databases
 
 include { RESFINDER_DB as RESFINDER_DB } from '../modules/RESFINDER_DB.nf'
 include { CARD_DB as CARD_DB } from '../modules/CARD_DB.nf'
+include { NHMMSCAN_BACRASCAN as NHMMSCAN_BACRASCAN } from '../modules/NHMMSCAN_BACRASCAN.nf'
 
 workflow ARG_GET_DBS_META {
 
@@ -42,6 +43,8 @@ workflow ARG_GET_DBS_META {
             }
 
         ch_arg_only_fa = ch_resfinder_db.mix(ch_card_db)
+
+        
 
     emit:
         card_fa        = ch_card_db      //   channel: path(fasta)

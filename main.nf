@@ -41,7 +41,7 @@ params.bacscan_nhmm_eval = '0.000001'
 params.platon_meta = 'True'
 params.min_contig_size = '500'           //==  combined with coverage to filter out small lov cov contigs
 params.min_contig_cov = '2'              //==  conbined with size to filter out small lov cov contigs
-params.plasmer_min_len = '300'           //==  Setting the minimum size to be classified in plasmer (defualt/recommended = 500)
+params.plasmer_min_len = '500'           //==  Setting the minimum size to be classified in plasmer (defualt/recommended = 500)
 params.plasmer_max_len = '500000'        //==  Setting the length at which all contigs greater than this size are automatically considered chromomosomal in orgin (defualt = 500000)
 
 
@@ -82,6 +82,9 @@ params.db_card = true
 //megares (Reccomend updating for most up to date ARGs)
 params.db_megares = true
 
+//Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
+params.db_kraken2_pluspf = true
+
 
 
 
@@ -95,10 +98,10 @@ params.project_name = 'BALRROG_SHORT_META'
 fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome/GCF_030504385.1_Musca_domestica.polishedcontigs.V.1.1_genomic.fasta' )
+host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/GCF_030504385.1_Musca_domestica.polishedcontigs.V.1.1_genomic.fasta' )
 
 
-include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
+//include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
 include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
 
 workflow {
@@ -111,7 +114,7 @@ workflow {
 
 
 
-
+    
 
 
 
