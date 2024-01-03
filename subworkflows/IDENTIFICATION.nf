@@ -9,11 +9,13 @@ include { NCBI_16S as NCBI_16S } from '../modules/NCBI_16S.nf'
 include { BARRNAP as BARRNAP } from '../modules/BARRNAP.nf'
 include { BLAST_16S as BLAST_16S } from '../modules/BLAST_16S.nf'
 include { GTDB_TK as GTDB_TK } from '../modules/GTDB_TK.nf'
+include { SYLPH_SKETCH_GTDB as SYLPH_SKETCH_GTDB } from '../modules/SYLPH_SKETCH_GTDB.nf'
 
 
 workflow IDENTIFICATION {
     take:
         chromosomal      //    channel: [ val(sample), path("${sample}_chromosome.fasta")]
+        ref_gen          //    channel: path(referece_genome.fa)
 
     main:
     
@@ -49,5 +51,7 @@ workflow IDENTIFICATION {
         BARRNAP(chromosomal)
         BLAST_16S(BARRNAP.out.barrnap_results, ch_ncbi16S_db)
         GTDB_TK(chromosomal, ch_gtdbtk_db)
+        SYLPH_SKETCH_GTDB(ch_gtdbtk_db, ref_gen)
+
 
 }

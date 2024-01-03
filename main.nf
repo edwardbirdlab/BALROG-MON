@@ -92,21 +92,29 @@ params.db_kraken2_pluspf = true
 nextflow.enable.dsl=2
 
 /* Temp Input while testing */
-input_folder = "/homes/edwardbird/data/bacterial_metagenome_testdata"
-file_glob = "*_[1,2].fq.gz"
-params.project_name = 'BALRROG_SHORT_META'
-fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
+
+params.sample_sheet = '/fastscratch/edwardbird/BALLROG_ONT_META/samplesheet.csv'
+fastq_ch = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.path)) }
+
+//input_folder = "/homes/edwardbird/data/bacterial_metagenome_testdata"
+//file_glob = "*_[1,2].fq.gz"
+params.project_name = 'BALRROG_ONT_META'
+//fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/GCF_030504385.1_Musca_domestica.polishedcontigs.V.1.1_genomic.fasta' )
+host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/musca_domestica_genomic_fixed.fasta' )
+
 
 
 //include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
-include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
+include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC.nf'
 
 workflow {
 //    SHORT_READ_ISOLATE (fastqs)
-    SHORT_READ_METAGENOMIC(fastqs, host_gen_fasta)
+//    SHORT_READ_METAGENOMIC(fastqs, host_gen_fasta)
+    ONT_METAGENOMIC(fastq_ch, host_gen_fasta)
 }
 
 

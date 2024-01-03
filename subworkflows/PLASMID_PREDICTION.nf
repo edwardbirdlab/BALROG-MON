@@ -56,9 +56,9 @@ workflow PLASMID_PREDICTION {
 
         PLASMER(assembly, ch_plasmer_db)
         PLASMER_SORT(PLASMER.out.for_sort)
-        QUAST_PLASMID(PLASMER_SORT.out.plasmid, 'Plasmid')
-        QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome, 'Chromosomal')
-        QUAST_SHORT(PLASMER_SORT.out.tooshort, 'Too_Short')
+        QUAST_PLASMID(PLASMER_SORT.out.plasmid)
+        QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome)
+        QUAST_SHORT(PLASMER_SORT.out.tooshort)
         //VIRALVERIFY(PLASMER_SORT.out.plasmid, ch_viralverify_db)
 
     emit:
