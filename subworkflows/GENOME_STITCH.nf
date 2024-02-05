@@ -23,7 +23,7 @@ workflow GENOME_STITCH {
 
         SEQTK_FQ2FA_GEN(CONCAT_FQ.out.concat_reads)
 
-        LONGSTITCH(CONCAT_FQ.out.concat_reads, ref_fasta)
+        //LONGSTITCH(CONCAT_FQ.out.concat_reads, ref_fasta)
 
         RAGTAG(SEQTK_FQ2FA_GEN.out.fq2fa, ref_fasta)
 

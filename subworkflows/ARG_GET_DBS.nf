@@ -9,9 +9,15 @@ include { AMRFINDER_DB as AMRFINDER_DB } from '../modules/AMRFINDER_DB.nf'
 include { ARGANNOT_DB as ARGANNOT_DB } from '../modules/ARGANNOT_DB.nf'
 include { CARD_DB as CARD_DB } from '../modules/CARD_DB.nf'
 include { MEGARES_DB as MEGARES_DB } from '../modules/MEGARES_DB.nf'
+include { AMRFINDER as AMRFINDER } from '../modules/AMRFINDER.nf'
+include { CARD_CONTIG as CARD_CONTIG } from '../modules/CARD_CONTIG.nf'
+include { CARD_READS as CARD_READS } from '../modules/CARD_READS.nf'
 
 workflow ARG_GET_DBS {
 
+    take:
+        contigs          //    channel: [ val(sample), path("${sample}_all.fasta")]
+        trimmed_reads_nh //    channel: [ val(sample), path("${sample}_nh.fq")]
 
     main:
 
@@ -86,6 +92,13 @@ workflow ARG_GET_DBS {
             }
 
         ch_arg_only_fa = ch_amrfinder_db.mix(ch_argannot_db, ch_card_db, ch_resfinder_db, ch_megares_db)
+
+        //AMRFINDER()
+
+
+
+        CARD_CONTIG(contigs, CARD_DB.out.card_DB) //CARD_DB.out.card_DB
+        //CARD_READS(trimmed_reads_nh, CARD_DB.out.card_DB)
 
     emit:
         card_fa        = ch_card_db      //   channel: path(fasta)

@@ -16,15 +16,18 @@ include { SAMTOOLS_STATS as SAMTOOLS_STATS_FILTER } from '../modules/SAMTOOLS_ST
 include { SAMTOOLS_READNAMES as SAMTOOLS_READNAMES } from '../modules/SAMTOOLS_READNAMES.nf'
 include { GUNZIP_ONT as GUNZIP_ONT } from '../modules/GUNZIP_ONT.nf'
 include { SEQTK_SUBSEQ_ONT as SEQTK_SUBSEQ_ONT_NH } from '../modules/SEQTK_SUBSEQ_ONT.nf'
+include { CONCAT_FA as CONCAT_FA } from '../modules/CONCAT_FA.nf'
 
 
 workflow HOST_REMOVAL_ONT {
     take:
         fastqs_trim                // channel: [val(sample), fastq_1]
-        ref_fasta                  // channel: fasta
+        ref_fastas                  // channel: fasta1,fasta2,fasta3......
     main:
 
-        for_MINIMAP2 = fastqs_trim.combine(ref_fasta)
+        CONCAT_FA(ref_fastas.collect())
+
+        for_MINIMAP2 = fastqs_trim.combine(CONCAT_FA.out.concat_fa)
 
         MINIMAP2_ONT(for_MINIMAP2)
         SAMTOOLS_STATS_FULL(MINIMAP2_ONT.out.sam)

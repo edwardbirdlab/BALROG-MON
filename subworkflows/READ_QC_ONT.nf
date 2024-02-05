@@ -12,6 +12,7 @@ include { FASTQC_ONT as PORECHOP_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { FASTQC_ONT as CHOPPER_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { PORECHOP as PORECHOP } from '../modules/PORECHOP.nf'
 include { CHOPPER as CHOPPER } from '../modules/CHOPPER.nf'
+include { RENAME_READS as RENAME_READS } from '../modules/RENAME_READS.nf'
 
 
 workflow READ_QC_ONT {
@@ -21,9 +22,9 @@ workflow READ_QC_ONT {
         // Create output channels
         //ch_trimmed_fastq        = Channel.empty()
 
-
-        RAW_FASTQC(fastqs)
-        PORECHOP(fastqs)
+        RENAME_READS(fastqs)
+        RAW_FASTQC(RENAME_READS.out.renamed_reads)
+        PORECHOP(RENAME_READS.out.renamed_reads)
         PORECHOP_FASTQC(PORECHOP.out.fastq)
         CHOPPER(PORECHOP.out.fastq)
         CHOPPER_FASTQC(CHOPPER.out.fastq)

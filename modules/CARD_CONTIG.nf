@@ -1,5 +1,5 @@
 process CARD_CONTIG {
-   label 'lowmem'
+   label 'lowmemnk'
     container 'library://edwardbird/bara/rgi:5.1.1'
     publishDir "${params.project_name}/AMR_Annotation/CARD/${task.process}", mode: 'copy', overwrite: false
 
@@ -13,6 +13,8 @@ process CARD_CONTIG {
 
     """
     mkdir ${sample}
-    rgi main --input_sequence $fasta --output_file ./${sample}/${sample}_out --input_type contig --local --clean
+    rgi clean --local
+    rgi load --card_json ${db} --local
+    rgi main --input_sequence $fasta --output_file ./${sample}/${sample}_out --input_type contig --local --clean --include_loose
     """
 }

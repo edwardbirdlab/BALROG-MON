@@ -85,6 +85,9 @@ params.db_megares = true
 //Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
 params.db_kraken2_pluspf = true
 
+//Perform metagenomic assembly on ONT reads == True, Convert reads to Fasta without Assembly == False
+params.ont_metagenomic_assembly = false
+
 
 
 
@@ -104,7 +107,8 @@ params.project_name = 'BALRROG_ONT_META'
 //fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/musca_domestica_genomic_fixed.fasta' )
+//host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/musca_domestica_genomic_fixed.fasta' )
+ch_host_genomes = Channel.fromPath( '/fastscratch/edwardbird/BALLROG_ONT_META/Host_genomes/**' )
 
 
 
@@ -114,7 +118,7 @@ include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC
 workflow {
 //    SHORT_READ_ISOLATE (fastqs)
 //    SHORT_READ_METAGENOMIC(fastqs, host_gen_fasta)
-    ONT_METAGENOMIC(fastq_ch, host_gen_fasta)
+    ONT_METAGENOMIC(fastq_ch, ch_host_genomes)
 }
 
 

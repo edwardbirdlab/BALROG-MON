@@ -18,14 +18,25 @@ workflow ONT_ASSEMBLY {
 
     main:
 
-        FLYE_META(fastqs_ont)
-        SEQTK_FQ2FA_SAMP(fastqs_ont)
+
+        if (params.ont_metagenomic_assembly) {
+
+            FLYE_META(fastqs_ont)
+
+            ch_ont_assembly        =  FLYE_META.out.metagenome
+
+            } else {
+
+                SEQTK_FQ2FA_SAMP(fastqs_ont)
+
+                ch_ont_assembly    =  SEQTK_FQ2FA_SAMP.out.fq2fa
+
+            }
 
 
 
 
     emit:
-        unclassed_genome   = FLYE_META.out.metagenome  //   channel: [ val(sample), path("${sample}_scaffolds.fasta")]
-        skip_assembly      = SEQTK_FQ2FA_SAMP.out.fq2fa  // channel: [ val(sample), path("${sample}.fasta")]
+        output   = ch_ont_assembly  //   channel: [ val(sample), path("${sample}.fasta")]
 
 }

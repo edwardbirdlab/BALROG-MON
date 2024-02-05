@@ -13,25 +13,29 @@ workflow METAGENOMIC_COMMUNITY_ANALYSIS {
     take:
         
         trimmed_reads //    channel: [ val(sample), fastq_1]
+        ref_genome    //    channel: refrence.fa
 
 
     main:
 
 
-        // Kraken2 Database
+//         Kraken2 Database
+//
+//        if (params.db_kraken2_pluspf) {
+//
+//            KRAKEN2_DB_PLUSPF()
+//
+//            ch_kraken2_pluspf_db        =  KRAKEN2_DB_PLUSPF.out.kraken2_DB
+//
+//            } else {
+//
+//                ch_kraken2_pluspf_db    =  Channel.fromPath("${params.database_dir}/Kraken2_PlusPF_db/*.txt","${params.database_dir}/Kraken2_PlusPF_db/*tar.gz")
+//
+//            }
 
-        if (params.db_kraken2_pluspf) {
 
-            KRAKEN2_DB_PLUSPF()
+//        KRAKEN2_PLUSPF(reads, ch_kraken2_db)
 
-            ch_kraken2_pluspf_db        =  KRAKEN2_DB_PLUSPF.out.kraken2_DB
+        SYLPH_SKETCH_GTDB(ch_gtdbtk_db, ref_gen)
 
-            } else {
-
-                ch_kraken2_pluspf_db    =  Channel.fromPath("${params.database_dir}/Kraken2_PlusPF_db/*.txt","${params.database_dir}/Kraken2_PlusPF_db/*tar.gz")
-
-            }
-
-
-        KRAKEN2_PLUSPF(reads, ch_kraken2_db)
 }

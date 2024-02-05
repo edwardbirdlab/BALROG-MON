@@ -17,6 +17,8 @@ include { IDENTIFICATION as IDENTIFICATION } from '../subworkflows/IDENTIFICATIO
 include { HOST_REMOVAL_ONT as HOST_REMOVAL_ONT } from '../subworkflows/HOST_REMOVAL_ONT.nf'
 include { ONT_ASSEMBLY as ONT_ASSEMBLY } from '../subworkflows/ONT_ASSEMBLY.nf'
 include { GENOME_STITCH as GENOME_STITCH } from '../subworkflows/GENOME_STITCH.nf'
+include { ARG_GET_DBS as ARG_GET_DBS } from '../subworkflows/ARG_GET_DBS.nf'
+include { METAGENOMIC_COMMUNITY_ANALYSIS as METAGENOMIC_COMMUNITY_ANALYSIS } from '../subworkflows/METAGENOMIC_COMMUNITY_ANALYSIS.nf'
 
 
 
@@ -32,7 +34,7 @@ workflow ONT_METAGENOMIC {
 
         ONT_ASSEMBLY(HOST_REMOVAL_ONT.out.host_depleted_reads)
 
-        GENOME_STITCH(READ_QC_ONT.out.chopper_fastq_ch, host_gen_fasta)
+        //GENOME_STITCH(READ_QC_ONT.out.chopper_fastq_ch, host_gen_fasta)
 
 //        HOST_REMOVAL_SHORT_READ(READ_QC.out.trimmed_fastq, host_gen_fasta)
 
@@ -40,15 +42,17 @@ workflow ONT_METAGENOMIC {
 
 //        SHORT_READ_ISOLATE_ASSEMBLY()
         
-        PLASMID_PREDICTION(ONT_ASSEMBLY.out.skip_assembly)
+        PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
 
 //        ASSEMBLY_QC(PLASMID_PREDICTION.out.all, READ_QC_ONT.out.trimmed_fastq)
 
 //        FUNCTIONAL_ANNOTATION(PLASMID_PREDICTION.out.all)
 
-        IDENTIFICATION(PLASMID_PREDICTION.out.chromosomal, host_gen_fasta)
+        IDENTIFICATION(PLASMID_PREDICTION.out.chromosomal, host_gen_fasta, HOST_REMOVAL_ONT.out.host_depleted_reads, READ_QC_ONT.out.chopper_fastq_ch)
 
-//        ARG_GET_DBS_META()
+        ARG_GET_DBS(PLASMID_PREDICTION.out.all, HOST_REMOVAL_ONT.out.host_depleted_reads)
+
+        METAGENOMIC_COMMUNITY_ANALYSIS(READ_QC_ONT.out.chopper_fastq_ch)
 
 //        CUSTOM_ARG_DB(ARG_GET_DBS.out.all_fa)
 
