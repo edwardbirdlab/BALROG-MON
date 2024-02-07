@@ -4,9 +4,6 @@ process CARD_DB {
 
     output:
         tuple val('card'), path("card.json"), emit: card_DB
-        tuple val('card'), path("card_phm_nt_db.fasta"), emit: card_nucleotide_PHM_fasta
-        path("card_phm_nt_db.fasta"), emit: only_fa
-        tuple val('card'), path("protein_fasta_protein_homolog_model.fasta"), emit: card_protein_PHM_fasta
 
 
     script:
