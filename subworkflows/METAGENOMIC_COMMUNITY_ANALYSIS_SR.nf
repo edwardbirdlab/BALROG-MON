@@ -9,7 +9,7 @@ include { KRAKEN2_PLUSPF as KRAKEN2_PLUSPF } from '../modules/KRAKEN2.nf'
 include { KRAKEN2_DB_PLUSPF as KRAKEN2_DB_PLUSPF } from '../modules/KRAKEN2_DB_PLUSPF.nf'
 
 
-workflow METAGENOMIC_COMMUNITY_ANALYSIS {
+workflow METAGENOMIC_COMMUNITY_ANALYSIS_SR {
     take:
         
         trimmed_reads //    channel: [ val(sample), fastq_1]

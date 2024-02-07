@@ -5,7 +5,7 @@ process SYLPH_SKETCH_GTDB {
 
     input:
         file(gtdb)
-        file(ref)
+
     output:
         path("gtdb_ref_database.syldb"), emit: gtdb_sylph
 
@@ -15,6 +15,6 @@ process SYLPH_SKETCH_GTDB {
     mkdir db
     tar -xf gtdbtk_r207_v2_data.tar.gz -C db --strip-components=1
     find db | grep .fna > gtdb_all.txt
-    sylph sketch ${ref} -l gtdb_all.txt -t ${task.cpus} -o gtdb_ref_database
+    sylph sketch -l gtdb_all.txt -t ${task.cpus} -o gtdb_ref_database
     """
 }

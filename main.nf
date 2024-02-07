@@ -85,10 +85,39 @@ params.db_megares = true
 //Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
 params.db_kraken2_pluspf = true
 
+
+
+/*
+Which Path to take (read options carefully):
+*/
+
 //Perform metagenomic assembly on ONT reads == True, Convert reads to Fasta without Assembly == False
 params.ont_metagenomic_assembly = false
 
 
+
+/*
+Optional Steps Settings (True = Run Aditional Step, False = Don't run it):
+*/
+
+//Preform metagenomic community analysis against GTDB with Sylph (Uses metaphlan scripts for analsysis)
+params.meta_community_analysis =true
+
+//Preform extra taxonomic classification (Kraken2 & GTDB) of sequences (Metagenome Recommend, but can be used on Fq2Fa samples as well) 
+params.meta_sequence_id = false
+
+//Preform CARD database only annotation. If this is true multi_amr should be false.
+params.card_only = false
+
+//Preform multi amr database annoation (AMRFINDERPLUS,Resfinder,CARD). If this is true card_only should be false
+params.multi_amr = true
+
+//Preform mobile element finder, will also look to see if any AMR genes happend to be on mobile elements (plasmer already does plasmid, and is run by defualt.
+//This should be used if you are intrested in other ME types)
+params.mef = true
+
+//Preform proka - metagenome annotator. Will annotate out any genes from the metagenome. This pipeline will not summarize these findings in any way
+params.proka = true
 
 
 
@@ -96,7 +125,7 @@ nextflow.enable.dsl=2
 
 /* Temp Input while testing */
 
-params.sample_sheet = '/fastscratch/edwardbird/BALLROG_ONT_META/samplesheet.csv'
+params.sample_sheet = '/fastscratch/edwardbird/BALLROG_ONT_META/samplesheet_full.csv'
 fastq_ch = Channel.fromPath(params.sample_sheet) \
         | splitCsv(header:true) \
         | map { row-> tuple(row.sample, file(row.path)) }
