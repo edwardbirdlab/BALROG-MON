@@ -21,23 +21,23 @@ include { CONCAT_FA as CONCAT_FA } from '../modules/CONCAT_FA.nf'
 
 workflow HOST_REMOVAL_ONT {
     take:
-        fastqs_trim                // channel: [val(sample), fastq_1]
-        ref_fastas                  // channel: fasta1,fasta2,fasta3......
+        ch_fastqs_trim                // channel: [val(sample), fastq_1]
+        ch_hostgen                 // channel: [val(sample), fasta]
     main:
 
-        CONCAT_FA(ref_fastas.collect())
+        ch_for_minimap = ch_fastqs_trim.join(ch_hostgen)
 
-        for_MINIMAP2 = fastqs_trim.combine(CONCAT_FA.out.concat_fa)
-
-        MINIMAP2_ONT(for_MINIMAP2)
+        MINIMAP2_ONT(ch_for_minimap)
         SAMTOOLS_STATS_FULL(MINIMAP2_ONT.out.sam)
         SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT.out.sam)
         SAMTOOLS_STATS_FILTER(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
         SAMTOOLS_READNAMES(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
 
-        ch_seqtk_subset_nh = fastqs_trim.join(SAMTOOLS_READNAMES.out.readnames)
+        ch_seqtk_subset_nh = ch_fastqs_trim.join(SAMTOOLS_READNAMES.out.readnames)
 
         SEQTK_SUBSEQ_ONT_NH(ch_seqtk_subset_nh)
+
+        FASTQC_HOST_DEP(SEQTK_SUBSEQ_ONT_NH.out.read_subset)
 
 
     emit:

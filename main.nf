@@ -22,7 +22,7 @@
  https://github.com/edwardbirdlab/BARA
 ----------------------------------------------------------------------------------------
 */
-
+nextflow.enable.dsl=2
 
 /* Settings for argdit */
 params.argdit_FastaHeaderFieldSeparator = '|'
@@ -34,10 +34,13 @@ params.argdit_DefaultGeneticCode = '11'
 
 /* Other program Settings */
 params.fastp_q = '20'
+params.fastp_adap1 = ''
+params.fastp_adap2 = ''
 params.chdit_ident = '0.95'
 params.chdit_word_size = '8'
 params.platon_mode = 'accuracy'
 params.bacscan_nhmm_eval = '0.000001'
+params.bacscan_hmm_eval = '0.000001 '
 params.platon_meta = 'True'
 params.min_contig_size = '500'           //==  combined with coverage to filter out small lov cov contigs
 params.min_contig_cov = '2'              //==  conbined with size to filter out small lov cov contigs
@@ -85,6 +88,12 @@ params.db_megares = true
 //Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
 params.db_kraken2_pluspf = true
 
+//Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
+params.db_virsorter = true
+
+//Krackenuniq database for pathogen detection anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
+params.db_krakenuniq = true
+
 
 
 /*
@@ -119,35 +128,90 @@ params.mef = true
 //Preform proka - metagenome annotator. Will annotate out any genes from the metagenome. This pipeline will not summarize these findings in any way
 params.proka = true
 
+//Preform pathogen detection - kraken2 will be run to look for pathogens in host-depleted reads
+params.pathogen_detection = true
 
 
-nextflow.enable.dsl=2
 
-/* Temp Input while testing */
 
-params.sample_sheet = '/fastscratch/edwardbird/BALLROG_ONT_META/samplesheet_full.csv'
-fastq_ch = Channel.fromPath(params.sample_sheet) \
+
+
+
+params.sample_sheet = null
+params.project_name = null
+params.workflow_opt = null
+
+//ch_fastq = Channel.fromPath(params.sample_sheet) \
+//       | splitCsv(header:true) \
+//        | map { row-> tuple(row.sample, file(row.path)) }
+//
+//ch_hostgen = Channel.fromPath(params.sample_sheet) \
+//        | splitCsv(header:true) \
+//        | map { row-> tuple(row.sample, file(row.refernce_genome)) }
+
+if (params.workflow_opt == 'shortread_isolate') {
+
+    //SHORT_READ_ISOLATE(ch_fastq)
+
+    }
+
+if (params.workflow_opt == 'shortread_meta') {
+
+    ch_fastq = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.r1), file(row.r2)) }
+
+    ch_hostgen = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.refernce_genome)) }
+
+    }
+
+if (params.workflow_opt == 'ont_meta') {
+
+    ch_fastq = Channel.fromPath(params.sample_sheet) \
         | splitCsv(header:true) \
         | map { row-> tuple(row.sample, file(row.path)) }
 
-//input_folder = "/homes/edwardbird/data/bacterial_metagenome_testdata"
-//file_glob = "*_[1,2].fq.gz"
-params.project_name = 'BALRROG_ONT_META'
-//fastqs = Channel.fromFilePairs("${input_folder}/${file_glob}", flat: true)
+    ch_hostgen = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.refernce_genome)) }
+
+    }
+
+
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
-bacscan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-//host_gen_fasta = Channel.fromPath( '/homes/edwardbird/data/genome/Musca_dome_new/musca_domestica_genomic_fixed.fasta' )
+bacrascan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
+bacrascan_phmm = Channel.fromPath( '/homes/edwardbird/data/database/pARGhmm.tar.gz' )
+
 ch_host_genomes = Channel.fromPath( '/fastscratch/edwardbird/BALLROG_ONT_META/Host_genomes/**' )
 
 
 
 //include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
+include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
 include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC.nf'
 
 workflow {
-//    SHORT_READ_ISOLATE (fastqs)
-//    SHORT_READ_METAGENOMIC(fastqs, host_gen_fasta)
-    ONT_METAGENOMIC(fastq_ch, ch_host_genomes)
+
+    if (params.workflow_opt == 'shortread_isolate') {
+
+        //SHORT_READ_ISOLATE(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'shortread_meta') {
+
+        SHORT_READ_METAGENOMIC(ch_fastq, ch_hostgen)
+
+        }
+
+    if (params.workflow_opt == 'ont_meta') {
+
+        ONT_METAGENOMIC(ch_fastq, ch_hostgen, bacrascan_nhmm, bacrascan_phmm)
+
+        }
+
 }
 
 

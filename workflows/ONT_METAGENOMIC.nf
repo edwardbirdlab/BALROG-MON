@@ -11,22 +11,25 @@ include { HOST_REMOVAL_ONT as HOST_REMOVAL_ONT } from '../subworkflows/HOST_REMO
 include { ONT_ASSEMBLY as ONT_ASSEMBLY } from '../subworkflows/ONT_ASSEMBLY.nf'
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 include { METAGENOMIC_SEQUENCE_IDENTIFICATION as METAGENOMIC_SEQUENCE_IDENTIFICATION } from '../subworkflows/METAGENOMIC_SEQUENCE_IDENTIFICATION.nf'
+include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
 
 
 
 workflow ONT_METAGENOMIC {
     take:
-        fastqs_short_raw      //    channel: [val(sample), fastq]
-        host_gen_fasta        //    channel: fna
+        ch_fastqs_raw         //    channel: [val(sample), fastq]
+        ch_hostgen        //    channel: fna
+        bacarscan_nhmm        //    channel:  [path('bacarscan_nhmmer.tar.gz')]
+        bacarscan_phmm        //    channel:  [path('bacarscan_phmmer.tar.gz')]
 
     main:
 
 
 // Non-Optional Steps (may include some optional settings):
 
-        READ_QC_ONT(fastqs_short_raw)
+        READ_QC_ONT(ch_fastqs_raw)
 
-        HOST_REMOVAL_ONT(READ_QC_ONT.out.chopper_fastq_ch, host_gen_fasta)
+        HOST_REMOVAL_ONT(READ_QC_ONT.out.chopper_fastq_ch, ch_hostgen)
 
         ONT_ASSEMBLY(HOST_REMOVAL_ONT.out.host_depleted_reads)
         
@@ -48,7 +51,7 @@ workflow ONT_METAGENOMIC {
         
         if (params.multi_amr) {
 
-            MULTI_AMR(PLASMID_PREDICTION.out.all)
+            MULTI_AMR(PLASMID_PREDICTION.out.all, bacarscan_nhmm, bacarscan_phmm)
         }
 
 
@@ -66,6 +69,13 @@ workflow ONT_METAGENOMIC {
         if (params.meta_sequence_id) {
 
             METAGENOMIC_SEQUENCE_IDENTIFICATION(PLASMID_PREDICTION.out.all)
+        }
+
+        // Metagenomic Pathogen Detection
+
+        if (params.pathogen_detection) {
+
+            //PATHOGEN_DETECTION(PLASMID_PREDICTION.out.all)
         }
 
         // Mobile Element Finder

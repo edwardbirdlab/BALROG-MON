@@ -12,7 +12,7 @@ include { FASTQC as TRIM_FASTQC } from '../modules/FASTQC.nf'
 include { FASTP as FASTP } from '../modules/FASTP.nf'
 
 
-workflow READ_QC {
+workflow READ_QC_SR {
     take:
         fastqs                                          // channel: [val(sample), [fastq_1, fastq_2]]
     main:

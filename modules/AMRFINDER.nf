@@ -7,7 +7,7 @@ process AMRFINDER {
         tuple val(sample), file(fasta)
         val(db)
     output:
-        path("./${sample}_AMRFinder.tsv"), emit: amrfinder_genome_results
+        path("./${sample}_AMRFinder.tsv"), emit: amrfinder_results
 
     script:
 

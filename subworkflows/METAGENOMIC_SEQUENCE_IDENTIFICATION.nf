@@ -5,7 +5,7 @@ Requries set params:
 
 */
 
-include { KRAKEN2_PLUSPF as KRAKEN2_PLUSPF } from '../modules/KRAKEN2_PLUSPF.nf'
+include { KRAKEN2_PLUSPF_FA as KRAKEN2_PLUSPF_FA } from '../modules/KRAKEN2_PLUSPF_FA.nf'
 include { KRAKEN2_DB_PLUSPF as KRAKEN2_DB_PLUSPF } from '../modules/KRAKEN2_DB_PLUSPF.nf'
 
 
@@ -33,5 +33,5 @@ workflow METAGENOMIC_SEQUENCE_IDENTIFICATION {
             }
 
 
-        KRAKEN2_PLUSPF(trimmed_reads, ch_kraken2_pluspf_db)
+        KRAKEN2_PLUSPF_FA(trimmed_reads, ch_kraken2_pluspf_db)
 }
