@@ -57,9 +57,9 @@
 ## Workflow Overview
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/_static/nextflow-logo-bg-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="docs/_static/nextflow-logo-bg-light.png">
-  <img alt="Nextflow Logo" src="docs/_static/nextflow-logo-bg-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png" width="700" height="200"> 
+  <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png" width="700" height="200">
+  <img alt="Nextflow Logo" src="images/balrog_workflow_light.png" width="700" height="200">
 </picture>
 
 <br />
