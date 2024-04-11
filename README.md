@@ -42,9 +42,9 @@
     ***** Still Under Development *****
     <br />
     <br />
-    <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
+    <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
+    <br /> 
+    <br /> -->
     <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG">View Demo</a>
     · -->
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
@@ -53,7 +53,20 @@
   </p>
 </div>
 
+<!-- Workflow Overview -->
+## Workflow Overview
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/_static/nextflow-logo-bg-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/_static/nextflow-logo-bg-light.png">
+  <img alt="Nextflow Logo" src="docs/_static/nextflow-logo-bg-light.png">
+</picture>
+
+<br />
+<br />
+<!--
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+-->
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -96,6 +109,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
+<!--
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
@@ -103,7 +117,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+-->
+* [![Nextflow][nextflow.io]][Nextflow-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -248,3 +264,5 @@ Project Link: [https://github.com/edwardbirdlab/HT-BALRROG](https://github.com/e
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Nextflow-url]: https://nextflow.io
+[nextflow.io]: https://github.com/nextflow-io/nextflow/workflows/Nextflow%20CI/badge.svg
