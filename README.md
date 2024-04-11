@@ -23,7 +23,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+<!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 
 
@@ -34,16 +34,19 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">BALRROG</h3>
 
   <p align="center">
-    project_description
+    High-Throughput BacteriaL Antimicrobial Resistance Of metaGenomes
+    <br />
+    ***** Still Under Development *****
+    <br />
     <br />
     <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/edwardbirdlab/HT-BALRROG">View Demo</a>
-    ·
+    <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG">View Demo</a>
+    · -->
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -85,7 +88,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `edwardbirdlab`, `HT-BALRROG`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `edwardbirdlab`, `HT-BALRROG`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `BALRROG`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
