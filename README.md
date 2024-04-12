@@ -101,6 +101,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
+
 ## About BALROG
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -115,7 +116,9 @@ is the main goal of BALROG, it also provides subworkflows for many related analy
 Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
 please repot any and all bugs you find, or any suggestions for improvements!
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -132,6 +135,8 @@ please repot any and all bugs you find, or any suggestions for improvements!
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 -->
+
+
 
 * [![Nextflow][nextflow.io]][Nextflow-url]
 
@@ -201,6 +206,7 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 <!-- CONTRIBUTING 
+
 
 ## Contributing
 
