@@ -28,10 +28,11 @@
 
 
 <!-- PROJECT LOGO -->
+<
 <br />
 <div align="center">
   <a href="https://github.com/edwardbirdlab/HT-BALRROG">
-    <img src="images/balrog_ascii.png" alt="Logo" width="80" height="80">
+    <img src="images/balrog_ascii.png" alt="Logo" width="120" height="120">
   </a>
 
 <h3 align="center">BALRROG</h3>
@@ -41,7 +42,7 @@
     <br />
     ***** Still Under Development *****
     <br />
-    <br />
+    <br /> -->
     <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
     <br /> 
     <br /> -->
