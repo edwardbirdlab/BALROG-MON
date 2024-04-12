@@ -195,7 +195,7 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTING 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -210,7 +210,7 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- LICENSE -->
@@ -242,7 +242,36 @@ Project Link: [https://github.com/edwardbirdlab/HT-BALRROG](https://github.com/e
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+```
+                                               ...._
+                                         ..-```      ``.._
+                                    _--``             .-`````)
+               .-````----.....___../`  /``                   ```)
+            _.(-----._  -.,.   _._   <_)     ........      .-````)
+           (__            (¬¬_> (_/\_)  `   .-``        `-._       -``)_
+        .-(     .--`````    .-----------.       --.   -.   -._   .-`` )
+       /`---   /`    /```` /.. /.vv.\...-.\         \    \    \     -```)
+      /`--    /           |`)vV`    `Vv|  ).         \   |____/       ---)
+     (__     /             \| /````````| /.\      \  __.-`  //// /`/````)
+    (       /      /        v/  /``.....V\\        \/\ \ \ //// /    _.)  
+   ( `-..  /      /__  |    .| /  /     \\\       /\     ///     _.-
+  (_.-----/____  /`\___\     \ |  |     || |     /          _.-``
+ (     _.r-\\  `//\    `\     \ \ \     // |     \      ,.-’`
+(__.-\ \ \ \\  ////|      \_   \ ` \____/  /     \\   /
+  `\.          /// |\       \   `\.  __   /      /\\  |
+     `*-.________  | |       \     \  _  /   .^./  \\ |
+                 ! / /        `-.   \___/ .-./ |    \\|
+                 || /         ^._...,    (     )     \|
+                 ||/          \.    |     \._./       v
+                 (|)            `-..’     ./
+                  V                 ``...`                                            
+       ___             
+|_|     |          __  
+| |igh  |hroughput     
+__            _                  __                __	         ___
+|_|          /_\            |    |_|              |  |          | __
+|_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
+```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
