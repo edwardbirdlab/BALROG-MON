@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/edwardbirdlab/HT-BALRROG">
-    <img src="images/balrog_ascii.png" alt="Logo" width="120" height="120">
+    <img src="images/balrog_ascii.png" alt="Logo" width="220" height="220">
   </a>
 
 <h3 align="center">BALRROG</h3>
@@ -42,12 +42,13 @@
     <br />
     ***** Still Under Development *****
     <br />
-    <br /> -->
+    <br />
     <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
     <br /> 
-    <br /> -->
+    <br />
     <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG">View Demo</a>
-    · -->
+    ·
+    -->
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -64,7 +65,7 @@
   <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
 </picture>
 
-*see below sections for in-depth subworkflow
+*see below sections for in-depth subworkflows
 
 <br />
 <br />
@@ -218,7 +219,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name -  - edwardbirdlab@gmail.com  |  edwardbird@ksu.edu
+Edward Bird -  - edwardbirdlab@gmail.com  |  edwardbird@ksu.edu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -255,10 +256,7 @@ Your Name -  - edwardbirdlab@gmail.com  |  edwardbird@ksu.edu
                  || /         ^._...,    (     )     \|
                  ||/          \.    |     \._./       v
                  (|)            `-..’     ./
-                  V                 ``...`                                            
-       ___             
-|_|     |          __  
-| |igh  |hroughput     
+                  V                 ``...`                                              
 __            _                  __                __	         ___
 |_|          /_\            |    |_|              |  |          | __
 |_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
