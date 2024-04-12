@@ -28,17 +28,16 @@
 
 
 <!-- PROJECT LOGO -->
-<
 <br />
 <div align="center">
   <a href="https://github.com/edwardbirdlab/HT-BALRROG">
     <img src="images/balrog_ascii.png" alt="Logo" width="220" height="220">
   </a>
 
-<h3 align="center">BALRROG</h3>
+<h3 align="center">BALROG-MON</h3>
 
   <p align="center">
-    High-Throughput BacteriaL Antimicrobial Resistance Of metaGenomes
+    Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Oxford Nanopore
     <br />
     ***** Still Under Development *****
     <br />
