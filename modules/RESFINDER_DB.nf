@@ -1,11 +1,11 @@
 process RESFINDER_DB {
     label 'small'
-    container 'library://edwardbird/bara/resfinder:4.0'
+    container 'ebird013/resfinder:4.4.2'
     publishDir "${params.project_name}/ARG_Databases/resfinder_DB", mode: 'copy', overwrite: false
 
     output:
-        tuple val('resfinder'), path("./db_resfinder"), emit: resfinder_DB
-        tuple val('resfinder'), path("resfinder_db.fasta"), emit: resfinder_fasta
+        path("./db_resfinder"), emit: resfinder_db
+        path("resfinder_db.fasta"), emit: resfinder_fasta
         path("resfinder_db.fasta"), emit: only_fa
 
     script:

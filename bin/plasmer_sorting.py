@@ -67,8 +67,8 @@ def get_unique_values(lst):
     unique_values = list(set(lst))
     return unique_values
 
-def Merge(dict1, dict2, dict3):
-    res = dict1 | dict2 | dict3
+def Merge(dict1, dict2, dict3, dict4):
+    res = dict1 | dict2 | dict3 | dict4
     return res
 
 def load_data(path_predict, path_prob, contig_path):
@@ -84,18 +84,25 @@ def get_fasta_name(input_fasta, added_str):
     new_name = prefix + '_' + added_str + '.fasta'
     return new_name
 
+def get_stats_name(input_fasta, added_str):
+    prefix = input_fasta.split('.')[0]
+    new_name = prefix + '_' + added_str + '.txt'
+    return new_name
+
 def sort_contigs(contigs, predict, prob, contig_name):
     Plasmid_Dict = {}
     Chromo_Dict = {}
     Too_Short_Dict = {}
-    
+    NoClass_Dict = {}
+
+
     for k,v in contigs.items():
-            if predict.loc[predict['Contig'] == k]['Prediction'].values[0] == 'plasmid':
+            if predict.loc[predict['Contig'] == k]['Prediction'].values == 'plasmid':
                 prob_chromo = str(prob.loc[prob['Contig'] == k].values[0][1])
                 prob_plas = str(prob.loc[prob['Contig'] == k].values[0][2])
                 new_name = 'PLAS_' + 'P:' + prob_plas + '|C:' + prob_chromo + '_' + k
                 Plasmid_Dict[new_name] = v
-            elif predict.loc[predict['Contig'] == k]['Prediction'].values[0] == 'chromosome':
+            elif predict.loc[predict['Contig'] == k]['Prediction'].values == 'chromosome':
                 if k in prob['Contig'].tolist():
                     prob_chromo = str(prob.loc[prob['Contig'] == k].values[0][1])
                     prob_plas = str(prob.loc[prob['Contig'] == k].values[0][2])
@@ -106,11 +113,14 @@ def sort_contigs(contigs, predict, prob, contig_name):
                     prob_plas = '0'
                     new_name = 'CHROMO_' + 'P:' + prob_plas + '|C:' + prob_chromo + '_' + k
                     Chromo_Dict[new_name] = v
-            elif 'shorter_than' in  predict.loc[predict['Contig'] == k]['Prediction'].values[0]:
+            elif 'shorter_than' in  str(predict.loc[predict['Contig'] == k]['Prediction'].values):
                 new_name = 'TooShort_' + k
                 Too_Short_Dict[new_name] = v
+            elif len(predict.loc[predict['Contig'] == k]['Prediction'].values) == 0:
+                new_name = 'NoClass_' + k
+                NoClass_Dict[new_name] = v
     
-    merged_dict = Merge(Plasmid_Dict, Chromo_Dict, Too_Short_Dict)
+    merged_dict = Merge(Plasmid_Dict, Chromo_Dict, Too_Short_Dict, NoClass_Dict)
     
     if len(Plasmid_Dict) > 0:
         write_fasta(Plasmid_Dict, get_fasta_name(contig_name, 'plasmid'))
@@ -118,13 +128,31 @@ def sort_contigs(contigs, predict, prob, contig_name):
         write_fasta(Chromo_Dict, get_fasta_name(contig_name, 'chromosome'))
     if len(Too_Short_Dict) > 0:
         write_fasta(Too_Short_Dict, get_fasta_name(contig_name, 'tooshort'))
+    if len(NoClass_Dict) > 0:
+        write_fasta(NoClass_Dict, get_fasta_name(contig_name, 'noclass'))
     if len(merged_dict) > 0:
         write_fasta(merged_dict, get_fasta_name(contig_name, 'allclass'))
     
     print('There are ' + str(len(Plasmid_Dict)) + ' plasmid sequences')
     print('There are ' + str(len(Chromo_Dict)) + ' chromosome sequences')
+    print('There are ' + str(len(Too_Short_Dict)) + ' tooshort sequences')
+    print('There are ' + str(len(NoClass_Dict)) + ' noclass sequences')
     print('There are ' + str(len(merged_dict)) + ' total sequences')
     print('The input database contained ' + str(len(contigs)) + ' Contigs')
+
+    lines = [str('There are ' + str(len(Plasmid_Dict)) + ' plasmid sequences'),
+            str('There are ' + str(len(Chromo_Dict)) + ' chromosome sequences'),
+            str('There are ' + str(len(Too_Short_Dict)) + ' tooshort sequences'),
+            str('There are ' + str(len(NoClass_Dict)) + ' noclass sequences'),
+            str('There are ' + str(len(merged_dict)) + ' total sequences'),
+            str('The input database contained ' + str(len(contigs)) + ' Contigs')]
+
+    stats_filename = get_stats_name(contig_name, 'plasmersort_stats')
+
+    with open(stats_filename, 'w') as f:
+        f.write('\n'.join(lines))
+
+
 
 def whole_process(path_predict, path_prob, contig_path):
     data = load_data(path_predict, path_prob, contig_path)

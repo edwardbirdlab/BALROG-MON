@@ -57,10 +57,13 @@
 ## Workflow Overview
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/_static/nextflow-logo-bg-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="docs/_static/nextflow-logo-bg-light.png">
-  <img alt="Nextflow Logo" src="docs/_static/nextflow-logo-bg-light.png">
+
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png"> 
+  <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png">
+  <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
 </picture>
+
+*see below sections for in-depth subworkflow
 
 <br />
 <br />
@@ -97,17 +100,31 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `edwardbirdlab`, `HT-BALRROG`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `BALRROG`, `project_description`
+## About BALROG
+
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+
+BALROG is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
+is the main goal of BALROG, it also provides subworkflows for many related analysies, such as pathogen detection and metagenomic community analysis. 
+
+<br />
+
+## BALROG IS STILL IN DEVELOPMENT
+
+Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
+please repot any and all bugs you find, or any suggestions for improvements!
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
+
+<!--
 ### Built With
+-->
 
 <!--
 * [![Next][Next.js]][Next-url]
@@ -118,6 +135,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 -->
+
+
+
 * [![Nextflow][nextflow.io]][Nextflow-url]
 
 
@@ -184,7 +204,10 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 
-<!-- CONTRIBUTING
+
+<!-- CONTRIBUTING 
+
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -257,7 +280,7 @@ Project Link: [https://github.com/edwardbirdlab/HT-BALRROG](https://github.com/e
        ___             
 |_|     |          __  
 | |igh  |hroughput     
-__            _                  __                __	           ___
+__            _                  __                __	         ___
 |_|          /_\            |    |_|              |  |          | __
 |_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
 ```

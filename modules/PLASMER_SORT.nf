@@ -12,6 +12,7 @@ process PLASMER_SORT {
         tuple val(sample), path("*chromosome.fasta"), emit: chromosome, optional: true
         tuple val(sample), path("*tooshort.fasta"), emit: tooshort, optional: true
         tuple val(sample), path("*allclass.fasta"), emit: all
+        tuple val(sample), path("*plasmersort_stats.txt"), emit: stats
 
 
     script:
