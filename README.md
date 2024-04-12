@@ -57,6 +57,7 @@
 ## Workflow Overview
 
 <picture>
+
   <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png"> 
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png">
   <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
@@ -99,6 +100,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
 ## About BALROG
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -116,9 +118,11 @@ please repot any and all bugs you find, or any suggestions for improvements!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
 <!--
 ### Built With
 -->
+
 <!--
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
@@ -128,12 +132,12 @@ please repot any and all bugs you find, or any suggestions for improvements!
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 -->
-<!--
+
 * [![Nextflow][nextflow.io]][Nextflow-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
--->
+
 
 
 <!-- GETTING STARTED -->
@@ -195,7 +199,9 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 
+
 <!-- CONTRIBUTING 
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
