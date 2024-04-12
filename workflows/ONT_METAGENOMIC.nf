@@ -51,7 +51,7 @@ workflow ONT_METAGENOMIC {
         
         if (params.multi_amr) {
 
-            MULTI_AMR(PLASMID_PREDICTION.out.all, bacarscan_nhmm, bacarscan_phmm)
+            //MULTI_AMR(PLASMID_PREDICTION.out.all, bacarscan_nhmm, bacarscan_phmm)
         }
 
 
