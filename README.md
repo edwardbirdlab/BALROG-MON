@@ -62,6 +62,8 @@
   <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
 </picture>
 
+*see below sections for in-depth subworkflow
+
 <br />
 <br />
 <!--
@@ -97,18 +99,26 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About BALROG
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `edwardbirdlab`, `HT-BALRROG`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `BALRROG`, `project_description`
+BALROG is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
+is the main goal of BALROG, it also provides subworkflows for many related analysies, such as pathogen detection and metagenomic community analysis. 
+
+<br />
+
+## BALROG IS STILL IN DEVELOPMENT
+
+Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
+please repot any and all bugs you find, or any suggestions for improvements!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
+<!--
 ### Built With
-
+-->
 <!--
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
@@ -118,11 +128,12 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 -->
+<!--
 * [![Nextflow][nextflow.io]][Nextflow-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- GETTING STARTED -->
@@ -184,7 +195,7 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTING 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -199,7 +210,7 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- LICENSE -->
@@ -231,7 +242,36 @@ Project Link: [https://github.com/edwardbirdlab/HT-BALRROG](https://github.com/e
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+```
+                                               ...._
+                                         ..-```      ``.._
+                                    _--``             .-`````)
+               .-````----.....___../`  /``                   ```)
+            _.(-----._  -.,.   _._   <_)     ........      .-````)
+           (__            (¬¬_> (_/\_)  `   .-``        `-._       -``)_
+        .-(     .--`````    .-----------.       --.   -.   -._   .-`` )
+       /`---   /`    /```` /.. /.vv.\...-.\         \    \    \     -```)
+      /`--    /           |`)vV`    `Vv|  ).         \   |____/       ---)
+     (__     /             \| /````````| /.\      \  __.-`  //// /`/````)
+    (       /      /        v/  /``.....V\\        \/\ \ \ //// /    _.)  
+   ( `-..  /      /__  |    .| /  /     \\\       /\     ///     _.-
+  (_.-----/____  /`\___\     \ |  |     || |     /          _.-``
+ (     _.r-\\  `//\    `\     \ \ \     // |     \      ,.-’`
+(__.-\ \ \ \\  ////|      \_   \ ` \____/  /     \\   /
+  `\.          /// |\       \   `\.  __   /      /\\  |
+     `*-.________  | |       \     \  _  /   .^./  \\ |
+                 ! / /        `-.   \___/ .-./ |    \\|
+                 || /         ^._...,    (     )     \|
+                 ||/          \.    |     \._./       v
+                 (|)            `-..’     ./
+                  V                 ``...`                                            
+       ___             
+|_|     |          __  
+| |igh  |hroughput     
+__            _                  __                __	         ___
+|_|          /_\            |    |_|              |  |          | __
+|_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
+```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
