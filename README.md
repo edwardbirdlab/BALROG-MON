@@ -28,10 +28,12 @@
 <!-- Workflow Overview -->
 
 <picture>
-
+  <!-- Dark mode image -->
   <source media="(prefers-color-scheme: dark)" srcset="images/balrog_darkmode.png"> 
+  <!-- Light mode image -->
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_lightmode.png">
-  <img alt="Nextflow Logo" src="images/balrog_lightmode.png">
+  <!-- Fallback image -->
+  <img alt="Nextflow Logo" src="images/balrog_darkmode.png">
 </picture>
 
 
