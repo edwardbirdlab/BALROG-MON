@@ -10,10 +10,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://github.com/edwardbirdlab/HT-BALRROG">
-    <img src="images/balrog_ascii.png" alt="Logo" width="220" height="220">
-  </a>
 
 <h3 align="center">BALROG-MON</h3>
 
@@ -30,6 +26,15 @@
 </div>
 
 <!-- Workflow Overview -->
+
+<picture>
+
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_darkmode.png"> 
+  <source media="(prefers-color-scheme: light)" srcset="images/balrog_lightmode.png">
+  <img alt="Nextflow Logo" src="images/balrog_lightmode.png">
+</picture>
+
+
 ## Workflow Overview
 
 <picture>
@@ -204,34 +209,6 @@ Edward Bird -  - edwardbirdlab@gmail.com  |  edwardbird@ksu.edu
 * []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-```
-                                               ...._
-                                         ..-```      ``.._
-                                    _--``             .-`````)
-               .-````----.....___../`  /``                   ```)
-            _.(-----._  -.,.   _._   <_)     ........      .-````)
-           (__            (¬¬_> (_/\_)  `   .-``        `-._       -``)_
-        .-(     .--`````    .-----------.       --.   -.   -._   .-`` )
-       /`---   /`    /```` /.. /.vv.\...-.\         \    \    \     -```)
-      /`--    /           |`)vV`    `Vv|  ).         \   |____/       ---)
-     (__     /             \| /````````| /.\      \  __.-`  //// /`/````)
-    (       /      /        v/  /``.....V\\        \/\ \ \ //// /    _.)  
-   ( `-..  /      /__  |    .| /  /     \\\       /\     ///     _.-
-  (_.-----/____  /`\___\     \ |  |     || |     /          _.-``
- (     _.r-\\  `//\    `\     \ \ \     // |     \      ,.-’`
-(__.-\ \ \ \\  ////|      \_   \ ` \____/  /     \\   /
-  `\.          /// |\       \   `\.  __   /      /\\  |
-     `*-.________  | |       \     \  _  /   .^./  \\ |
-                 ! / /        `-.   \___/ .-./ |    \\|
-                 || /         ^._...,    (     )     \|
-                 ||/          \.    |     \._./       v
-                 (|)            `-..’     ./
-                  V                 ``...`                                              
-__            _                  __                __	         ___
-|_|          /_\            |    |_|              |  |          | __
-|_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
-```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
