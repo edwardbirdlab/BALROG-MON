@@ -60,7 +60,7 @@
         <li><a href="#what-data-do-i-need">What Data do I Need?</a></li>
         <li><a href="#dependicies">Dependicies</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#creating-samplesheet">Creating Sample Sheets</a></li>
+        <li><a href="#creating-a-samplesheet">Creating Sample Sheets</a></li>
         <li><a href="#pipeline-configuriation">Pipeline Configuration</a></li>
       </ul>
     </li>
@@ -149,6 +149,8 @@ All Dependicies are mannaged via Docker Containers and hosted on DockerHub. One 
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Creating a Sample Sheet
 
 <!-- USAGE EXAMPLES 
 ## Usage
