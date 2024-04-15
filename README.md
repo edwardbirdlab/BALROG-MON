@@ -23,12 +23,6 @@
     ***** Still Under Development *****
     <br />
     <br />
-    <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG"><strong>Explore the docs »</strong></a>
-    <br /> 
-    <br />
-    <!-- <a href="https://github.com/edwardbirdlab/HT-BALRROG">View Demo</a>
-    ·
-    -->
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -58,24 +52,42 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="#about-balrog">About BALROG</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#what-data-do-i-need">What Data do I Need?</a></li>
+        <li><a href="#dependicies">Dependicies</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#creating-samplesheet">Creating Sample Sheets</a></li>
+        <li><a href="#pipeline-configuriation">Pipeline Configuration</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li>
+      <a href="#running-balrog">Running Balrog</a>
+      <ul>
+        <li><a href="#quick-usage">Quick Usage</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#core-steps">Core Steps</a>
+      <ul>
+        <li><a href="#data-preprocessing">Preprocessing</a></li>
+        <li><a href="#host-removal">Host Removal</a></li>
+        <li><a href="#assembly-mobile-element">Assembly and Plasmid Prediction</a></li>
+        <li><a href="#amr-annotation">AMR Annotation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#optional-steps">Optional Steps</a>
+      <ul>
+        <li><a href="#community-analysis">Community Analysis</a></li>
+        <li><a href="#pathogen-detection">Pathogen Detection</a></li>
+        <li><a href="#additional-mobile-element">Additional Mobile Element Annotation</a></li>
+        <li><a href="#additional-sequence-identification">AdditionalSequence Identification</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -104,62 +116,39 @@ please repot any and all bugs you find, or any suggestions for improvements!
 
 
 
-<!--
-### Built With
--->
-
-<!--
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
--->
-
-
-
-* [![Nextflow][nextflow.io]][Nextflow-url]
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED 
+<!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Before you get too far along, familiarize youself with the section to make sure this is the pipeline for you, and that you can meet the requirements. (Don't worry, there isnt too much to do)
 
-### Prerequisites
+### What Data do I Need?
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+BALROG in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequecning. BALROG can run in Assembly-Free mode or assembles a metagenome using MetaFLYE, allowing for the analysis of low and high coverage metagenomes. BALROG in its standard configuration
+ will require 100GB of RAM.
+<br />
+<br />
+**If you would like to run BALROG with older, non-Q20+ Nanopore data, feel free to submit a feature request and I will add the option.**
+
+### Dependicies
+
+All Dependicies are mannaged via Docker Containers and hosted on DockerHub. One of the following container runtime software packages will be required.
+<br />
+1. Nextflow (>= 23.04.0.5857) - [Install Nextflow](https://www.nextflow.io/docs/latest/install.html)
+2. Docker/Singularity/Apptainer - [Install Docker](https://docs.docker.com/engine/install/) - [Install Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html) - [Install Apptainer](https://apptainer.org/docs/admin/main/installation.html)
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Perfered Method - Download Release
    ```sh
-   git clone https://github.com/edwardbirdlab/HT-BALRROG.git
+   wget https://github.com/edwardbirdlab/BALROG-MON/releases/download/v0.0.0/BALROG-0.0.0.tar.gz
+   tar -xzf BALROG-0.0.0.tar.gz
    ```
-3. Install NPM packages
+2. Clone Repo
    ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   git clone https://github.com/edwardbirdlab/BALROG-MON
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
 
 <!-- USAGE EXAMPLES 
 ## Usage
