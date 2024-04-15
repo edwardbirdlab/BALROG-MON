@@ -49,7 +49,7 @@
 *see below sections for in-depth subworkflows
 
 <br />
-<br />
+
 <!--
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 -->
@@ -98,7 +98,7 @@
   </ol>
 </details>
 
-
+<br />
 
 <!-- ABOUT THE PROJECT -->
 
@@ -159,16 +159,15 @@ All Dependicies are mannaged via Docker Containers and hosted on DockerHub. One 
 
 ### Creating a Sample Sheet
 
-<!-- USAGE EXAMPLES 
-## Usage
+BALROG takes a CSV (Comma-Seperted-Value) sheet as the input. Sample comlumn will be the prefix for all output files for that sample. 
+<br />
+Example Format:
+```
+sample,path,refernce_genome
+Sample_Name_1,/absolute/path/to/sample1.fastq.gz,/absolute/path/to/reference_genome_1.fna
+Sample_Name_2,/absolute/path/to/sample2.fastq.gz,/absolute/path/to/reference_genome_1.fna
+```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
 
 <!-- ROADMAP 
 ## Roadmap
