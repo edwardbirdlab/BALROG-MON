@@ -78,9 +78,9 @@
     <li>
       <a href="#core-steps">Core Steps</a>
       <ul>
-        <li><a href="#data-preprocessing">Preprocessing</a></li>
+        <li><a href="#preprocessing">Preprocessing</a></li>
         <li><a href="#host-removal">Host Removal</a></li>
-        <li><a href="#assembly-mobile-element">Assembly and Plasmid Prediction</a></li>
+        <li><a href="#assembly-and-plasmid-prediction">Assembly and Plasmid Prediction</a></li>
         <li><a href="#amr-annotation">AMR Annotation</a></li>
       </ul>
     </li>
@@ -89,8 +89,8 @@
       <ul>
         <li><a href="#community-analysis">Community Analysis</a></li>
         <li><a href="#pathogen-detection">Pathogen Detection</a></li>
-        <li><a href="#additional-mobile-element">Additional Mobile Element Annotation</a></li>
-        <li><a href="#additional-sequence-identification">AdditionalSequence Identification</a></li>
+        <li><a href="#additional-mobile-element-annotation">Additional Mobile Element Annotation</a></li>
+        <li><a href="#additional-sequence-identification">Additional Sequence Identification</a></li>
       </ul>
     </li>
     <li><a href="#contact">Contact Information</a></li>
@@ -109,7 +109,6 @@
 BALROG is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
 is the main goal of BALROG, it also provides subworkflows for many related analysies, such as pathogen detection and metagenomic community analysis. 
 
-<br />
 
 ## BALROG IS STILL IN DEVELOPMENT
 
@@ -187,6 +186,26 @@ nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -p
 ```sh 
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf --workflow-opt multiqc
 ```
+
+## Core Steps
+
+### Preprocessing
+
+### Host Removal
+
+### Assembly and Plasmid Prediction
+
+### AMR Annotation
+
+## Optional Steps
+
+### Community Analysis
+
+### Pathogen Detection
+
+### Additional Mobile Element Annotation
+
+### Additional Sequence Identification
 
 <!-- ROADMAP 
 ## Roadmap
