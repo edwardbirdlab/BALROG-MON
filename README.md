@@ -68,15 +68,12 @@
         <li><a href="#dependicies">Dependicies</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#creating-a-samplesheet">Creating Sample Sheets</a></li>
-        <li><a href="#nextflow-configuriation">Nextflow Configuration</a></li>
-        <li><a href="#pipeline-configuriation">Pipeline Configuration</a></li>
+        <li><a href="#nextflow-configuration">Nextflow Configuration</a></li>
+        <li><a href="#pipeline-configuration">Pipeline Configuration</a></li>
       </ul>
     </li>
     <li>
       <a href="#running-balrog">Running Balrog</a>
-      <ul>
-        <li><a href="#quick-usage">Quick Usage</a></li>
-      </ul>
     </li>
     <li>
       <a href="#core-steps">Core Steps</a>
@@ -172,13 +169,24 @@ When crating a nextfconfig ensure a container runtime is enabled (Singularity/Ap
 
 ### Pipeline Configuration
 
-If you want to change any parameters from defualt they can be changed using the defualt-params.txt file. Configurable paramaters will be outlied in the detail sections below.
+If you want to change any parameters from defualt they can be changed using the defualt_params.nf file. Configurable paramaters will be outlied in the detail sections below.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-
+## Running BALROG
+1. Running the whole pipeline
+```sh
+nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf
+```
+2. Optional: Pathogen Detection Conformation (***NOT IMPLEMENTED YET***)
+```sh
+nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf --taxid-list /path/to/taxid_list.txt
+```
+3. Optional: Multi-QC
+```sh 
+nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf --workflow-opt multiqc
+```
 
 <!-- ROADMAP 
 ## Roadmap
