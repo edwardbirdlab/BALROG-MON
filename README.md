@@ -94,6 +94,8 @@
       </ul>
     </li>
     <li><a href="#contact">Contact Information</a></li>
+    <li><a href="#how-to-cite-balrog">How to Cite BALROG</a></li>
+    <li><a href="#citing-tools-used-in-balrog">Citing Tools used in BALROG</a></li>
   </ol>
 </details>
 
@@ -191,7 +193,18 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-fi
 
 ### Preprocessing
 
+1. Standardize Read Names - Included Python Script - (Optional step that is usefull if you have long read names)
+2. Raw Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
+3. Porechop - [PoreChop](https://github.com/rrwick/Porechop)
+4. Chopper - [Chopper](https://github.com/wdecoster/chopper) <br />
+   Params - params.chopper_minlen = (defualt = 500) - params.chopper_averagequality = (defualt = 20)
+5. Trimed Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
+
 ### Host Removal
+
+1. Mapping to Host Genome - [Minimap2](https://github.com/lh3/minimap2)
+2. Extracting Non-Host Reads Names - [Samtools](https://github.com/samtools/samtools)
+3. Extract Non-Host Reads - [SeqTK](https://github.com/lh3/seqtk)
 
 ### Assembly and Plasmid Prediction
 
@@ -206,6 +219,10 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-fi
 ### Additional Mobile Element Annotation
 
 ### Additional Sequence Identification
+
+## How to Cite BALROG
+
+## Citing Tools used in BALROG
 
 <!-- ROADMAP 
 ## Roadmap
