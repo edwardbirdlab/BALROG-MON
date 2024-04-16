@@ -68,6 +68,7 @@
         <li><a href="#dependicies">Dependicies</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#creating-a-samplesheet">Creating Sample Sheets</a></li>
+        <li><a href="#nextflow-configuriation">Nextflow Configuration</a></li>
         <li><a href="#pipeline-configuriation">Pipeline Configuration</a></li>
       </ul>
     </li>
@@ -95,6 +96,7 @@
         <li><a href="#additional-sequence-identification">AdditionalSequence Identification</a></li>
       </ul>
     </li>
+    <li><a href="#contact">Contact Information</a></li>
   </ol>
 </details>
 
@@ -116,11 +118,6 @@ is the main goal of BALROG, it also provides subworkflows for many related analy
 
 Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
 please repot any and all bugs you find, or any suggestions for improvements!
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 
 <!-- GETTING STARTED -->
@@ -145,19 +142,17 @@ All Dependicies are mannaged via Docker Containers and hosted on DockerHub. One 
 
 ### Installation
 
-1. Perfered Method - Download Release
+Perfered Method - Download Release
    ```sh
    wget https://github.com/edwardbirdlab/BALROG-MON/releases/download/v0.0.0/BALROG-0.0.0.tar.gz
    tar -xzf BALROG-0.0.0.tar.gz
    ```
-2. Clone Repo
+Method 2 - Clone Repo
    ```sh
    git clone https://github.com/edwardbirdlab/BALROG-MON
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Creating a Sample Sheet
+### Creating a SampleSheet
 
 BALROG takes a CSV (Comma-Seperted-Value) sheet as the input. Sample comlumn will be the prefix for all output files for that sample. 
 <br />
@@ -167,6 +162,22 @@ sample,path,refernce_genome
 Sample_Name_1,/absolute/path/to/sample1.fastq.gz,/absolute/path/to/reference_genome_1.fna
 Sample_Name_2,/absolute/path/to/sample2.fastq.gz,/absolute/path/to/reference_genome_1.fna
 ```
+
+### Nextflow Configuration
+
+When crating a nextfconfig ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using slurm, you can use the incuded Beocat slurm config as a template. Most nf-core configs will also be supported. If you have never crated a nextflow config, or are having issues reach out to your local administraction.
+<br />
+[Nextflow Configuration](https://www.nextflow.io/docs/latest/config.html) - [nf-core configs](https://nf-co.re/configs)
+
+
+### Pipeline Configuration
+
+If you want to change any parameters from defualt they can be changed using the defualt-params.txt file. Configurable paramaters will be outlied in the detail sections below.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 
 <!-- ROADMAP 
@@ -197,17 +208,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Edward Bird -  - edwardbirdlab@gmail.com  |  edwardbird@ksu.edu
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
