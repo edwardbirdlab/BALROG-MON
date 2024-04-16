@@ -81,7 +81,7 @@
         <li><a href="#preprocessing">Preprocessing</a></li>
         <li><a href="#host-removal">Host Removal</a></li>
         <li><a href="#assembly-and-plasmid-prediction">Assembly and Plasmid Prediction</a></li>
-        <li><a href="#amr-annotation">AMR Annotation</a></li>
+        <li><a href="#multi-amr-annotation">Multi AMR Annotation</a></li>
       </ul>
     </li>
     <li>
@@ -208,7 +208,22 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-fi
 
 ### Assembly and Plasmid Prediction
 
-### AMR Annotation
+1. Assembly: <br />
+Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk) <br />
+OR <br />
+Metagenomic Assembly - [MetaFLYE](https://github.com/fenderglass/Flye)
+
+2. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
+    Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
+4. Assembly QC - [Quast](https://github.com/ablab/quast)
+
+### Multi AMR Annotation
+
+Multi AMR is run by defualt, however it can be switched to only run CARD by setting params.cardonly = TRUE
+
+1. [CARD](https://card.mcmaster.ca/)
+2. [AMRFinder Plus](https://github.com/ncbi/amr?tab=readme-ov-file)
+3. [Resfinder](https://github.com/cadms/resfinder)
 
 ## Optional Steps
 
