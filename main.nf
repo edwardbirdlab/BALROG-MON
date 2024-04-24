@@ -1,12 +1,35 @@
 #!/usr/bin/env nextflow
 /*
 #######################################
-  ____               _____             
- |  _ \      /\     |  __ \      /\    
- | |_) |    /  \    | |__) |    /  \   
- |  _ <    / /\ \   |  _  /    / /\ \  
- | |_) |  / ____ \  | | \ \   / ____ \ 
- |____/  /_/    \_\ |_|  \_\ /_/    \_\
+                                               ...._
+                                         ..-```      ``.._
+                                    _--``             .-`````)
+               .-````----.....___../`  /``                   ```)
+            _.(-----._  -.,.   _._   <_)     ........      .-````)
+           (__            (_> (_/\_)  `   .-``        `-._       -``)_
+        .-(     .--`````    .-----------.       --.   -.   -._   .-`` )
+       /`---   /`    /```` /.. /.vv.\...-.\         \    \    \     -```)
+      /`--    /           |`)vV`    `Vv|  ).         \   |____/       ---)
+     (__     /             \| /````````| /.\      \  __.-`  //// /`/````)
+    (       /      /        v/  /``.....V\\        \/\ \ \ //// /    _.)  
+   ( `-..  /      /__  |    .| /  /     \\\       /\     ///     _.-
+  (_.-----/____  /`\___\     \ |  |     || |     /          _.-``
+ (     _.r-\\  `//\    `\     \ \ \     // |     \      ,.-’`
+(__.-\ \ \ \\  ////|      \_   \ ` \____/  /     \\   /
+  `\.          /// |\       \   `\.  __   /      /\\  |
+     `*-.________  | |       \     \  _  /   .^./  \\ |
+                 ! / /        `-.   \___/ .-./ |    \\|
+                 || /         ^._...,    (     )     \|
+                 ||/          \.    |     \._./       v
+                 (|)            `-..’     ./
+                  V                 ``...`                                            
+       ___             
+|_|     |          __  
+| |igh  |hroughput     
+__            _                  __                __            ___
+|_|          /_\            |    |_|              |  |          | __
+|_|acterial /   \ntimicrobia|__  | \estistance ann|__|tation of |__|enomes 
+
 #######################################                                      
 */                                      
 
@@ -15,131 +38,15 @@
 
 /*
 ========================================================================================
-                         edwardbirdlab/BARA
+                         edwardbirdlab/BALROG-MON
 ========================================================================================
  Bacterial Antimicroal Resistance Annoation Pipeline.
  #### Find information at:
- https://github.com/edwardbirdlab/BARA
+ https://github.com/edwardbirdlab/BALROG-MON
 ----------------------------------------------------------------------------------------
 */
 nextflow.enable.dsl=2
 
-/* Settings for argdit */
-params.argdit_FastaHeaderFieldSeparator = '|'
-params.argdit_OperationalFieldSeparator = '__'
-params.argdit_MinSequenceCount = '3'
-params.argdit_BootstrapFactor = '1000'
-params.argdit_Email = 'edwardbirdlab@gmail.com'
-params.argdit_DefaultGeneticCode = '11'
-
-/* Other program Settings */
-params.fastp_q = '20'
-params.fastp_adap1 = ''
-params.fastp_adap2 = ''
-params.chdit_ident = '0.95'
-params.chdit_word_size = '8'
-params.platon_mode = 'accuracy'
-params.bacscan_nhmm_eval = '0.000001'
-params.bacscan_hmm_eval = '0.000001 '
-params.platon_meta = 'True'
-params.min_contig_size = '500'           //==  combined with coverage to filter out small lov cov contigs
-params.min_contig_cov = '2'              //==  conbined with size to filter out small lov cov contigs
-params.plasmer_min_len = '500'           //==  Setting the minimum size to be classified in plasmer (defualt/recommended = 500)
-params.plasmer_max_len = '500000'        //==  Setting the length at which all contigs greater than this size are automatically considered chromomosomal in orgin (defualt = 500000)
-
-
-
-/*
-Database Settings (True = autodownload, False = supplied in corresponding folder)
-*/
-
-params.database_dir = ''
-
-//Plasmer (recommend autodownload)
-params.db_plasmer = true
-
-//Kracken2 (recommend autodownload) If different database is used change RAM requirements as needed in config
-params.db_kraken2 = true
-
-//ViralVerify_pfam_db (Can be updated for more up to date plasmid searching, dependent on use)
-params.db_viralverify = true
-
-//GTDBtk (Can be updated for more up to date genome identification)
-params.db_gtdbtk = true
-
-//ViralVerify_pfam_db (Can be updated for more up to date plasmid searching, dependent on use)
-params.db_ncbi16S = true
-
-//resfinder (Reccomend updating for most up to date ARGs)
-params.db_resfinder = true
-
-//amrfinder (Reccomend updating for most up to date ARGs)
-params.db_amrfinder = true
-
-//argannot (Reccomend updating for most up to date ARGs)
-params.db_argannot = true
-
-//card (Reccomend updating for most up to date ARGs)
-params.db_card = true
-
-//megares (Reccomend updating for most up to date ARGs)
-params.db_megares = true
-
-//Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
-params.db_kraken2_pluspf = true
-
-//Kracken2 PlusPF for metagenomic community anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
-params.db_virsorter = true
-
-//Krackenuniq database for pathogen detection anlysis (recommend autodownload) If different database is used change RAM requirements as needed in config
-params.db_krakenuniq = true
-
-
-
-/*
-Which Path to take (read options carefully):
-*/
-
-//Perform metagenomic assembly on ONT reads == True, Convert reads to Fasta without Assembly == False
-params.ont_metagenomic_assembly = false
-
-
-
-/*
-Optional Steps Settings (True = Run Aditional Step, False = Don't run it):
-*/
-
-//Preform metagenomic community analysis against GTDB with Sylph (Uses metaphlan scripts for analsysis)
-params.meta_community_analysis =true
-
-//Preform extra taxonomic classification (Kraken2 & GTDB) of sequences (Metagenome Recommend, but can be used on Fq2Fa samples as well) 
-params.meta_sequence_id = false
-
-//Preform CARD database only annotation. If this is true multi_amr should be false.
-params.card_only = false
-
-//Preform multi amr database annoation (AMRFINDERPLUS,Resfinder,CARD). If this is true card_only should be false
-params.multi_amr = true
-
-//Preform mobile element finder, will also look to see if any AMR genes happend to be on mobile elements (plasmer already does plasmid, and is run by defualt.
-//This should be used if you are intrested in other ME types)
-params.mef = true
-
-//Preform proka - metagenome annotator. Will annotate out any genes from the metagenome. This pipeline will not summarize these findings in any way
-params.proka = true
-
-//Preform pathogen detection - kraken2 will be run to look for pathogens in host-depleted reads
-params.pathogen_detection = true
-
-
-
-
-
-
-
-params.sample_sheet = null
-params.project_name = null
-params.workflow_opt = null
 
 //ch_fastq = Channel.fromPath(params.sample_sheet) \
 //       | splitCsv(header:true) \
@@ -180,11 +87,11 @@ if (params.workflow_opt == 'ont_meta') {
     }
 
 
+//Old and outdated files, need to remove from pipeline thoughout
+
 bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
 bacrascan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
 bacrascan_phmm = Channel.fromPath( '/homes/edwardbird/data/database/pARGhmm.tar.gz' )
-
-ch_host_genomes = Channel.fromPath( '/fastscratch/edwardbird/BALLROG_ONT_META/Host_genomes/**' )
 
 
 
