@@ -229,15 +229,29 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 
 ### Community Analysis
 
+1. [Kraken2](https://github.com/DerrickWood/kraken2)
+2. [Bracken](https://github.com/jenniferlu717/Bracken)
+3. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken)
+
 ### Pathogen Detection
 
+1. [Kraken2](https://github.com/DerrickWood/kraken2) - (--report-minimizer-data --minimum-hit-groups 3)
+2. K2Verify - Comming soon! - (Not yet implemented)
+3. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken
+
 ### Additional Mobile Element Annotation
+1. [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
 
 ### Additional Sequence Identification
+1. [Kraken2](https://github.com/DerrickWood/kraken2)
 
-## How to Cite BALROG
+## How to Cite BALROG-MON
+
+As there is currently no paper associated with BAROG-MON, please cite this Github page. Also, I feel free to contact me (Edwardbirdlab@gmail.com | Edwardbird@ksu.edu) to let me know!
 
 ## Citing Tools used in BALROG
+
+Many tools are used in this pipeline, cite them according to their respective requrests. links are give above. 
 
 <!-- ROADMAP 
 ## Roadmap
