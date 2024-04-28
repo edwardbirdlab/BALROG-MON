@@ -163,14 +163,14 @@ Sample_Name_2,/absolute/path/to/sample2.fastq.gz,/absolute/path/to/reference_gen
 
 ### Nextflow Configuration
 
-When crating a nextfconfig ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using slurm, you can use the incuded Beocat slurm config as a template. Most nf-core configs will also be supported. If you have never crated a nextflow config, or are having issues reach out to your local administraction.
+When crating a nextflow config ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using slurm, you can use the incuded Beocat slurm config as a template. Most nf-core configs will also be supported. If you have never crated a nextflow config, or are having issues reach out to your local administraction.
 <br />
 [Nextflow Configuration](https://www.nextflow.io/docs/latest/config.html) - [nf-core configs](https://nf-co.re/configs)
 
 
 ### Pipeline Configuration
 
-If you want to change any parameters from defualt they can be changed using the defualt_params.nf file. Configurable paramaters will be outlied in the detail sections below.
+If you want to change any parameters from defualt they can be changed using the nextflow.config file. Configurable paramaters will be outlied in the detail sections below, as well as in the config file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,15 +178,15 @@ If you want to change any parameters from defualt they can be changed using the 
 ## Running BALROG
 1. Running the whole pipeline
 ```sh
-nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf
+nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg
 ```
 2. Optional: Pathogen Detection Conformation (***NOT IMPLEMENTED YET***)
 ```sh
-nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf --taxid-list /path/to/taxid_list.txt
+nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --taxid-list /path/to/taxid_list.txt
 ```
 3. Optional: Multi-QC
 ```sh 
-nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg -params-file /path/to/edwardbirdlab/BALROG-MON/defualt_params.nf --workflow-opt multiqc
+nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow-opt multiqc
 ```
 
 ## Core Steps
