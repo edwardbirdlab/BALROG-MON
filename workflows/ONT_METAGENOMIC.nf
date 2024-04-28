@@ -19,8 +19,6 @@ workflow ONT_METAGENOMIC {
     take:
         ch_fastqs_raw         //    channel: [val(sample), fastq]
         ch_hostgen        //    channel: fna
-        bacarscan_nhmm        //    channel:  [path('bacarscan_nhmmer.tar.gz')]
-        bacarscan_phmm        //    channel:  [path('bacarscan_phmmer.tar.gz')]
 
     main:
 
