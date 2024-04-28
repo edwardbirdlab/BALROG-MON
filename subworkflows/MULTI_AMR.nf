@@ -11,18 +11,13 @@ include { AMRFINDER as AMRFINDER } from '../modules/AMRFINDER.nf'
 include { CARD_CONTIG as CARD_CONTIG } from '../modules/CARD_CONTIG.nf'
 include { RESFINDER as RESFINDER } from '../modules/RESFINDER.nf'
 include { AMRFINDER_PARSE as AMRFINDER_PARSE } from '../modules/AMRFINDER_PARSE.nf'
-include { NHMMSCAN_BACARSCAN as AMRFINDER_BACARSCAN } from '../modules/NHMMSCAN_BACARSCAN.nf'
 include { CARD_PARSE as CARD_PARSE } from '../modules/CARD_PARSE.nf'
-include { HMMSCAN_BACARSCAN as CARD_BACARSCAN } from '../modules/HMMSCAN_BACARSCAN.nf'
 include { RESFINDER_PARSE as RESFINDER_PARSE } from '../modules/RESFINDER_PARSE.nf'
-include { NHMMSCAN_BACARSCAN as RESFINDER_BACARSCAN } from '../modules/NHMMSCAN_BACARSCAN.nf'
 
 workflow MULTI_AMR {
 
     take:
         seqs            //    channel: [ val(sample), path("somthing.fasta")]
-        bacarscan_nhmm  //    chanel:  [path('bacarscan_nhmmer.tar.gz')]
-        bacarscan_hmm   //    chanel:  [path('bacarscan_nhmmer.tar.gz')]
 
     main:
 
@@ -76,15 +71,12 @@ workflow MULTI_AMR {
 
         ch_amrfinder_collect = AMRFINDER.out.amrfinder_results.collect()
         AMRFINDER_PARSE(ch_amrfinder_collect, ch_amrfinder_db)
-        AMRFINDER_BACARSCAN(AMRFINDER_PARSE.out.fasta, bacarscan_nhmm)
 
         ch_card_collect = CARD_CONTIG.out.tbout.collect()
         CARD_PARSE(ch_card_collect)
-        CARD_BACARSCAN(CARD_PARSE.out.fasta, bacarscan_hmm)
 
         ch_resfinder_collect = RESFINDER.out.db_hits.collect()
         RESFINDER_PARSE(ch_resfinder_collect)
-        RESFINDER_BACARSCAN(RESFINDER_PARSE.out.fasta, bacarscan_nhmm)
 
 
     //emit:

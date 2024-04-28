@@ -47,15 +47,6 @@ __            _                  __                __            ___
 */
 nextflow.enable.dsl=2
 
-
-//ch_fastq = Channel.fromPath(params.sample_sheet) \
-//       | splitCsv(header:true) \
-//        | map { row-> tuple(row.sample, file(row.path)) }
-//
-//ch_hostgen = Channel.fromPath(params.sample_sheet) \
-//        | splitCsv(header:true) \
-//        | map { row-> tuple(row.sample, file(row.refernce_genome)) }
-
 if (params.workflow_opt == 'shortread_isolate') {
 
     //SHORT_READ_ISOLATE(ch_fastq)
@@ -87,13 +78,6 @@ if (params.workflow_opt == 'ont_meta') {
     }
 
 
-//Old and outdated files, need to remove from pipeline thoughout
-
-bacscan = Channel.fromPath( '/scratch/edwardbird/BALRROG_Testing/Bacscan_db_uniprot.sc' )
-bacrascan_nhmm = Channel.fromPath( '/homes/edwardbird/data/database/nARGhmm.tar.gz' )
-bacrascan_phmm = Channel.fromPath( '/homes/edwardbird/data/database/pARGhmm.tar.gz' )
-
-
 
 //include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
 include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
@@ -115,7 +99,7 @@ workflow {
 
     if (params.workflow_opt == 'ont_meta') {
 
-        ONT_METAGENOMIC(ch_fastq, ch_hostgen, bacrascan_nhmm, bacrascan_phmm)
+        ONT_METAGENOMIC(ch_fastq, ch_hostgen)
 
         }
 
