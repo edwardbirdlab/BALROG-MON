@@ -5,13 +5,14 @@ Importing subworkflows
 */
 
 include { READ_QC_SR as READ_QC_SR } from '../subworkflows/READ_QC_SR.nf'
-//include { PLASMID_PREDICTION as PLASMID_PREDICTION } from '../subworkflows/PLASMID_PREDICTION.nf'
+include { PLASMID_PREDICTION as PLASMID_PREDICTION } from '../subworkflows/PLASMID_PREDICTION.nf'
 //include { ASSEMBLY_QC as ASSEMBLY_QC } from '../subworkflows/ASSEMBLY_QC.nf'
-//include { ARG_GET_DBS_META as ARG_GET_DBS_META } from '../subworkflows/ARG_GET_DBS_META.nf'
 include { HOST_REMOVAL_SHORT_READ as HOST_REMOVAL_SHORT_READ } from '../subworkflows/HOST_REMOVAL_SHORT_READ.nf'
-//include { SHORT_READ_META_ASSEMBLY as SHORT_READ_META_ASSEMBLY } from '../subworkflows/SHORT_READ_META_ASSEMBLY.nf'
+include { SHORT_READ_META_ASSEMBLY as SHORT_READ_META_ASSEMBLY } from '../subworkflows/SHORT_READ_META_ASSEMBLY.nf'
 include { METAGENOMIC_COMMUNITY_ANALYSIS_SR as METAGENOMIC_COMMUNITY_ANALYSIS_SR } from '../subworkflows/METAGENOMIC_COMMUNITY_ANALYSIS_SR.nf'
 include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
+include { CARD_READS_ONLY as CARD_READS_ONLY } from '../subworkflows/CARD_READS.nf'
+include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 
 
 
@@ -29,12 +30,15 @@ workflow SHORT_READ_METAGENOMIC {
 
         PATHOGEN_DETECTION(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
 
-//        SHORT_READ_META_ASSEMBLY(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
+        SHORT_READ_META_ASSEMBLY(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
         
-//        PLASMID_PREDICTION(SHORT_READ_ISOLATE_ASSEMBLY.out.unclassed_genome)
+        PLASMID_PREDICTION(SHORT_READ_ISOLATE_ASSEMBLY.out.unclassed_genome)
 
 //        ASSEMBLY_QC(PLASMID_PREDICTION.out.all, READ_QC.out.trimmed_fastq)
 
+        CARD_READS_ONLY(READ_QC_SR.out.trimmed_fastq)
+
+        MULTI_AMR(PLASMID_PREDICTION.out.all)    
 
 
 }
