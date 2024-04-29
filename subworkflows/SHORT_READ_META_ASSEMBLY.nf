@@ -8,7 +8,6 @@ params.min_contig_cov = '2'        ==  conbined with size to filter out small lo
 */
 
 include { SPADES_METAGENOME as SPADES_METAGENOME } from '../modules/SPADES_METAGENOME.nf'
-include { KRAKEN2 as KRAKEN2 } from '../modules/KRAKEN2.nf'
 include { QUAST as QUAST_GENOME } from '../modules/QUAST.nf'
 
 
