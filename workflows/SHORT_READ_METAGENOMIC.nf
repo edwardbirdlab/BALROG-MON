@@ -11,7 +11,7 @@ include { HOST_REMOVAL_SHORT_READ as HOST_REMOVAL_SHORT_READ } from '../subworkf
 include { SHORT_READ_META_ASSEMBLY as SHORT_READ_META_ASSEMBLY } from '../subworkflows/SHORT_READ_META_ASSEMBLY.nf'
 include { METAGENOMIC_COMMUNITY_ANALYSIS_SR as METAGENOMIC_COMMUNITY_ANALYSIS_SR } from '../subworkflows/METAGENOMIC_COMMUNITY_ANALYSIS_SR.nf'
 include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
-include { CARD_READS_ONLY as CARD_READS_ONLY } from '../subworkflows/CARD_READS.nf'
+include { CARD_READS_ONLY as CARD_READS_ONLY } from '../subworkflows/CARD_READS_ONLY.nf'
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 
 
@@ -32,7 +32,7 @@ workflow SHORT_READ_METAGENOMIC {
 
         SHORT_READ_META_ASSEMBLY(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
         
-        PLASMID_PREDICTION(SHORT_READ_ISOLATE_ASSEMBLY.out.unclassed_genome)
+        PLASMID_PREDICTION(SHORT_READ_META_ASSEMBLY.out.unclassed_genome)
 
 //        ASSEMBLY_QC(PLASMID_PREDICTION.out.all, READ_QC.out.trimmed_fastq)
 

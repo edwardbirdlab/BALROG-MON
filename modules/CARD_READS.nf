@@ -8,6 +8,7 @@ process CARD_READS {
         tuple val(db_name), path(db)
     output:
         path("./${sample}"), emit: results
+        path("./${sample}/${sample}_out.txt"), emit: tbout
 
     script:
 
