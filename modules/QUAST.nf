@@ -1,6 +1,6 @@
 process QUAST {
     label 'lowmem'
-    container 'library://edwardbird/bara/quast:5.0.2'
+    container 'ebird013/quast:5.2.0'
     publishDir "${params.project_name}/Quast/${task.process}", mode: 'copy', overwrite: false
     errorStrategy 'ignore'
 

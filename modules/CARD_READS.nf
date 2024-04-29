@@ -1,6 +1,6 @@
 process CARD_READS {
    label 'lowmem'
-    container 'library://edwardbird/bara/rgi:5.1.1'
+    container 'ebird013/rgi:6.0.3'
     publishDir "${params.project_name}/AMR_Annotation/CARD/${task.process}", mode: 'copy', overwrite: true
 
     input:
