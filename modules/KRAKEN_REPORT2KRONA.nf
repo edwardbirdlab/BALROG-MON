@@ -1,9 +1,9 @@
 process KRAKEN_REPORT2KRONA {
     label 'lowmem'
 	container 'ebird013/braken:2.9'
-    publishDir "${params.project_name}/Kraken2_Krona/${sample}", mode: 'copy', overwrite: true
+    publishDir "${params.project_name}/Kraken2_Krona/${sample}/${task.process}", mode: 'copy', overwrite: true
 
-    input:
+    input:/${task.process}
         tuple val(sample), file(report)
     output:
 	   tuple val(sample), path("${sample}.krona"), path("${sample}.krona.html"), emit: krona

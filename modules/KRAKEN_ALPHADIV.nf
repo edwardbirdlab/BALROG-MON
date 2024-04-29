@@ -1,7 +1,7 @@
 process KRAKEN_ALPHADIV {
     label 'lowmem'
 	container 'ebird013/braken:2.9'
-    publishDir "${params.project_name}/Kraken2_Alpha_Diveristy/${sample}", mode: 'copy', overwrite: true
+    publishDir "${params.project_name}/Kraken2_Alpha_Diveristy/${sample}/${task.process}", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(report)
