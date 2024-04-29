@@ -1,6 +1,6 @@
 process FASTP {
     label 'verylow'
-	container 'library://edwardbirdlab/fastp/fastp:1.0'
+	container 'ebird013/fastp:0.20.1'
     publishDir "${params.project_name}/Pre_Processing/fastp/${sample}", mode: 'symlink', overwrite: false
 
     input:

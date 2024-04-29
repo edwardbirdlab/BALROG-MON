@@ -1,6 +1,6 @@
 process FASTQC_ONT {
     label 'lowmem'
-	container 'library://edwardbird/bara/fastqc:0.11.9'
+	container 'ebird013/fastqc:0.12.1'
     publishDir "${params.project_name}/Pre_Processing/FastQC/${task.process}", mode: 'copy', overwrite: true
 
     input:
