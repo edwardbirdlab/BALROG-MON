@@ -28,7 +28,7 @@ workflow SHORT_READ_METAGENOMIC {
 
         METAGENOMIC_COMMUNITY_ANALYSIS_SR(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
 
-        PATHOGEN_DETECTION(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
+//        PATHOGEN_DETECTION(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
 
         SHORT_READ_META_ASSEMBLY(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
         
@@ -36,7 +36,7 @@ workflow SHORT_READ_METAGENOMIC {
 
 //        ASSEMBLY_QC(PLASMID_PREDICTION.out.all, READ_QC.out.trimmed_fastq)
 
-        CARD_READS_ONLY(READ_QC_SR.out.trimmed_fastq)
+        CARD_READS_ONLY(HOST_REMOVAL_SHORT_READ.out.host_depleted_reads)
 
         MULTI_AMR(PLASMID_PREDICTION.out.all)    
 
