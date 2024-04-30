@@ -1,6 +1,6 @@
 process SPADES_METAGENOME {
-    label 'ebird013/spades:3.15.5'
-    container 'library://edwardbird/bara/spades:3.14.0'
+    label 'lowmem'
+    container 'ebird013/spades:3.15.5'
     publishDir "${params.project_name}/Assembly/spades_metagenome", mode: 'copy', overwrite: false
 
     input:
