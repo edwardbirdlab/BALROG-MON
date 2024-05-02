@@ -59,9 +59,9 @@ workflow PLASMID_PREDICTION {
 
         if (params.db_virsorter) {
 
-            VIRSORTER2_DB()
+            //VIRSORTER2_DB()
 
-            ch_virsorter_db        =  VIRSORTER2_DB.out.database
+            //ch_virsorter_db        =  VIRSORTER2_DB.out.database
 
             } else {
 

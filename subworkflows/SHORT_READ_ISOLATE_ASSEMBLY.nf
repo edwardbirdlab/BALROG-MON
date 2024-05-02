@@ -8,7 +8,6 @@ params.min_contig_cov = '2'        ==  conbined with size to filter out small lo
 */
 
 include { SPADES_GENOME as SPADES_GENOME } from '../modules/SPADES_GENOME.nf'
-include { KRAKEN2 as KRAKEN2 } from '../modules/KRAKEN2.nf'
 include { QUAST as QUAST_GENOME } from '../modules/QUAST.nf'
 include { BUSCO as BUSCO_GENOME } from '../modules/BUSCO.nf'
 
@@ -23,7 +22,7 @@ workflow SHORT_READ_ISOLATE_ASSEMBLY {
         SPADES_GENOME(fastqs_short)
 
         //Quast report of genome
-        QUAST_GENOME(SPADES_GENOME.out.genome, 'Genome')
+        QUAST_GENOME(SPADES_GENOME.out.genome)
 
         //Busco Report - Auto-lineage
         BUSCO_GENOME(SPADES_GENOME.out.genome)
