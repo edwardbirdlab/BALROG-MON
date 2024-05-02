@@ -8,7 +8,7 @@ process BUSCO {
         file(busco_db)
 
     output:
-        path("./${sample}"), emit: busco_results
+        path("./${sample}_busco"), emit: busco_results
 
     script:
 
