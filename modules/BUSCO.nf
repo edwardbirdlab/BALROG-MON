@@ -1,16 +1,18 @@
 process BUSCO {
     label 'lowmem'
-    container 'library://edwardbird/bara/busco:5.2.2'
-    publishDir "${params.project_name}/Assembly/busco", mode: 'copy', overwrite: false
+    container 'ebird013/busco:5.7.1'
+    publishDir "${params.project_name}/Assembly/busco", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(fasta)
+        file(busco_db)
+
     output:
-        path("./${sample}"), emit: quast_results
+        path("./${sample}"), emit: busco_results
 
     script:
 
     """
-    busco -i ${fasta} -o ${sample} -m genome
+    busco -i ${fasta} -o ${sample}_busco -m genome --offline --download_path ${busco_db} --lineage_dataset ${params.busco_lineage}
     """
 }
