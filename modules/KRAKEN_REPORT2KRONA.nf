@@ -1,6 +1,6 @@
 process KRAKEN_REPORT2KRONA {
     label 'lowmem'
-	container 'ebird013/braken:2.9'
+	container 'ebird013/kraken2blob:1.0'
     publishDir "${params.project_name}/Kraken2_Krona/${sample}/${task.process}", mode: 'copy', overwrite: true
 
     input:
