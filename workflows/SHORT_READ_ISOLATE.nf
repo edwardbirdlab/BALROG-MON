@@ -21,7 +21,7 @@ workflow SHORT_READ_ISOLATE {
     main:
         READ_QC_SR(fastqs_short_raw)
 
-        SHORT_READ_ISOLATE_ASSEMBLY(READ_QC.out.trimmed_fastq)
+        SHORT_READ_ISOLATE_ASSEMBLY(READ_QC_SR.out.trimmed_fastq)
         
         PLASMID_PREDICTION(SHORT_READ_ISOLATE_ASSEMBLY.out.unclassed_genome)
 
