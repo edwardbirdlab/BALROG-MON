@@ -4,7 +4,7 @@ Importing subworkflows
 ~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { READ_QC as READ_QC } from '../subworkflows/READ_QC.nf'
+include { READ_QC_SR as READ_QC_SR } from '../subworkflows/READ_QC_SR.nf'
 include { SHORT_READ_ISOLATE_ASSEMBLY as SHORT_READ_ISOLATE_ASSEMBLY } from '../subworkflows/SHORT_READ_ISOLATE_ASSEMBLY.nf'
 include { PLASMID_PREDICTION as PLASMID_PREDICTION } from '../subworkflows/PLASMID_PREDICTION.nf'
 //include { FUNCTIONAL_ANNOTATION as FUNCTIONAL_ANNOTATION } from '../subworkflows/FUNCTIONAL_ANNOTATION.nf'
