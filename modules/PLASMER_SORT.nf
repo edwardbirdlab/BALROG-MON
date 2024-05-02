@@ -1,6 +1,6 @@
 process PLASMER_SORT {
     label 'lowmem'
-    container 'quay.io/biocontainers/python:3.9--1'
+    container 'ebird013/plasmer_sort:1.0'
     publishDir "${params.project_name}/Assembly/plasmer/${sample}", mode: 'copy', overwrite: false
 
 
