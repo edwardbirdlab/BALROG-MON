@@ -19,7 +19,7 @@ workflow SHORT_READ_ISOLATE {
         fastqs_short_raw      //    channel: [val(sample), [fastq_1, fastq_2]]
 
     main:
-        READ_QC(fastqs_short_raw)
+        READ_QC_SR(fastqs_short_raw)
 
         SHORT_READ_ISOLATE_ASSEMBLY(READ_QC.out.trimmed_fastq)
         
