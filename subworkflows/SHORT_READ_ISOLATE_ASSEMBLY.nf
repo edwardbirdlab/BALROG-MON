@@ -8,25 +8,42 @@ params.min_contig_cov = '2'        ==  conbined with size to filter out small lo
 */
 
 include { SPADES_GENOME as SPADES_GENOME } from '../modules/SPADES_GENOME.nf'
-include { KRAKEN2 as KRAKEN2 } from '../modules/KRAKEN2.nf'
 include { QUAST as QUAST_GENOME } from '../modules/QUAST.nf'
 include { BUSCO as BUSCO_GENOME } from '../modules/BUSCO.nf'
+include { BUSCO_DB as BUSCO_DB } from '../modules/BUSCO_DB.nf'
 
 
 workflow SHORT_READ_ISOLATE_ASSEMBLY {
     take:
-        fastqs_short      //    channel: [val(sample), path(fastq1), path(fastq2)]
+        ch_fastqs_short      //    channel: [val(sample), path(fastq1), path(fastq2)]
 
     main:
 
+        // BuscoV5 Database
+
+        if (params.db_buscov5) {
+
+            BUSCO_DB()
+
+            ch_busco_db        =  BUSCO_DB.out.busco_db
+
+            } else {
+
+                
+
+            }
+
+
+
         //Spades Isolate Assembly
-        SPADES_GENOME(fastqs_short)
+        SPADES_GENOME(ch_fastqs_short)
 
         //Quast report of genome
-        QUAST_GENOME(SPADES_GENOME.out.genome, 'Genome')
+        QUAST_GENOME(SPADES_GENOME.out.genome)
+
 
         //Busco Report - Auto-lineage
-        BUSCO_GENOME(SPADES_GENOME.out.genome)
+        BUSCO_GENOME(SPADES_GENOME.out.genome, ch_busco_db)
 
     emit:
         unclassed_genome   = SPADES_GENOME.out.genome  //   channel: [ val(sample), path("${sample}_scaffolds.fasta")]
