@@ -16,7 +16,7 @@ include { CARD_READS_ONLY as CARD_READS_ONLY } from '../subworkflows/CARD_READS_
 
 
 
-workflow SHORT_READ_METAGENOMIC {
+workflow SHORT_READ_METAGENOMIC_RNA {
     take:
         fastqs_short_raw      //    channel: [val(sample), [fastq_1, fastq_2]]
         host_gen_fasta        //    channel: channel: [val(sample), fasta]
