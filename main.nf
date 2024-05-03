@@ -114,7 +114,7 @@ workflow {
 
     if (params.workflow_opt == 'shortread_meta_rna') {
 
-        SHORT_READ_METAGENOMIC(ch_fastq)
+        SHORT_READ_METAGENOMIC_RNA(ch_fastq)
 
         }
 
