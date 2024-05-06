@@ -99,6 +99,7 @@ include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_REA
 include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
 include { SHORT_READ_METAGENOMIC_RNA as SHORT_READ_METAGENOMIC_RNA } from './workflows/SHORT_READ_METAGENOMIC_RNA.nf'
 include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC.nf'
+include { ONT_METAGENOMIC_RNA as ONT_METAGENOMIC_RNA } from './workflows/ONT_METAGENOMIC_RNA.nf'
 
 workflow {
 
@@ -128,7 +129,7 @@ workflow {
 
     if (params.workflow_opt == 'ont_meta_rna') {
 
-        ONT_METAGENOMIC(ch_fastq)
+        ONT_METAGENOMIC_RNA(ch_fastq)
 
         }
 
