@@ -7,6 +7,7 @@ Importing subworkflows
 include { READ_QC_ONT as READ_QC_ONT } from '../subworkflows/READ_QC_ONT.nf'
 include { METAGENOMIC_COMMUNITY_ANALYSIS_ONT as METAGENOMIC_COMMUNITY_ANALYSIS_ONT } from '../subworkflows/METAGENOMIC_COMMUNITY_ANALYSIS_ONT.nf'
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
+include { HOST_REMOVAL_ONT as HOST_REMOVAL_ONT } from '../subworkflows/HOST_REMOVAL_ONT.nf'
 
 
 
