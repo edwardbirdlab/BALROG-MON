@@ -128,7 +128,7 @@ workflow {
 
     if (params.workflow_opt == 'ont_meta_rna') {
 
-        ONT_METAGENOMIC(ch_fastq, ch_hostgen)
+        ONT_METAGENOMIC(ch_fastq)
 
         }
 
