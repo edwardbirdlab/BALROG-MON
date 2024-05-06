@@ -7,6 +7,7 @@ Importing subworkflows
 include { READ_QC_ONT as READ_QC_ONT } from '../subworkflows/READ_QC_ONT.nf'
 include { METAGENOMIC_COMMUNITY_ANALYSIS_ONT as METAGENOMIC_COMMUNITY_ANALYSIS_ONT } from '../subworkflows/METAGENOMIC_COMMUNITY_ANALYSIS_ONT.nf'
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
+include { ONT_ASSEMBLY as ONT_ASSEMBLY } from '../subworkflows/ONT_ASSEMBLY.nf'
 
 
 
@@ -22,6 +23,7 @@ workflow ONT_METAGENOMIC_RNA {
 
         READ_QC_ONT(ch_fastqs_raw)
 
+        ONT_ASSEMBLY(READ_QC_ONT.out.chopper_fastq_ch)
 
 // ARG annotation Steps
         
@@ -38,7 +40,7 @@ workflow ONT_METAGENOMIC_RNA {
         
         if (params.multi_amr) {
 
-            MULTI_AMR(READ_QC_ONT.out.chopper_fastq_ch)
+            MULTI_AMR(ONT_ASSEMBLY.out.output)
         }
 
 
