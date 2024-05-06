@@ -22,6 +22,7 @@ workflow ONT_METAGENOMIC_RNA {
 
         READ_QC_ONT(ch_fastqs_raw)
 
+        ONT_ASSEMBLY(READ_QC_ONT.out.chopper_fastq_ch)
 
 // ARG annotation Steps
         
@@ -38,7 +39,7 @@ workflow ONT_METAGENOMIC_RNA {
         
         if (params.multi_amr) {
 
-            MULTI_AMR(READ_QC_ONT.out.chopper_fastq_ch)
+            MULTI_AMR(ONT_ASSEMBLY.out.output)
         }
 
 
