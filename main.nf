@@ -79,6 +79,14 @@ if (params.workflow_opt == 'ont_meta') {
 
     }
 
+if (params.workflow_opt == 'ont_meta_rna') {
+
+    ch_fastq = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.path)) }
+
+    }
+
 if (params.workflow_opt == 'shortread_meta_rna') {
 
     ch_fastq = Channel.fromPath(params.sample_sheet) \
@@ -115,6 +123,12 @@ workflow {
     if (params.workflow_opt == 'shortread_meta_rna') {
 
         SHORT_READ_METAGENOMIC(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'ont_meta_rna') {
+
+        ONT_METAGENOMIC(ch_fastq, ch_hostgen)
 
         }
 
