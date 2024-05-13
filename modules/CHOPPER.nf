@@ -11,6 +11,6 @@ process CHOPPER {
     script:
 
     """
-    gunzip -c ${R1} | chopper -l 500 -q 15 --threads ${task.cpus} | gzip > ${sample}_ch.fastq.gz
+    gunzip -c ${R1} | chopper -l ${params.ont_min_seq_len} -q ${params.ont_average_read_min_qscore} --threads ${task.cpus} | gzip > ${sample}_ch.fastq.gz
     """
 }
