@@ -26,13 +26,13 @@ workflow METAGENOMIC_COMMUNITY_ANALYSIS_ONT {
 
         if (params.db_gtdbtk) {
 
-            GTDBTK_DB()
+            //GTDBTK_DB()
 
-            ch_gtdbtk_db       = GTDBTK_DB.out.DB
+            //ch_gtdbtk_db       = GTDBTK_DB.out.DB
 
             } else {
 
-                ch_gtdbtk_db   =  Channel.fromPath("${params.database_dir}/GTDBtk/*.tar.gz")
+                //ch_gtdbtk_db   =  Channel.fromPath("${params.database_dir}/GTDBtk/*.tar.gz")
 
             }
 
@@ -52,11 +52,11 @@ workflow METAGENOMIC_COMMUNITY_ANALYSIS_ONT {
 
 
 
-        SYLPH_SKETCH_GTDB(ch_gtdbtk_db)
+        //SYLPH_SKETCH_GTDB(ch_gtdbtk_db)
 
-        ch_sylphdb_reads_nh = host_depleted_reads.combine(SYLPH_SKETCH_GTDB.out.gtdb_sylph)
+        //ch_sylphdb_reads_nh = host_depleted_reads.combine(SYLPH_SKETCH_GTDB.out.gtdb_sylph)
 
-        SYLPH_PROFILE_SE_NH(ch_sylphdb_reads_nh)
+        //SYLPH_PROFILE_SE_NH(ch_sylphdb_reads_nh)
 
         KRAKEN2_PLUSPF_SE(host_depleted_reads, ch_kraken2_pluspf_db)
 
