@@ -1,7 +1,6 @@
 process RESFINDER_DB {
     label 'small'
     container 'ebird013/resfinder:4.4.2'
-    publishDir "${params.project_name}/ARG_Databases/resfinder_DB", mode: 'copy', overwrite: false
 
     output:
         path("./db_resfinder"), emit: resfinder_db

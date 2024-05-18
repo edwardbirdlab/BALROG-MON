@@ -1,7 +1,6 @@
 process BOWTIE2 {
     label 'lowmemlong'
     container 'biocontainers/bowtie2:v2.4.1_cv1'
-    publishDir "${params.project_name}/Host_Depletion/Bowtie2", mode: 'symlink', overwrite: true
 
     input:
         tuple val(sample), file(fq1), file(fq2), file(ref)

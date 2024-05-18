@@ -1,6 +1,5 @@
 process CARD_DB {
     label 'small'
-    publishDir "${params.project_name}/ARG_Databases/card_DB", mode: 'copy', overwrite: false
 
     output:
         tuple val('card'), path("card.json"), emit: card_DB

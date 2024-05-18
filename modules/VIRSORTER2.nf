@@ -1,7 +1,6 @@
 process VIRSORTER2 {
     label 'lowmemlong'
     container 'ebird013/virsorter2:2.2.4'
-    publishDir "${params.project_name}/Assembly/viral_verify", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

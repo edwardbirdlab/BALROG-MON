@@ -1,7 +1,6 @@
 process PLASMER {
     label 'plasmer'
     container 'nekokoe/plasmer:23.04.20'
-    publishDir "${params.project_name}/Assembly/plasmer/${sample}", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

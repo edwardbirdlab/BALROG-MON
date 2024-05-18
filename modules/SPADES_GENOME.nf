@@ -1,7 +1,6 @@
 process SPADES_GENOME {
     label 'lowmem'
     container 'ebird013/spades:3.15.5'
-    publishDir "${params.project_name}/Assembly/spades_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), path(fastq1), path(fastq2)

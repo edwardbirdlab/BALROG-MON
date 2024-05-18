@@ -1,7 +1,6 @@
 process AMRFINDER_DB {
    label 'lowmem'
     container 'ncbi/amr:latest'
-    publishDir "${params.project_name}/ARG_Databases/AMRFinder_db", mode: 'copy', overwrite: false
 
     input:
 

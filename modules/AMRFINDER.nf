@@ -1,7 +1,6 @@
 process AMRFINDER {
    label 'lowmemnk'
     container 'ncbi/amr:latest'
-    publishDir "${params.project_name}/AMR_Annotation/AMRFinder", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(fasta)

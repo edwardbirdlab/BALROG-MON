@@ -1,7 +1,6 @@
 process PROKKA {
     label 'lowmem'
     container 'library://edwardbird/bara/prokka:1.14.5'
-    publishDir "${params.project_name}/Annotation/prokka_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

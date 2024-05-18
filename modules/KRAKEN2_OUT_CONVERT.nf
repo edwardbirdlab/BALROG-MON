@@ -1,7 +1,6 @@
 process KRAKEN2_OUT_CONVERT {
     label 'lowmem'
     container 'quay.io/biocontainers/python:3.9--1'
-    publishDir "${params.project_name}/Assembly/kraken2/${sample}", mode: 'copy', overwrite: false
 
 
     input:

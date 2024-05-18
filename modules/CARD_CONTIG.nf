@@ -1,7 +1,6 @@
 process CARD_CONTIG {
    label 'lowmemlong'
     container 'ebird013/rgi:6.0.3'
-    publishDir "${params.project_name}/AMR_Annotation/CARD/${task.process}", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

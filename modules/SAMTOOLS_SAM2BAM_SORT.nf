@@ -1,7 +1,6 @@
 process SAMTOOLS_SAM2BAM_SORT {
     label 'lowmem'
     container 'ebird013/samtools:1.17'
-    publishDir "${params.project_name}/Genome_QC/Samtools", mode: 'symlink', overwrite: true
 
     input:
         tuple val(sample), file(sam)

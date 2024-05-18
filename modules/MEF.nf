@@ -1,7 +1,6 @@
 process MEF {
     label 'lowmem'
     container 'mkhj/mobile_element_finder:latest'
-    publishDir "${params.project_name}/Annotation/mef_genome", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

@@ -1,7 +1,6 @@
 process BLAST_16S {
     label 'lowmem'
     container 'library://edwardbird/bara/ncbi_blast:1.0'
-    publishDir "${params.project_name}/Identificaiton/ncbi_16s", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), path(fasta)

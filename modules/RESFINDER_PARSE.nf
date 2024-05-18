@@ -1,7 +1,6 @@
 process RESFINDER_PARSE {
    label 'ultralow'
     container 'ebird013/balrog:2.4'
-    publishDir "${params.project_name}/AMR_Annotation/ResfinderParse", mode: 'copy', overwrite: true
 
     input:
         file(outputs)

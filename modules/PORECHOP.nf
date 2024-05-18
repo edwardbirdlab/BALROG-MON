@@ -1,7 +1,6 @@
 process PORECHOP {
     label 'porechop'
 	container 'ebird013/porechop:0.2.4'
-    publishDir "${params.project_name}/Pre_Processing/Porechop/${task.process}/${sample}", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(R1)

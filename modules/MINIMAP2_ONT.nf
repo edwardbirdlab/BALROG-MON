@@ -1,7 +1,6 @@
 process MINIMAP2_ONT {
     label 'midmemlong'
     container 'ebird013/minimap2:2.26'
-    publishDir "${params.project_name}/Pre_Processing/Minimap2_ONT_RefGen", mode: 'symlink', overwrite: true
 
     input:
         tuple val(sample), file(fastq), file(ref)

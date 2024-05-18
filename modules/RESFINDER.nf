@@ -1,7 +1,6 @@
 process RESFINDER {
    label 'lowmemlong'
     container 'ebird013/resfinder:4.4.2'
-    publishDir "${params.project_name}/AMR_Annotation/resfinder", mode: 'copy', overwrite: false
 
     input:
         tuple val(sample), file(fasta)

@@ -1,7 +1,6 @@
 process BUSCO {
     label 'lowmem'
     container 'ebird013/busco:5.7.1'
-    publishDir "${params.project_name}/Assembly/busco", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(fasta)

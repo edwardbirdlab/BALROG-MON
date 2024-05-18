@@ -1,7 +1,6 @@
 process CONCAT_FA {
     label 'lowmem'
-    //container 'ebird013/longstitch:1.0.5'
-    publishDir "${params.project_name}/Assembly/${task.process}", mode: 'symlink', overwrite: true
+    container 'ebird013/seqtk:1.4'
 
     input:
         file(fastas)

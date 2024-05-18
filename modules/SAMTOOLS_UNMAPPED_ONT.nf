@@ -1,7 +1,6 @@
 process SAMTOOLS_UNMAPPED_ONT {
     label 'samtoolssort'
     container 'ebird013/samtools:1.17'
-    publishDir "${params.project_name}/Host_Depletion/Bowtie2", mode: 'symlink', overwrite: true
 
     input:
         tuple val(sample), file(sam)

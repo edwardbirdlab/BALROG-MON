@@ -1,7 +1,6 @@
 process KRAKEN2_PLUSPF_FA {
     label 'kracken2_PlusPF'
 	container 'ebird013/kracken2:2.1.3'
-    publishDir "${params.project_name}/Assembly/kraken2/${sample}/${task.process}", mode: 'copy', overwrite: true
 
     input:
         tuple val(sample), file(fa)

@@ -1,7 +1,6 @@
 process FASTP {
     label 'verylow'
 	container 'biocontainers/fastp:v0.20.1_cv1'
-    publishDir "${params.project_name}/Pre_Processing/fastp/${sample}", mode: 'symlink', overwrite: false
 
     input:
         tuple val(sample), file(R1), file(R2)

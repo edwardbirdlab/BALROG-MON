@@ -1,7 +1,6 @@
 process CARD_PARSE {
    label 'ultralow'
     container 'ebird013/balrog:2.2'
-    publishDir "${params.project_name}/AMR_Annotation/CARDParse", mode: 'copy', overwrite: true
 
     input:
         file(outputs)
