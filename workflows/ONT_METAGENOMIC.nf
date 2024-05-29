@@ -11,6 +11,7 @@ include { HOST_REMOVAL_ONT as HOST_REMOVAL_ONT } from '../subworkflows/HOST_REMO
 include { ONT_ASSEMBLY as ONT_ASSEMBLY } from '../subworkflows/ONT_ASSEMBLY.nf'
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 include { METAGENOMIC_SEQUENCE_IDENTIFICATION as METAGENOMIC_SEQUENCE_IDENTIFICATION } from '../subworkflows/METAGENOMIC_SEQUENCE_IDENTIFICATION.nf'
+include { HUMAN_REMOVAL_ONT as HUMAN_REMOVAL_ONT } from '../subworkflows/HUMAN_REMOVAL_ONT.nf'
 //include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
 
 
@@ -23,13 +24,50 @@ workflow ONT_METAGENOMIC {
     main:
 
 
-// Non-Optional Steps (may include some optional settings):
+// Non-Optional QC Steps (may include some optional settings):
 
         READ_QC_ONT(ch_fastqs_raw)
 
-        HOST_REMOVAL_ONT(READ_QC_ONT.out.chopper_fastq_ch, ch_hostgen)
+        //HOST_REMOVAL_ONT(READ_QC_ONT.out.chopper_fastq_ch, ch_hostgen)
 
-        ONT_ASSEMBLY(HOST_REMOVAL_ONT.out.host_depleted_reads)
+
+// Optional Core Steps:
+        
+        // Human Removal
+        
+
+        if (params.human_removal) {
+
+            HUMAN_REMOVAL_ONT(READ_QC_ONT.out.chopper_fastq_ch)
+
+            ch_human_removal       =  HUMAN_REMOVAL_ONT.out.human_depleted_reads
+
+            } else {
+
+                ch_human_removal    =  READ_QC_ONT.out.chopper_fastq_ch
+
+            }
+
+
+        // Host Removal
+        
+
+        if (params.single_host_removal) {
+
+            HOST_REMOVAL_ONT(ch_human_removal, ch_hostgen)
+
+            ch_host_removal_fqs        =  HOST_REMOVAL_ONT.out.host_depleted_reads
+
+            } else {
+
+                ch_host_removal_fqs  =  HOST_REMOVAL_ONT.out.host_depleted_reads
+
+            }
+
+// Non-Optional CORE Steps (may include some optional settings):
+
+
+        ONT_ASSEMBLY(ch_host_removal_fqs)
         
         PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
 
@@ -52,9 +90,9 @@ workflow ONT_METAGENOMIC {
             MULTI_AMR(PLASMID_PREDICTION.out.all)
         }
 
+// Optional Suplementary Steps:
 
-// Optional Steps:
-        
+
         // Metagenomic Community Analysis
 
         if (params.meta_community_analysis) {
