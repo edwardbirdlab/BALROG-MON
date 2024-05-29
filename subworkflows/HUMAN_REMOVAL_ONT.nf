@@ -7,7 +7,7 @@ params.fastp_q  = Q score for trimming
 */
 
 include { MINIMAP2_ONT_GET_HUMAN as MINIMAP2_ONT_GET_HUMAN } from '../modules/MINIMAP2_ONT_GET_HUMAN.nf'
-include { MINIMAP2_ONT as MINIMAP2_ONT_HUMAN } from '../modules/MINIMAP2_ONT_HUMAN.nf'
+include { MINIMAP2_ONT as MINIMAP2_ONT_HUMAN } from '../modules/MINIMAP2_ONT.nf'
 include { SAMTOOLS_EXTRACT_UNMAPPED_ONT as SAMTOOLS_EXTRACT_UNMAPPED_ONT } from '../modules/SAMTOOLS_EXTRACT_UNMAPPED_ONT.nf'
 include { SAMTOOLS_UNMAPPED_ONT as SAMTOOLS_UNMAPPED_ONT } from '../modules/SAMTOOLS_UNMAPPED_ONT.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS_FULL } from '../modules/SAMTOOLS_STATS.nf'
