@@ -1,4 +1,4 @@
-process MINIMAP2_ONT {
+process MINIMAP2_ONT_GET_HUMAN {
     label 'midmemlong'
     container 'ebird013/minimap2:2.26'
 
