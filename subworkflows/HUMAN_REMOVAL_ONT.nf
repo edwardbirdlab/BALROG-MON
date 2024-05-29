@@ -26,8 +26,8 @@ workflow HUMAN_REMOVAL_ONT {
         ch_for_minimap = ch_fastqs_trim.join(MINIMAP2_ONT_GET_HUMAN.out.ref)
 
         MINIMAP2_ONT_HUMAN(ch_for_minimap)
-        SAMTOOLS_STATS_FULL(MINIMAP2_ONT.out.sam)
-        SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT.out.sam)
+        SAMTOOLS_STATS_FULL(MINIMAP2_ONT_HUMAN.out.sam)
+        SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT_HUMAN.out.sam)
         SAMTOOLS_READNAMES(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
 
         ch_seqtk_subset_nh = ch_fastqs_trim.join(SAMTOOLS_READNAMES.out.readnames)
