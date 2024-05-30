@@ -9,6 +9,6 @@ process MINIMAP2_ONT_GET_HUMAN {
 
     """
     wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/GCA_000001405.15_GRCh38_genomic.fna.gz
-    gunzip https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/GCA_000001405.15_GRCh38_genomic.fna.gz
+    gunzip GCA_000001405.15_GRCh38_genomic.fna.gz
     """
 }
