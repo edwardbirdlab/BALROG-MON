@@ -22,7 +22,7 @@ workflow HUMAN_REMOVAL_ONT {
     main:
 
         MINIMAP2_ONT_GET_HUMAN()
-        MINIMAP2_ONT_HUMAN(ch_for_minimap, MINIMAP2_ONT_GET_HUMAN.out.ref)
+        MINIMAP2_ONT_HUMAN(ch_fastqs_trim, MINIMAP2_ONT_GET_HUMAN.out.ref)
         SAMTOOLS_STATS_FULL(MINIMAP2_ONT_HUMAN.out.sam)
         SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT_HUMAN.out.sam)
         SAMTOOLS_READNAMES(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
