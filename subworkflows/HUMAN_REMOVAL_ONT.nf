@@ -23,7 +23,7 @@ workflow HUMAN_REMOVAL_ONT {
 
         MINIMAP2_ONT_GET_HUMAN()
 
-        MINIMAP2_ONT_GET_HUMAN.view()
+        MINIMAP2_ONT_GET_HUMAN.out.ref.view()
 
         ch_for_minimap = ch_fastqs_trim.join(MINIMAP2_ONT_GET_HUMAN.out.ref)
 
