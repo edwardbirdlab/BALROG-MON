@@ -25,6 +25,8 @@ workflow HUMAN_REMOVAL_ONT {
 
         ch_for_minimap = ch_fastqs_trim.join(MINIMAP2_ONT_GET_HUMAN.out.ref)
 
+        ch_for_minimap.view()
+
         MINIMAP2_ONT_HUMAN(ch_for_minimap)
         SAMTOOLS_STATS_FULL(MINIMAP2_ONT_HUMAN.out.sam)
         SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT_HUMAN.out.sam)
