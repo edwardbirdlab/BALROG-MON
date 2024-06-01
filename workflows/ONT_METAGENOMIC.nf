@@ -60,7 +60,7 @@ workflow ONT_METAGENOMIC {
 
             } else {
 
-                ch_host_removal_fqs  =  HOST_REMOVAL_ONT.out.host_depleted_reads
+                ch_host_removal_fqs  =  ch_human_removal
 
             }
 
@@ -97,7 +97,7 @@ workflow ONT_METAGENOMIC {
 
         if (params.meta_community_analysis) {
 
-            METAGENOMIC_COMMUNITY_ANALYSIS_ONT(HOST_REMOVAL_ONT.out.host_depleted_reads)
+            METAGENOMIC_COMMUNITY_ANALYSIS_ONT(ch_host_removal_fqs)
         }
 
         // Metagenomic Sequence Identificaion
