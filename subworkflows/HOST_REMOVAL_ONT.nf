@@ -7,40 +7,36 @@ params.fastp_q  = Q score for trimming
 */
 
 
-include { MINIMAP2_ONT as MINIMAP2_ONT } from '../modules/MINIMAP2_ONT.nf'
-include { SAMTOOLS_EXTRACT_UNMAPPED_ONT as SAMTOOLS_EXTRACT_UNMAPPED_ONT } from '../modules/SAMTOOLS_EXTRACT_UNMAPPED_ONT.nf'
-include { SAMTOOLS_UNMAPPED_ONT as SAMTOOLS_UNMAPPED_ONT } from '../modules/SAMTOOLS_UNMAPPED_ONT.nf'
+include { MINIMAP2_ONT as MINIMAP2_HOST } from '../modules/MINIMAP2_ONT.nf'
+include { SAMTOOLS_EXTRACT_UNMAPPED_ONT as SAMTOOLS_EXTRACT_UNMAPPED_HOST } from '../modules/SAMTOOLS_EXTRACT_UNMAPPED_ONT.nf'
+include { SAMTOOLS_UNMAPPED_ONT as SAMTOOLS_UNMAPPED_HOST } from '../modules/SAMTOOLS_UNMAPPED_ONT.nf'
 include { FASTQC_ONT as FASTQC_HOST_DEP } from '../modules/FASTQC_ONT.nf'
-include { SAMTOOLS_STATS as SAMTOOLS_STATS_FULL } from '../modules/SAMTOOLS_STATS.nf'
-include { SAMTOOLS_STATS as SAMTOOLS_STATS_FILTER } from '../modules/SAMTOOLS_STATS.nf'
-include { SAMTOOLS_READNAMES as SAMTOOLS_READNAMES } from '../modules/SAMTOOLS_READNAMES.nf'
-include { GUNZIP_ONT as GUNZIP_ONT } from '../modules/GUNZIP_ONT.nf'
-include { SEQTK_SUBSEQ_ONT as SEQTK_SUBSEQ_ONT_NH } from '../modules/SEQTK_SUBSEQ_ONT.nf'
-include { CONCAT_FA as CONCAT_FA } from '../modules/CONCAT_FA.nf'
+include { SAMTOOLS_STATS as SAMTOOLS_STATS_HOST } from '../modules/SAMTOOLS_STATS.nf'
+include { SAMTOOLS_READNAMES as SAMTOOLS_READNAMES_HOST } from '../modules/SAMTOOLS_READNAMES.nf'
+include { SEQTK_SUBSEQ_ONT as SEQTK_SUBSEQ_ONT_HOST } from '../modules/SEQTK_SUBSEQ_ONT.nf'
 
 
 workflow HOST_REMOVAL_ONT {
     take:
-        ch_fastqs_trim                // channel: [val(sample), fastq_1]
+        ch_fastqs_hostremoval              // channel: [val(sample), fastq_1]
         ch_hostgen                 // channel: [val(sample), fasta]
     main:
 
-        ch_for_minimap = ch_fastqs_trim.join(ch_hostgen)
+        ch_for_minimap_host = ch_fastqs_hostremoval.join(ch_hostgen)
 
-        MINIMAP2_ONT(ch_for_minimap)
-        SAMTOOLS_STATS_FULL(MINIMAP2_ONT.out.sam)
-        SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT.out.sam)
-        SAMTOOLS_STATS_FILTER(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
-        SAMTOOLS_READNAMES(SAMTOOLS_UNMAPPED_ONT.out.unmapped_bam)
+        MINIMAP2_HOST(ch_for_minimap_host)
+        SAMTOOLS_STATS_HOST(MINIMAP2_HOST.out.sam)
+        SAMTOOLS_UNMAPPED_HOST(MINIMAP2_HOST.out.sam)
+        SAMTOOLS_READNAMES_HOST(SAMTOOLS_UNMAPPED_HOST.out.unmapped_bam)
 
-        ch_seqtk_subset_nh = ch_fastqs_trim.join(SAMTOOLS_READNAMES.out.readnames)
+        ch_seqtk_subset_host = ch_fastqs_hostremoval.join(SAMTOOLS_READNAMES_HOST.out.readnames)
 
-        SEQTK_SUBSEQ_ONT_NH(ch_seqtk_subset_nh)
+        SEQTK_SUBSEQ_ONT_HOST(ch_seqtk_subset_host)
 
-        FASTQC_HOST_DEP(SEQTK_SUBSEQ_ONT_NH.out.read_subset)
+        FASTQC_HOST_DEP(SEQTK_SUBSEQ_ONT_HOST.out.read_subset)
 
 
     emit:
-        host_depleted_reads    =  SEQTK_SUBSEQ_ONT_NH.out.read_subset  //   channel: [ val(sample), fastq]
+        host_depleted_reads    =  SEQTK_SUBSEQ_ONT_HOST.out.read_subset  //   channel: [ val(sample), fastq]
 
 }
