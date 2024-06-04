@@ -7,7 +7,7 @@ params.fastp_q  = Q score for trimming
 */
 
 
-include { MINIMAP2_ONT as MINIMAP2_HOST } from '../modules/MINIMAP2_ONT.nf'
+include { MINIMAP2_ONT as MINIMAP2_ONT_HOST } from '../modules/MINIMAP2_ONT.nf'
 include { SAMTOOLS_EXTRACT_UNMAPPED_ONT as SAMTOOLS_EXTRACT_UNMAPPED_HOST } from '../modules/SAMTOOLS_EXTRACT_UNMAPPED_ONT.nf'
 //include { SAMTOOLS_UNMAPPED_ONT as SAMTOOLS_UNMAPPED_HOST } from '../modules/SAMTOOLS_UNMAPPED_ONT.nf'
 include { FASTQC_ONT as FASTQC_HOST_DEP } from '../modules/FASTQC_ONT.nf'
@@ -24,8 +24,8 @@ workflow HOST_REMOVAL_ONT {
 
         ch_for_minimap_host = ch_fastqs_hostremoval.join(ch_hostgen)
 
-        MINIMAP2_HOST(ch_for_minimap_host)
-        SAMTOOLS_STATS_HOST(MINIMAP2_HOST.out.sam)
+        MINIMAP2_ONT_HOST(ch_for_minimap_host)
+        SAMTOOLS_STATS_HOST(MINIMAP2_ONT_HOST.out.sam)
         //SAMTOOLS_UNMAPPED_HOST(MINIMAP2_HOST.out.sam)
         //SAMTOOLS_READNAMES_HOST(SAMTOOLS_UNMAPPED_HOST.out.unmapped_bam)
 
@@ -33,7 +33,7 @@ workflow HOST_REMOVAL_ONT {
 
         //SEQTK_SUBSEQ_ONT_HOST(ch_seqtk_subset_host)
 
-        SAMTOOLS_EXTRACT_UNMAPPED_HOST(MINIMAP2_HOST.out.sam)
+        SAMTOOLS_EXTRACT_UNMAPPED_HOST(MINIMAP2_ONT_HOST.out.sam)
 
         FASTQC_HOST_DEP(SAMTOOLS_EXTRACT_UNMAPPED_HOST.out.non_host_reads)
 
