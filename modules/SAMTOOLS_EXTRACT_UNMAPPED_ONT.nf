@@ -13,7 +13,7 @@ process SAMTOOLS_EXTRACT_UNMAPPED_ONT {
     samtools view -bS ${sam} > ${sample}.bam
     samtools sort -n -m ${task.memory.toGiga()}G -@ ${task.cpus} ${sample}.bam -o ${sample}_sorted.bam
     samtools view -b -f 4 ${sample}_sorted.bam > ${sample}_sorted_unmapped.bam
-    samtools fastq -@ ${task.cpus} ${sample}_unmapped_sorted.bam > ${sample}_filter.fq.gz
+    samtools fastq -@ ${task.cpus} ${sample}_sorted_unmapped.bam> ${sample}_filter.fq.gz
     """
 }
 
