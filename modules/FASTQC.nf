@@ -9,8 +9,11 @@ process FASTQC {
 
     script:
 
+    def adapter_arg = params.fastqc_adapt ? "-a ${params.fastqc_adapt}" : ""
+
     """
     mkdir ${sample}_fastqc
-    fastqc -o ${sample}_fastqc -t ${task.cpus} ${R1} ${R2}
+    fastqc -o ${sample}_fastqc -t ${task.cpus} ${R1} ${R2} \\
+    $adapter_arg
     """
 }
