@@ -20,9 +20,11 @@ workflow HOST_REMOVAL_SHORT_READ {
 
         ch_for_bowtie = ch_fastqs_trim.join(ch_hostgen)
 
+        ch_adapter_list = Channel.fromPath("${params.fastqc_adapt}")
+
         BOWTIE2(ch_for_bowtie)
         SAMTOOLS_EXTRACT_UNMAPPED(BOWTIE2.out.sam)
-        FASTQC_HOST_DEP(SAMTOOLS_EXTRACT_UNMAPPED.out.non_host_reads)
+        FASTQC_HOST_DEP(SAMTOOLS_EXTRACT_UNMAPPED.out.non_host_reads, ch_adapter_list)
         SAMTOOLS_STATS(BOWTIE2.out.sam)
 
 
