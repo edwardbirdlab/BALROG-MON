@@ -14,6 +14,6 @@ process FASTQC {
     """
     mkdir ${sample}_fastqc
     fastqc -o ${sample}_fastqc -t ${task.cpus} ${R1} ${R2} \\
-    -a $adapter_arg
+    $adapter_arg
     """
 }
