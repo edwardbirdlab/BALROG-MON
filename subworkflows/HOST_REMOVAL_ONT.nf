@@ -27,8 +27,6 @@ workflow HOST_REMOVAL_ONT {
 
         ch_for_minimap = ch_fastqs_trim.join(ch_hostgen)
 
-        ch_adapter_list = Channel.fromPath("${params.fastqc_adapt}")
-
         MINIMAP2_ONT(ch_for_minimap)
         SAMTOOLS_STATS_FULL(MINIMAP2_ONT.out.sam)
         SAMTOOLS_UNMAPPED_ONT(MINIMAP2_ONT.out.sam)
@@ -39,7 +37,7 @@ workflow HOST_REMOVAL_ONT {
 
         SEQTK_SUBSEQ_ONT_NH(ch_seqtk_subset_nh)
 
-        FASTQC_HOST_DEP(SEQTK_SUBSEQ_ONT_NH.out.read_subset, ch_adapter_list)
+        FASTQC_HOST_DEP(SEQTK_SUBSEQ_ONT_NH.out.read_subset)
 
 
     emit:

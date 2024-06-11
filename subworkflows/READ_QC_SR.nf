@@ -16,12 +16,13 @@ workflow READ_QC_SR {
     take:
         fastqs                                          // channel: [val(sample), [fastq_1, fastq_2]]
     main:
+        // Create output channels
+        //ch_trimmed_fastq        = Channel.empty()
 
-        ch_adapter_list = Channel.fromPath("${params.fastqc_adapt}")
 
-        RAW_FASTQC(fastqs, ch_adapter_list)
+        RAW_FASTQC(fastqs)
         FASTP(fastqs)
-        TRIM_FASTQC(FASTP.out.trimmed_fastq, ch_adapter_list)
+        TRIM_FASTQC(FASTP.out.trimmed_fastq)
     emit:
         trimmed_fastq    =  FASTP.out.trimmed_fastq  //   channel: [ val(sample), fastq_1, fastq_2]
 
