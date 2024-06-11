@@ -5,6 +5,7 @@ process FASTQC {
     input:
         tuple val(sample), file(R1), file(R2)
         val(adapt)
+        
     output:
         tuple val(sample), path("./${sample}_fastqc"), emit: fastq
 
