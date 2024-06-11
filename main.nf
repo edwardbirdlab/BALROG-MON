@@ -109,6 +109,7 @@ include { SHORT_READ_METAGENOMIC_RNA as SHORT_READ_METAGENOMIC_RNA } from './wor
 include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC.nf'
 include { ONT_METAGENOMIC_RNA as ONT_METAGENOMIC_RNA } from './workflows/ONT_METAGENOMIC_RNA.nf'
 include { SR_QC_ONLY as SR_QC_ONLY } from './workflows/SR_QC_ONLY.nf'
+include { SR_MULTIQC as SR_MULTIQC } from './workflows/SR_MULTIQC.nf'
 
 workflow {
 
@@ -145,6 +146,12 @@ workflow {
     if (params.workflow_opt == 'sr_qc_only') {
 
         SR_QC_ONLY(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'sr_multiqc') {
+
+        SR_MULTIQC(ch_fastq)
 
         }
 

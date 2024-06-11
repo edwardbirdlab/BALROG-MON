@@ -1,0 +1,34 @@
+run_modules:
+- fastqc
+- fastp
+- samtools
+sp: {}
+module_order:
+# QC Only Order
+- fastqc:
+    name: FastQC (Raw_Reads)
+    path_filters: SR_QC_ONLY/READ_QC_SR/RAW_FASTQC/*_fastqc.zip
+- fastp:
+    name: FastP
+    path_filters: SR_QC_ONLY/READ_QC_SR//FASTP/*.json
+- fastqc:
+    name: FastQC (Final QC Reads)
+    path_filters: SR_QC_ONLY/READ_QC_SR/RAW_FASTQC/*_fastqc.zip
+
+
+# QC for short Read Metagenomic
+- fastqc:
+    name: FastQC (Raw_Reads)
+    path_filters: SHORT_READ_METAGENOMIC/READ_QC_SR/RAW_FASTQC/*_fastqc.zip
+- fastp:
+    name: FastP
+    path_filters: SHORT_READ_METAGENOMIC/READ_QC_SR//FASTP/*.json
+- samtools:
+    name: samtools (Human_Removal)
+    path_filters: SHORT_READ_METAGENOMIC/HUMAN_REMOVAL_SHORT_READ/SAMTOOLS_STATS/*txt
+- samtools:
+    name: samtools (Host_Removal)
+    path_filters: SHORT_READ_METAGENOMIC/HOST_REMOVAL_SHORT_READ/SAMTOOLS_STATS/*txt
+- fastqc:
+    name: FastQC (Final QC Reads)
+    path_filters: SHORT_READ_METAGENOMIC/HOST_REMOVAL_SHORT_READ/FASTQC_HOST_DEP/*_fastqc.zip
