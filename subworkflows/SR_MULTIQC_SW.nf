@@ -4,7 +4,7 @@ Subworkflow for doanloading of mutiple AMR databases
 
 */
 
-include { MULTIQC_SR as MULTIQC_SR } from '../modules/MULTIQC_SR.nf'
+include { MULTIQC as MULTIQC } from '../modules/MULTIQC.nf'
 
 
 workflow SR_MULTIQC_SW {
@@ -14,5 +14,5 @@ workflow SR_MULTIQC_SW {
 
         ch_multiqc_yaml    =  Channel.fromPath("/configs/multiqc/sr_multiqc.yaml")
 
-        MULTIQC_SR(ch_multiqc_yaml)
+        MULTIQC(ch_multiqc_yaml)
 }
