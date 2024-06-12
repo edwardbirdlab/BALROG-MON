@@ -13,7 +13,7 @@ module_order:
     path_filters: SR_QC_ONLY/READ_QC_SR/FASTP/*.json
 - fastqc:
     name: FastQC (Final QC Reads)
-    path_filters: SR_QC_ONLY/READ_QC_SR/RAW_FASTQC/*_fastqc.zip
+    path_filters: SR_QC_ONLY/READ_QC_SR/TRIM_FASTQC/*_fastqc.zip
 
 
 # QC for short Read Metagenomic
