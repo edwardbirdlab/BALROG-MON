@@ -16,7 +16,7 @@ process FASTP {
     def adapter_arg_2 = params.fastp_adap2 ? "--adapter_sequence_r2 ${params.fastp_adap2}" : ""
 
     """
-    fastp -i ${R1} -I ${R2} -o ${sample}_R1.fq.gz -O ${sample}_R2.fq.gz -q ${params.fastp_q} --json ${sample}.fastp.json --html ${sample}.fastp.html  \\
+    fastp -i ${R1} -I ${R2} -o ${sample}_R1.fq.gz -O ${sample}_R2.fq.gz -q ${params.fastp_q} -l ${params.fastp_minlen} --json ${sample}.fastp.json --html ${sample}.fastp.html  \\
     $adapter_arg_1 \\
     $adapter_arg_2
     """
