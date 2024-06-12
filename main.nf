@@ -151,7 +151,7 @@ workflow {
 
     if (params.workflow_opt == 'sr_multiqc') {
 
-        SR_MULTIQC(ch_fastq)
+        SR_MULTIQC()
 
         }
 
