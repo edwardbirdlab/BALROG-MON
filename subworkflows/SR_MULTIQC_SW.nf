@@ -12,7 +12,7 @@ workflow SR_MULTIQC_SW {
 
     main:
 
-        ch_multiqc_yaml    =  Channel.fromPath("/configs/multiqc/sr_multiqc.yaml")
+        ch_multiqc_yaml    =  Channel.fromPath("${projectDir}/configs/multiqc/sr_multiqc.yaml")
 
         ch_multiqc_yaml.view()
 
