@@ -3,7 +3,7 @@ process MULTIQC {
     container 'ebird013/multiqc:1.22.2'
 
     input:
-        val(yaml)
+        val(yaml), val(analysis_dir)
     output:
         path("./*.html"), emit: html
         path("./multiqc_data"), emit: data
@@ -11,6 +11,6 @@ process MULTIQC {
     script:
 
     """
-    multiqc -f -c ${yaml} ${params.project_name}
+    multiqc -f -c ${yaml} ${analysis_dir}
     """
 }
