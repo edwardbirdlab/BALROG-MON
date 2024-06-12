@@ -6,7 +6,7 @@ process MULTIQC {
         val(yaml)
         val(analysis_dir)
     output:
-        path("./*.html"), emit: html
+        path("*.html"), emit: html
         path("./multiqc_data"), emit: data
 
     script:

@@ -22,7 +22,7 @@ module_order:
     path_filters: SHORT_READ_METAGENOMIC/READ_QC_SR/RAW_FASTQC/*_fastqc.zip
 - fastp:
     name: FastP
-    path_filters: SHORT_READ_METAGENOMIC/READ_QC_SR//FASTP/*.json
+    path_filters: SHORT_READ_METAGENOMIC/READ_QC_SR/FASTP/*.json
 - samtools:
     name: samtools (Human_Removal)
     path_filters: SHORT_READ_METAGENOMIC/HUMAN_REMOVAL_SHORT_READ/SAMTOOLS_STATS/*txt
