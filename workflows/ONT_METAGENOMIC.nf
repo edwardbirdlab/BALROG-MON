@@ -94,7 +94,7 @@ workflow ONT_METAGENOMIC {
             // Non-Optional CORE Steps (may include some optional settings):
 
 
-            ONT_ASSEMBLYFREE(ch_host_removal_fqs)
+            ONT_ASSEMBLY_FREE(ch_host_removal_fqs)
             
             PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
 
@@ -167,7 +167,7 @@ workflow ONT_METAGENOMIC {
             // Non-Optional CORE Steps (may include some optional settings):
 
 
-            ONT_METAASSEMBLY(ch_host_removal_fqs)
+            ONT_ASSEMBLY(ch_host_removal_fqs)
             
 //            PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
 
