@@ -95,11 +95,21 @@ if (params.workflow_opt == 'shortread_meta_rna') {
 
     }
 
+if (params.workflow_opt == 'sr_qc_only') {
+
+    ch_fastq = Channel.fromPath(params.sample_sheet) \
+        | splitCsv(header:true) \
+        | map { row-> tuple(row.sample, file(row.r1), file(row.r2)) }
+
+    }
+
 include { SHORT_READ_ISOLATE as SHORT_READ_ISOLATE } from './workflows/SHORT_READ_ISOLATE.nf'
 include { SHORT_READ_METAGENOMIC as SHORT_READ_METAGENOMIC } from './workflows/SHORT_READ_METAGENOMIC.nf'
 include { SHORT_READ_METAGENOMIC_RNA as SHORT_READ_METAGENOMIC_RNA } from './workflows/SHORT_READ_METAGENOMIC_RNA.nf'
 include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC.nf'
 include { ONT_METAGENOMIC_RNA as ONT_METAGENOMIC_RNA } from './workflows/ONT_METAGENOMIC_RNA.nf'
+include { SR_QC_ONLY as SR_QC_ONLY } from './workflows/SR_QC_ONLY.nf'
+include { SR_MULTIQC as SR_MULTIQC } from './workflows/SR_MULTIQC.nf'
 
 workflow {
 
@@ -130,6 +140,18 @@ workflow {
     if (params.workflow_opt == 'ont_meta_rna') {
 
         ONT_METAGENOMIC_RNA(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'sr_qc_only') {
+
+        SR_QC_ONLY(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'sr_multiqc') {
+
+        SR_MULTIQC()
 
         }
 
