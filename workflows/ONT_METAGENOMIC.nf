@@ -96,7 +96,7 @@ workflow ONT_METAGENOMIC {
 
             ONT_ASSEMBLY_FREE(ch_host_removal_fqs)
             
-            PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
+            PLASMID_PREDICTION(ONT_ASSEMBLY_FREE.out.output)
 
 
             // ARG annotation Steps
