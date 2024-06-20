@@ -8,7 +8,7 @@ params.min_contig_cov = '2'        ==  conbined with size to filter out small lo
 */
 
 include { FLYE_META as FLYE_META } from '../modules/FLYE_META.nf'
-
+include { QUAST as QUAST } from '../modules/QUAST.nf'
 
 
 workflow ONT_ASSEMBLY {
@@ -19,6 +19,8 @@ workflow ONT_ASSEMBLY {
 
 
         FLYE_META(fastqs_ont)
+
+        QUAST(FLYE_META.out.metagenome)
 
 
 
