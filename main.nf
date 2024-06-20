@@ -155,4 +155,10 @@ workflow {
 
         }
 
+    if (params.workflow_opt == 'ont_multiqc') {
+
+        ONT_MULTIQC()
+
+        }
+
 }
