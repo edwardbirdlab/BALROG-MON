@@ -4,7 +4,7 @@ run_modules:
 - samtools
 sp: {}
 module_order:
-# QC Only Order
+# SR QC Only Order
 - fastqc:
     name: FastQC (Raw_Reads)
     path_filters: SR_QC_ONLY/READ_QC_SR/RAW_FASTQC/*_fastqc.zip

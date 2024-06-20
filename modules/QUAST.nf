@@ -11,6 +11,7 @@ process QUAST {
     script:
 
     """
-    quast.py -o ${sample} ${fasta} --threads ${task.cpus} --min-contig 0
+    mv ${fasta} ${sample}.fasta
+    quast.py -o ${sample} ${sample}.fasta --threads ${task.cpus} --min-contig 0
     """
 }
