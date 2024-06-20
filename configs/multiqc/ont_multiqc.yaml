@@ -30,4 +30,4 @@ module_order:
     path_filters: ONT_METAGENOMIC/HOST_REMOVAL_ONT/FASTQC_HOST_DEP/*_fastqc.zip
 - quast:
     name: Metagenome Assembly (FLYE)
-    path_filters: ONT_METAGENOMIC/ONT_ASSEMBLY/QUAST/
+    path_filters: ONT_METAGENOMIC/ONT_ASSEMBLY/QUAST/*/report.tsv
