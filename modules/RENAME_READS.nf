@@ -7,9 +7,10 @@ process RENAME_READS {
     output:
         tuple val(sample), path("${sample}_rename.fastq.gz"), emit: renamed_reads
 
-    script:
+    shell:
 
-    """
-    convert_fastq.sh ${fastq} ${sample}_rename.fastq.gz
-    """
+    '''
+    zcat "!{fastq}" | awk '{print (NR%4 == 1) ? "@1_" ++i : $0}' | gzip -c > "!{sample}_rename.fastq.gz"
+    echo "Conversion completed. Output saved to !{sample}_rename.fastq.gz"
+    '''
 }
