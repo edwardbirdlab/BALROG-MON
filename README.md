@@ -109,43 +109,42 @@
 <!-- ABOUT THE PROJECT -->
 
 
-## About BALROG
+## About BALROG-MON
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-BALROG is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
-is the main goal of BALROG, it also provides subworkflows for many related analysies, such as pathogen detection and metagenomic community analysis. 
+BALROG-MON is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate bacterial antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
+is the main goal of BALROG-MON, it also provides subworkflows for many related analyses, such as pathogen detection and metagenomic community analysis of bacteria, viruses and other microorganisms in the sample. 
 
 
-## BALROG IS STILL IN DEVELOPMENT
+## BALROG-MON IS STILL IN DEVELOPMENT
 
 Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
-please repot any and all bugs you find, or any suggestions for improvements!
+please report any and all bugs you find, or suggest any improvements!
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Before you get too far along, familiarize youself with the section to make sure this is the pipeline for you, and that you can meet the requirements. (Don't worry, there isnt too much to do)
+Before you get too far along, familiarize yourself with this section to make sure this is the pipeline for you and your equipment and samples can meet the requirements. (Don't worry, there isn't too much to do).
 
-### What Data do I Need?
+### What Data Do I Need?
 
-BALROG in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequecning. BALROG can run in Assembly-Free mode or assembles a metagenome using MetaFLYE, allowing for the analysis of low and high coverage metagenomes. BALROG in its standard configuration
- will require 100GB of RAM.
+BALROG-MON in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequencing. BALROG-MON can run in "Assembly-Free" mode or assembles a metagenome using metaFLYE, allowing for the analysis of low and high coverage metagenomes. BALROG-MON in its standard configuration will require 100GB of RAM.
 <br />
 <br />
-**If you would like to run BALROG with older, non-Q20+ Nanopore data, feel free to submit a feature request and I will add the option.**
+**If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to submit a feature request and I will add the option.**
 
-### Dependicies
+### Dependencies
 
-All Dependicies are mannaged via Docker Containers and hosted on DockerHub. One of the following container runtime software packages will be required.
+All dependencies are managed via Docker Containers and hosted on DockerHub. One of the following container runtime software packages will be required:
 <br />
 1. Nextflow (>= 23.04.0.5857) - [Install Nextflow](https://www.nextflow.io/docs/latest/install.html)
 2. Docker/Singularity/Apptainer - [Install Docker](https://docs.docker.com/engine/install/) - [Install Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html) - [Install Apptainer](https://apptainer.org/docs/admin/main/installation.html)
 
 ### Installation
 
-Perfered Method - Download Release
+Preferred Method - Download Release
    ```sh
    wget https://github.com/edwardbirdlab/BALROG-MON/releases/download/v0.0.0/BALROG-0.0.0.tar.gz
    tar -xzf BALROG-0.0.0.tar.gz
@@ -155,32 +154,33 @@ Method 2 - Clone Repo
    git clone https://github.com/edwardbirdlab/BALROG-MON
    ```
 
-### Creating a SampleSheet
+### Creating a Sample Sheet
 
-BALROG takes a CSV (Comma-Seperted-Value) sheet as the input. Sample comlumn will be the prefix for all output files for that sample. 
+BALROG-MON takes a CSV (Comma-Seperated-Value) sheet as the input. Note that the "sample" column will be the prefix of all output files for that sample. 
+<br />
 <br />
 Example Format:
 ```
-sample,path,refernce_genome
+sample,path,reference_genome
 Sample_Name_1,/absolute/path/to/sample1.fastq.gz,/absolute/path/to/reference_genome_1.fna
 Sample_Name_2,/absolute/path/to/sample2.fastq.gz,/absolute/path/to/reference_genome_1.fna
 ```
 
 ### Nextflow Configuration
 
-When crating a nextflow config ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using slurm, you can use the incuded Beocat slurm config as a template. Most nf-core configs will also be supported. If you have never crated a nextflow config, or are having issues reach out to your local administraction.
+When creating a Nextflow config, ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using Slurm, you can use the incuded Beocat Slurm config as a template. Most nf-core configs will also be supported. If you have never created a Nextflow config, or are having issues, reach out to your local administration.
 <br />
 [Nextflow Configuration](https://www.nextflow.io/docs/latest/config.html) - [nf-core configs](https://nf-co.re/configs)
 
 
 ### Pipeline Configuration
 
-If you want to change any parameters from defualt they can be changed using the nextflow.config file. Configurable paramaters will be outlied in the detail sections below, as well as in the config file.
+If you want to change any parameters of BALROG-MON from its default options, they can be changed using the "nextflow.config" file. Configurable parameters will be outlined in the detailed sections below, as well as in the config file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Running BALROG
+## Running BALROG-MON
 1. Running the whole pipeline
 ```sh
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg
@@ -216,7 +216,7 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow
 1. Assembly: <br />
 Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk) <br />
 OR <br />
-Metagenomic Assembly - [MetaFLYE](https://github.com/fenderglass/Flye)
+Metagenomic Assembly - [metaFlye](https://github.com/fenderglass/Flye)
 
 2. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
     Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
@@ -250,13 +250,11 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 ### Additional Sequence Identification
 1. [Kraken2](https://github.com/DerrickWood/kraken2)
 
-## How to Cite BALROG-MON
+## Citations
 
-As there is currently no paper associated with BAROG-MON, please cite this Github page. Also, I feel free to contact me (Edwardbirdlab@gmail.com | Edwardbird@ksu.edu) to let me know!
+As there is currently no paper associated with BAROG-MON, please cite this Github page. Also, I feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
 
-## Citing Tools used in BALROG
-
-Many tools are used in this pipeline, cite them according to their respective requrests. links are give above. 
+Many tools are used in this pipeline and its respective options. References for the tools used in the pipeline and all options can be found in the XXXX file.
 
 <!-- ROADMAP 
 ## Roadmap
