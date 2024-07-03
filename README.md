@@ -276,7 +276,7 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed for the [USDA ARS](https://www.ars.usda.gov/) under the Public Domain. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

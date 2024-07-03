@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: 'BALROG-MON'
+message: 'If you use this software, please cite it as below.'
+type: software
+authors:
+  - given-names: Edward
+    family-names: Bird
+    email: edwardbird@ksu.edu
+    affiliation: Kansas State University
+    orcid: 'https://orcid.org/0009-0006-3782-9367'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.11110897
+    description: Zenodo DOI
+repository-code: 'https://github.com/edwardbirdlab/BALROG-MON'
+abstract: >-
+    Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Oxford Nanopore
+keywords:
+  - nextflow
+  - oxford
+  - short read
+license: PDDL-1.0
