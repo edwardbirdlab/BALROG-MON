@@ -13,6 +13,7 @@ include { ONT_ASSEMBLY_FREE as ONT_ASSEMBLY_FREE } from '../subworkflows/ONT_ASS
 include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 include { METAGENOMIC_SEQUENCE_IDENTIFICATION as METAGENOMIC_SEQUENCE_IDENTIFICATION } from '../subworkflows/METAGENOMIC_SEQUENCE_IDENTIFICATION.nf'
 include { HUMAN_REMOVAL_ONT as HUMAN_REMOVAL_ONT } from '../subworkflows/HUMAN_REMOVAL_ONT.nf'
+include { METAGENOMIC_BINNING as METAGENOMIC_BINNING } from '../subworkflows/METAGENOMIC_BINNING.nf'
 //include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
 
 
@@ -164,12 +165,25 @@ workflow ONT_METAGENOMIC {
 
         if (params.run_metaassembly) {
 
-            // Non-Optional CORE Steps (may include some optional settings):
+            // metagenomic assembly and binning:
 
 
             ONT_ASSEMBLY(ch_host_removal_fqs)
             
-//            PLASMID_PREDICTION(ONT_ASSEMBLY.out.output)
+        }
 
+/*
+###################################################################################
+########## Bin ONT Reads ################ #########################################
+###################################################################################
+*/
+
+        if (params.bin_ont_reads) {
+
+            // Binning of ONT-Reads, skipping assembly:
+
+
+            METAGENOMIC_BINNING(ch_host_removal_fqs, ONT_ASSEMBLY_FREE.out.output)
+            
         }
 }
