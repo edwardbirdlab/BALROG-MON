@@ -10,8 +10,7 @@ process COMEBIN {
     script:
 
     """
-    cp /opt/COMBEBin .
-
+    cp /opt/COMEBin .
     mkdir ./COMEBin/${sample}_bams
     mv ${bam} ./COMEBin/${sample}_bams
     mv ${bai} ./COMEBin/${sample}_bams
