@@ -13,6 +13,7 @@ process COMEBIN {
     mkdir ${sample}_bams
     mv ${bam} ${sample}_bams
     mkdir ${sample}_comebin_out
-    run_comebin.sh -a ${scaffolds} -p ${sample}_bams -o ${sample}_comebin_out -n ${params.comebin_num_views} -t ${task.cpus}
+    cd /opt/COMEBin/COMEBin
+    ./run_comebin.sh -a ${scaffolds} -p ${sample}_bams -o ${sample}_comebin_out -n ${params.comebin_num_views} -t ${task.cpus}
     """
 }
