@@ -1,6 +1,6 @@
 process COMEBIN {
     label 'midmemlong'
-    container 'ebird013/comebin:1.0.3_cpu'
+    container 'ebird013/comebin:1.0.4_cpu'
 
     input:
         tuple val(sample), file(scaffolds), file(bam), file(bai)
