@@ -10,13 +10,13 @@ process COMEBIN {
     script:
 
     """
-    cp -r /opt/COMEBin .
-    mkdir ./COMEBin/COMEBin/${sample}_bams
-    mv ${bam} ./COMEBin/COMEBin/${sample}_bams
-    mv ${bai} ./COMEBin/COMEBin/${sample}_bams
-    mkdir ./COMEBin/COMEBin/${sample}_comebin_out
-    mv ${scaffolds} ./COMEBin/COMEBin/
-    cd ./COMEBin/COMEBin/
+    cp -r /home .
+    mkdir ./home/COMEBin/${sample}_bams
+    mv ${bam} ./home/COMEBin/${sample}_bams
+    mv ${bai} ./home/COMEBin/${sample}_bams
+    mkdir ./home/COMEBin/${sample}_comebin_out
+    mv ${scaffolds} ./home/COMEBin/
+    cd ./home/COMEBin/
     ./run_comebin.sh -a ${scaffolds} -p ${sample}_bams -o ${sample}_comebin_out -n ${params.comebin_num_views} -t ${task.cpus}
     """
 }
