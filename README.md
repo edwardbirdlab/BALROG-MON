@@ -130,7 +130,7 @@ Before you get too far along, familiarize yourself with this section to make sur
 
 ### What Data Do I Need?
 
-BALROG-MON in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequencing. BALROG-MON can run in "Assembly-Free" mode or assembles a metagenome using metaFLYE, allowing for the analysis of low and high coverage metagenomes. BALROG-MON in its standard configuration will require 100GB of RAM.
+BALROG-MON in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequencing. BALROG-MON can run in "Assembly-Free" mode or assembles a metagenome using metaFlye, allowing for the analysis of low and high coverage metagenomes. BALROG-MON in its standard configuration will require 100GB of RAM.
 <br />
 <br />
 **If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to submit a feature request and I will add the option.**
