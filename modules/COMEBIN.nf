@@ -10,6 +10,7 @@ process COMEBIN {
     script:
 
     """
+    conda activate comebin_env
     cp -r /home .
     mkdir ./home/COMEBin/COMEBin/${sample}_bams
     mv ${bam} ./home/COMEBin/COMEBin/${sample}_bams
