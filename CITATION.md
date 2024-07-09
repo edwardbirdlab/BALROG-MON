@@ -1,8 +1,8 @@
 # edwardbirdlab/BALROG-MON: Citations
 
-## [BALROG-MON](XXX)
+## [BALROG-MON](https://github.com/edwardbirdlab/BALROG-MON)
 
-> 
+> As there is currently no publication associated with BALROG-MON, please cite the [GitHub page](https://github.com/edwardbirdlab/BALROG-MON). Also, feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
 
 ## [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
 
@@ -17,6 +17,10 @@
 
   > Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. _PeerJ Computer Science, 3_, e104.
 
+- [BUSCO](https://gitlab.com/ezlab/busco)
+
+  > Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). BUSCO update: novel and streamlined workflows along with broader and deeper phylogenetic coverage for scoring of eukaryotic, prokaryotic, and viral genomes. _Molecular biology and evolution, 38_(10), 4647-4654.
+  
 - [CARD](https://card.mcmaster.ca/)
 
   > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
@@ -25,7 +29,27 @@
 
   > De Coster, W., & Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. _Bioinformatics, 39_(5), btad311.
 
+- [COMEBin](https://github.com/ziyewang/COMEBin)
+
+  > Wang, Z., You, R., Han, H., Liu, W., Sun, F., & Zhu, S. (2024). Effective binning of metagenomic contigs using contrastive multi-view representation learning. _Nature Communications, 15_(1), 585.
+
 - [FastQC](https://github.com/s-andrews/FastQC)
+
+- [GTDB](https://gtdb.ecogenomic.org/)
+
+  > Parks, D. H., Chuvochina, M., Rinke, C., Mussig, A. J., Chaumeil, P. A., & Hugenholtz, P. (2022). GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy. _Nucleic acids research, 50_(D1), D785-D794.
+  
+  > Parks, D. H., Chuvochina, M., Chaumeil, P. A., Rinke, C., Mussig, A. J., & Hugenholtz, P. (2020). A complete domain-to-species taxonomy for Bacteria and Archaea. _Nature biotechnology, 38_(9), 1079-1086.
+  
+  > Parks, D. H., Chuvochina, M., Waite, D. W., Rinke, C., Skarshewski, A., Chaumeil, P. A., & Hugenholtz, P. (2018). A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life. Nature biotechnology, 36(10), 996-1004.
+
+   > Rinke, C., Chuvochina, M., Mussig, A. J., Chaumeil, P. A., Davín, A. A., Waite, D. W., ... & Hugenholtz, P. (2021). A standardized archaeal taxonomy for the Genome Taxonomy Database. _Nature microbiology, 6_(7), 946-959.
+
+- [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)
+
+  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2022). GTDB-Tk v2: memory friendly classification with the genome taxonomy database. _Bioinformatics, 38_(23), 5315-5316.
+  
+  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.
 
 - [Kraken 2](https://github.com/DerrickWood/kraken2)
 
@@ -38,6 +62,7 @@
 - [minimap2](https://github.com/lh3/minimap2)
 
   > Li, H. (2021). New strategies to improve minimap2 alignment accuracy. _Bioinformatics, 37_(23), 4572-4574.
+  
   > Li, H. (2018). Minimap2: pairwise alignment for nucleotide sequences. _Bioinformatics, 34_(18), 3094-3100.
 
 - [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
@@ -58,6 +83,10 @@
 
   > Bortolaia, V., Kaas, R. S., Ruppe, E., Roberts, M. C., Schwarz, S., Cattoir, V., ... & Aarestrup, F. M. (2020). ResFinder 4.0 for predictions of phenotypes from genotypes. _Journal of Antimicrobial Chemotherapy, 75_(12), 3491-3500.
 
+- [RGI](https://github.com/arpcard/rgi)
+
+  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
+
 - [SAMtools](https://github.com/samtools/samtools)
 
   > Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., ... & Li, H. (2021). Twelve years of SAMtools and BCFtools. _Gigascience, 10_(2), giab008.
@@ -65,10 +94,21 @@
 - [seqtk](https://github.com/lh3/seqtk)
 
 ## Python packages
-- [biopython]
-- [numpy]
-- [pandas]
-- [seaborn]
+- [Biopython](https://biopython.org/)
+  
+  > Cock, P. J., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., ... & De Hoon, M. J. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. _Bioinformatics, 25_(11), 1422.
+  
+- [NumPy](https://numpy.org/)
+
+  > Harris, C. R., Millman, K. J., Van Der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., ... & Oliphant, T. E. (2020). Array programming with NumPy. Nature, 585(7825), 357-362.
+  
+- [pandas](https://pandas.pydata.org/)
+  
+  > NEED TO ADD SOFTWARE PUBLICATION TOO
+  > McKinney, W. (2010, June). Data structures for statistical computing in Python. _SciPy, 445_(1), 51-56.
+  
+- [seaborn](https://seaborn.pydata.org/)
+  > Waskom, M. L. (2021). Seaborn: statistical data visualization. _Journal of Open Source Software, 6_(60), 3021.
 
 ## R packages
 
