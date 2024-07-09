@@ -9,19 +9,54 @@
 > Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. _Nature biotechnology, 35_(4), 316-319.
 
 ## Pipeline Tools
+- [AMRFinderPlus](https://github.com/ncbi/amr)
 
-- [FastQC](https://github.com/s-andrews/FastQC)
+  > Feldgarden, M., Brover, V., Gonzalez-Escalona, N., Frye, J. G., Haendiges, J., Haft, D. H., ... & Klimke, W. (2021). AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence. _Scientific reports, 11_(1), 12728.
 
-- [Porechop](https://github.com/rrwick/Porechop)
+- [Bracken](https://github.com/jenniferlu717/Bracken)
+
+  > Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. _PeerJ Computer Science, 3_, e104.
+
+- [CARD](https://card.mcmaster.ca/)
+
+  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
 
 - [chopper](https://github.com/wdecoster/chopper)
 
   > De Coster, W., & Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. _Bioinformatics, 39_(5), btad311.
 
+- [FastQC](https://github.com/s-andrews/FastQC)
+
+- [Kraken 2](https://github.com/DerrickWood/kraken2)
+
+  > Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. _Genome biology, 20_, 1-13.
+
+- [metaFlye](https://github.com/mikolmogorov/Flye)
+
+  > Kolmogorov, M., Bickhart, D. M., Behsaz, B., Gurevich, A., Rayko, M., Shin, S. B., ... & Pevzner, P. A. (2020). metaFlye: scalable long-read metagenome assembly using repeat graphs. _Nature Methods, 17_(11), 1103-1110.
+
 - [minimap2](https://github.com/lh3/minimap2)
 
   > Li, H. (2021). New strategies to improve minimap2 alignment accuracy. _Bioinformatics, 37_(23), 4572-4574.
   > Li, H. (2018). Minimap2: pairwise alignment for nucleotide sequences. _Bioinformatics, 34_(18), 3094-3100.
+
+- [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
+
+  > Johansson, M. H., Bortolaia, V., Tansirichaiya, S., Aarestrup, F. M., Roberts, A. P., & Petersen, T. N. (2021). Detection of mobile genetic elements associated with antibiotic resistance in Salmonella enterica using a newly developed web tool: MobileElementFinder. _Journal of Antimicrobial Chemotherapy, 76_(1), 101-109.
+
+- [Plasmer](https://github.com/nekokoe/Plasmer)
+
+  > Zhu, Q., Gao, S., Xiao, B., He, Z., & Hu, S. (2023). Plasmer: an accurate and sensitive bacterial plasmid prediction Tool Based on Machine Learning of Shared k-mers and genomic features. _Microbiology Spectrum, 11_(3), e04645-22.
+
+- [Porechop](https://github.com/rrwick/Porechop)
+
+- [QUAST](https://github.com/ablab/quast)
+
+  > Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. _Bioinformatics, 29_(8), 1072-1075.
+
+- [ResFinder](https://github.com/cadms/resfinder)
+
+  > Bortolaia, V., Kaas, R. S., Ruppe, E., Roberts, M. C., Schwarz, S., Cattoir, V., ... & Aarestrup, F. M. (2020). ResFinder 4.0 for predictions of phenotypes from genotypes. _Journal of Antimicrobial Chemotherapy, 75_(12), 3491-3500.
 
 - [SAMtools](https://github.com/samtools/samtools)
 
@@ -29,42 +64,11 @@
 
 - [seqtk](https://github.com/lh3/seqtk)
 
-- [metaFlye](https://github.com/mikolmogorov/Flye)
-
-  > Kolmogorov, M., Bickhart, D. M., Behsaz, B., Gurevich, A., Rayko, M., Shin, S. B., ... & Pevzner, P. A. (2020). metaFlye: scalable long-read metagenome assembly using repeat graphs. _Nature Methods, 17_(11), 1103-1110.
-
-- [Plasmer](https://github.com/nekokoe/Plasmer)
-
-  > Zhu, Q., Gao, S., Xiao, B., He, Z., & Hu, S. (2023). Plasmer: an accurate and sensitive bacterial plasmid prediction Tool Based on Machine Learning of Shared k-mers and genomic features. _Microbiology Spectrum, 11_(3), e04645-22.
-
-- [QUAST](https://github.com/ablab/quast)
-
-  > Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. _Bioinformatics, 29_(8), 1072-1075.
-  
-- [CARD](https://card.mcmaster.ca/)
-
-  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
-
-- [AMRFinderPlus](https://github.com/ncbi/amr)
-
-  > Feldgarden, M., Brover, V., Gonzalez-Escalona, N., Frye, J. G., Haendiges, J., Haft, D. H., ... & Klimke, W. (2021). AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence. _Scientific reports, 11_(1), 12728.
-
-- [ResFinder](https://github.com/cadms/resfinder)
-
-  > Bortolaia, V., Kaas, R. S., Ruppe, E., Roberts, M. C., Schwarz, S., Cattoir, V., ... & Aarestrup, F. M. (2020). ResFinder 4.0 for predictions of phenotypes from genotypes. _Journal of Antimicrobial Chemotherapy, 75_(12), 3491-3500.
-
-- [Kraken 2](https://github.com/DerrickWood/kraken2)
-
-  > Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. _Genome biology, 20_, 1-13.
-
-- [Bracken](https://github.com/jenniferlu717/Bracken)
-
-  > Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. _PeerJ Computer Science, 3_, e104.
-
-- [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
-
-  > Johansson, M. H., Bortolaia, V., Tansirichaiya, S., Aarestrup, F. M., Roberts, A. P., & Petersen, T. N. (2021). Detection of mobile genetic elements associated with antibiotic resistance in Salmonella enterica using a newly developed web tool: MobileElementFinder. _Journal of Antimicrobial Chemotherapy, 76_(1), 101-109.
-
+## Python packages
+- [biopython]
+- [numpy]
+- [pandas]
+- [seaborn]
 
 ## R packages
 
