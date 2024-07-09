@@ -11,12 +11,12 @@ process COMEBIN {
 
     """
     cp -r /home .
-    mkdir ./home/COMEBin/${sample}_bams
-    mv ${bam} ./home/COMEBin/${sample}_bams
-    mv ${bai} ./home/COMEBin/${sample}_bams
-    mkdir ./home/COMEBin/${sample}_comebin_out
-    mv ${scaffolds} ./home/COMEBin/
-    cd ./home/COMEBin/
+    mkdir ./home/COMEBin/COMEBin/${sample}_bams
+    mv ${bam} ./home/COMEBin/COMEBin/${sample}_bams
+    mv ${bai} ./home/COMEBin/COMEBin/${sample}_bams
+    mkdir ./home/COMEBin/COMEBin/${sample}_comebin_out
+    mv ${scaffolds} ./home/COMEBin/COMEBin/
+    cd ./home/COMEBin/COMEBin/
     ./run_comebin.sh -a ${scaffolds} -p ${sample}_bams -o ${sample}_comebin_out -n ${params.comebin_num_views} -t ${task.cpus}
     """
 }
