@@ -35,7 +35,7 @@ workflow METAGENOMIC_BINNING {
 
         GTDBTK_DB()
 
-        GTDB_TK_META(COMEBIN.out.bins, GTDBTK_DB.out.DB)
+        GTDB_TK_META(LRBINNER_READS.out.bins, GTDBTK_DB.out.DB)
 
 
 
