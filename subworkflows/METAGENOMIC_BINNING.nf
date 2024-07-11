@@ -6,29 +6,32 @@ params.combin_min_contig = '1000' - defualt
  
 */
 
-include { COMEBIN as COMEBIN } from '../modules/COMEBIN.nf'
-include { MINIMAP2_ONT as MINIMAP2_COMBIN } from '../modules/MINIMAP2_ONT.nf'
-include { SAMTOOLS_SAM2BAM_SORT as SAMTOOLS_SAM2BAM_SORT } from '../modules/SAMTOOLS_SAM2BAM_SORT.nf'
+//include { COMEBIN as COMEBIN } from '../modules/COMEBIN.nf'
+//include { MINIMAP2_ONT as MINIMAP2_COMBIN } from '../modules/MINIMAP2_ONT.nf'
+//include { SAMTOOLS_SAM2BAM_SORT as SAMTOOLS_SAM2BAM_SORT } from '../modules/SAMTOOLS_SAM2BAM_SORT.nf'
 include { GTDB_TK_META as GTDB_TK_META } from '../modules/GTDB_TK_META.nf'
 include { GTDBTK_DB as GTDBTK_DB } from '../modules/GTDBTK_DB.nf'
+include { LRBINNER_READS as LRBINNER_READS } from '../modules/LRBINNER.nf'
 
 workflow METAGENOMIC_BINNING {
     take:
-        fastqs_ont      //    channel: [val(sample), path(fastq)]
-        assembly        //    channel: [val(sample), path(fasta)]
+        ch_fastqs_ont      //    channel: [val(sample), path(fastq)]
+        ch_assembly        //    channel: [val(sample), path(fasta)]
 
     main:
 
 
-        ch_for_combin_map = fastqs_ont.join(assembly)
+//        ch_for_combin_map = ch_fastqs_ont.join(ch_assembly)
 
-        MINIMAP2_COMBIN(ch_for_combin_map)
+//        MINIMAP2_COMBIN(ch_for_combin_map)
 
-        SAMTOOLS_SAM2BAM_SORT(MINIMAP2_COMBIN.out.sam)
+//        SAMTOOLS_SAM2BAM_SORT(MINIMAP2_COMBIN.out.sam)
 
-        ch_for_combin = assembly.join(SAMTOOLS_SAM2BAM_SORT.out.sort_bam)
+//        ch_for_combin = assembly.join(SAMTOOLS_SAM2BAM_SORT.out.sort_bam)
 
-        COMEBIN(ch_for_combin)
+//        COMEBIN(ch_for_combin)
+
+        LRBINNER_READS(ch_fastqs_ont)
 
         GTDBTK_DB()
 
