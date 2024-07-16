@@ -1,143 +1,221 @@
 # edwardbirdlab/BALROG-MON: Citations
 
-## [BALROG-MON](https://github.com/edwardbirdlab/BALROG-MON)
+## BALROG-MON
+[Code Repository](https://github.com/edwardbirdlab/BALROG-MON)
 
-> As there is currently no publication associated with BALROG-MON, please cite the [GitHub page](https://github.com/edwardbirdlab/BALROG-MON). Also, feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
+> If using BALROG-MON please cite the [GitHub page](https://github.com/edwardbirdlab/BALROG-MON) and/or the publication below. Also, feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
 
-## [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
+> 
 
-> Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. _Nature biotechnology, 35_(4), 316-319.
+## Nextflow
+[Code Repository](https://github.com/nextflow-io/nextflow) | [Webpages](https://www.nextflow.io/)
+
+> Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. _Nature Biotechnology, 35_(4), 316-319. https://doi.org/10.1038/nbt.3820
 
 ## Pipeline Tools
-- [AMRFinderPlus](https://github.com/ncbi/amr)
+- **AMRFinderPlus**
 
-  > Feldgarden, M., Brover, V., Gonzalez-Escalona, N., Frye, J. G., Haendiges, J., Haft, D. H., ... & Klimke, W. (2021). AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence. _Scientific reports, 11_(1), 12728.
+    [Code Repository](https://github.com/ncbi/amr) | [Webpages](https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/)
 
-- [Bracken](https://github.com/jenniferlu717/Bracken)
+    > Feldgarden, M., Brover, V., Gonzalez-Escalona, N., Frye, J. G., Haendiges, J., Haft, D. H., ... & Klimke, W. (2021). AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence. _Scientific Reports, 11_(1), 12728. https://doi.org/10.1038/s41598-021-91456-0
 
-  > Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. _PeerJ Computer Science, 3_, e104.
+- **Bracken**
 
-- [BUSCO](https://gitlab.com/ezlab/busco)
+    [Code Repository](https://github.com/jenniferlu717/Bracken) | [Webpages](https://ccb.jhu.edu/software/bracken/)
 
-  > Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). BUSCO update: novel and streamlined workflows along with broader and deeper phylogenetic coverage for scoring of eukaryotic, prokaryotic, and viral genomes. _Molecular biology and evolution, 38_(10), 4647-4654.
+    > Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. _PeerJ Computer Science, 3_, e104. https://doi.org/10.7717/peerj-cs.104
+
+- **BUSCO: Benchmarking Universal Single-Copy Orthologue toolkit**
+
+   [Code Repository](https://gitlab.com/ezlab/busco) | [Webpages](https://busco.ezlab.org/)
+
+  > Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). BUSCO update: novel and streamlined workflows along with broader and deeper phylogenetic coverage for scoring of eukaryotic, prokaryotic, and viral genomes. _Molecular Biology and Evolution, 38_(10), 4647-4654. https://doi.org/10.1093/molbev/msab199
   
-- [CARD](https://card.mcmaster.ca/)
-
-  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
-
-- [chopper](https://github.com/wdecoster/chopper)
-
-  > De Coster, W., & Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. _Bioinformatics, 39_(5), btad311.
-
-- [COMEBin](https://github.com/ziyewang/COMEBin)
-
-  > Wang, Z., You, R., Han, H., Liu, W., Sun, F., & Zhu, S. (2024). Effective binning of metagenomic contigs using contrastive multi-view representation learning. _Nature Communications, 15_(1), 585.
-
-- [FastQC](https://github.com/s-andrews/FastQC)
-
-- [GTDB](https://gtdb.ecogenomic.org/)
-
-  > Parks, D. H., Chuvochina, M., Rinke, C., Mussig, A. J., Chaumeil, P. A., & Hugenholtz, P. (2022). GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy. _Nucleic acids research, 50_(D1), D785-D794.
+- **CARD: Comprehensive Antibiotic Resistance Database**
   
-  > Parks, D. H., Chuvochina, M., Chaumeil, P. A., Rinke, C., Mussig, A. J., & Hugenholtz, P. (2020). A complete domain-to-species taxonomy for Bacteria and Archaea. _Nature biotechnology, 38_(9), 1079-1086.
+   [Webpages](https://card.mcmaster.ca/)
+
+  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic Acids Research, 51_(D1), D690-D699. https://doi.org/10.1093/nar/gkac920
+
+- **CheckM**
   
-  > Parks, D. H., Chuvochina, M., Waite, D. W., Rinke, C., Skarshewski, A., Chaumeil, P. A., & Hugenholtz, P. (2018). A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life. Nature biotechnology, 36(10), 996-1004.
+  [Code Repository](https://github.com/Ecogenomics/CheckM) | [Webpages](https://ecogenomics.github.io/CheckM/)
 
-   > Rinke, C., Chuvochina, M., Mussig, A. J., Chaumeil, P. A., Davín, A. A., Waite, D. W., ... & Hugenholtz, P. (2021). A standardized archaeal taxonomy for the Genome Taxonomy Database. _Nature microbiology, 6_(7), 946-959.
+  > Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P., & Tyson, G. W. (2015). CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. _Genome Research, 25_(7), 1043-1055. http://www.genome.org/cgi/doi/10.1101/gr.186072.114.
 
-- [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)
-
-  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2022). GTDB-Tk v2: memory friendly classification with the genome taxonomy database. _Bioinformatics, 38_(23), 5315-5316.
+- **chopper**
   
-  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.
+  [Code Repository](https://github.com/wdecoster/chopper)
 
-- [Kraken 2](https://github.com/DerrickWood/kraken2)
+  > De Coster, W., & Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. _Bioinformatics, 39_(5), btad311. https://doi.org/10.1093/bioinformatics/btad311
 
-  > Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. _Genome biology, 20_, 1-13.
-
-- [metaFlye](https://github.com/mikolmogorov/Flye)
-
-  > Kolmogorov, M., Bickhart, D. M., Behsaz, B., Gurevich, A., Rayko, M., Shin, S. B., ... & Pevzner, P. A. (2020). metaFlye: scalable long-read metagenome assembly using repeat graphs. _Nature Methods, 17_(11), 1103-1110.
-
-- [minimap2](https://github.com/lh3/minimap2)
-
-  > Li, H. (2021). New strategies to improve minimap2 alignment accuracy. _Bioinformatics, 37_(23), 4572-4574.
+- **FastQC**
   
-  > Li, H. (2018). Minimap2: pairwise alignment for nucleotide sequences. _Bioinformatics, 34_(18), 3094-3100.
+  [Code Repository](https://github.com/s-andrews/FastQC) | [Webpages](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 
-- [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
+  > Andrews, S. (2010). FastQC: A quality control tool for high throughput sequence data. Available online at: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
-  > Johansson, M. H., Bortolaia, V., Tansirichaiya, S., Aarestrup, F. M., Roberts, A. P., & Petersen, T. N. (2021). Detection of mobile genetic elements associated with antibiotic resistance in Salmonella enterica using a newly developed web tool: MobileElementFinder. _Journal of Antimicrobial Chemotherapy, 76_(1), 101-109.
+- **GTDB: Genome Taxonomy Database**
 
-- [Plasmer](https://github.com/nekokoe/Plasmer)
+  [Webpages](https://gtdb.ecogenomic.org/)
 
-  > Zhu, Q., Gao, S., Xiao, B., He, Z., & Hu, S. (2023). Plasmer: an accurate and sensitive bacterial plasmid prediction Tool Based on Machine Learning of Shared k-mers and genomic features. _Microbiology Spectrum, 11_(3), e04645-22.
-
-- [Porechop](https://github.com/rrwick/Porechop)
-
-- [QUAST](https://github.com/ablab/quast)
-
-  > Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. _Bioinformatics, 29_(8), 1072-1075.
-
-- [ResFinder](https://github.com/cadms/resfinder)
-
-  > Bortolaia, V., Kaas, R. S., Ruppe, E., Roberts, M. C., Schwarz, S., Cattoir, V., ... & Aarestrup, F. M. (2020). ResFinder 4.0 for predictions of phenotypes from genotypes. _Journal of Antimicrobial Chemotherapy, 75_(12), 3491-3500.
-
-- [RGI](https://github.com/arpcard/rgi)
-
-  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic acids research, 51_(D1), D690-D699.
-
-- [SAMtools](https://github.com/samtools/samtools)
-
-  > Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., ... & Li, H. (2021). Twelve years of SAMtools and BCFtools. _Gigascience, 10_(2), giab008.
-
-- [seqtk](https://github.com/lh3/seqtk)
-
-## Python packages
-- [Biopython](https://biopython.org/)
+  > Parks, D. H., Chuvochina, M., Rinke, C., Mussig, A. J., Chaumeil, P. A., & Hugenholtz, P. (2022). GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy. _Nucleic Acids Research, 50_(D1), D785-D794. https://doi.org/10.1093/nar/gkab776
   
-  > Cock, P. J., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., ... & De Hoon, M. J. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. _Bioinformatics, 25_(11), 1422.
+  > Parks, D. H., Chuvochina, M., Chaumeil, P. A., Rinke, C., Mussig, A. J., & Hugenholtz, P. (2020). A complete domain-to-species taxonomy for Bacteria and Archaea. _Nature Biotechnology, 38_(9), 1079-1086. https://doi.org/10.1038/s41587-020-0501-8
   
-- [NumPy](https://numpy.org/)
+  > Parks, D. H., Chuvochina, M., Waite, D. W., Rinke, C., Skarshewski, A., Chaumeil, P. A., & Hugenholtz, P. (2018). A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life. _Nature Biotechnology, 36_(10), 996-1004. https://doi.org/10.1038/nbt.4229
 
-  > Harris, C. R., Millman, K. J., Van Der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., ... & Oliphant, T. E. (2020). Array programming with NumPy. Nature, 585(7825), 357-362.
+  > Rinke, C., Chuvochina, M., Mussig, A. J., Chaumeil, P. A., Davín, A. A., Waite, D. W., ... & Hugenholtz, P. (2021). A standardized archaeal taxonomy for the Genome Taxonomy Database. _Nature Microbiology, 6_(7), 946-959. https://doi.org/10.1038/s41564-021-00918-8
+
+- **GTDB-Tk: Genome Taxonomy Database and associated taxonomic classification toolkit**
   
-- [pandas](https://pandas.pydata.org/)
+  [Code Repository](https://github.com/Ecogenomics/GTDBTk) | [Webpages](https://ecogenomics.github.io/GTDBTk/index.html)
+
+  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2022). GTDB-Tk v2: memory friendly classification with the genome taxonomy database. _Bioinformatics, 38_(23), 5315-5316. https://doi.org/10.1093/bioinformatics/btac672
   
-  > NEED TO ADD SOFTWARE PUBLICATION TOO
-  > McKinney, W. (2010, June). Data structures for statistical computing in Python. _SciPy, 445_(1), 51-56.
+  > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database. _Bioinformatics, 36_(6), 1925-1927. https://doi.org/10.1093/bioinformatics/btz848
+
+- **Kracken 2**
   
-- [seaborn](https://seaborn.pydata.org/)
-  > Waskom, M. L. (2021). Seaborn: statistical data visualization. _Journal of Open Source Software, 6_(60), 3021.
+  [Code Repository](https://github.com/DerrickWood/kraken2) | [Webpages](https://ccb.jhu.edu/software/kraken2/)
 
-## R packages
+  > Lu, J., Rincon, N., Wood, D. E., Breitwieser, F. P., Pockrandt, C., Langmead, B., ... & Steinegger, M. (2022). Metagenome analysis using the Kraken software suite. _Nature Protocols, 17_(12), 2815-2839. https://doi.org/10.1038/s41596-022-00738-y
+  
+  > Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. _Genome Biology, 20_, 1-13. https://doi.org/10.1186/s13059-019-1891-0
 
-- [R](https://www.R-project.org/)
+- **LRBinner**
+  
+  [Code Repository](https://github.com/anuradhawick/LRBinner)
 
-  > R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
+  > Wickramarachchi, A., & Lin, Y. (2021). LRBinner: binning long reads in metagenomics datasets. In _21st International Workshop on Algorithms in Bioinformatics (WABI 2021): Leibniz International Proceedings in Informatics (LIPIcs) 201_, 11:1-11:18. https://10.4230/LIPIcs.WABI.2021.11
+  
+  > Wickramarachchi, A., & Lin, Y. (2022). Binning long reads in metagenomics datasets using composition and coverage information. _Algorithms for Molecular Biology, 17_(1), 14. https://doi.org/10.1186/s13015-022-00221-z
 
-- [Pavian](https://github.com/fbreitwieser/pavian)
+- **metaFlye**
+  
+  [Code Repository](https://github.com/mikolmogorov/Flye)
 
-  > Breitwieser, F. P., & Salzberg, S. L. (2020). Pavian: interactive analysis of metagenomics data for microbiome studies and pathogen identification. _Bioinformatics, 36_(4), 1303-1304.
+  > Kolmogorov, M., Bickhart, D. M., Behsaz, B., Gurevich, A., Rayko, M., Shin, S. B., ... & Pevzner, P. A. (2020). metaFlye: scalable long-read metagenome assembly using repeat graphs. _Nature Methods, 17_(11), 1103-1110. https://doi.org/10.1038/s41592-020-00971-x
 
-## Software packaging/containerisation tools
+- **minimap2**
+  
+  [Code Repository](https://github.com/lh3/minimap2) | [Webpages](https://lh3.github.io/minimap2/)
 
-- [Anaconda](https://anaconda.com)
+  > Li, H. (2021). New strategies to improve minimap2 alignment accuracy. _Bioinformatics, 37_(23), 4572-4574. https://doi.org/10.1093/bioinformatics/btab705
+  
+  > Li, H. (2018). Minimap2: pairwise alignment for nucleotide sequences. _Bioinformatics, 34_(18), 3094-3100. https://doi.org/10.1093/bioinformatics/bty191
 
-  > Anaconda Software Distribution. Computer software. Vers. 2-2.4.0. Anaconda, Nov. 2016. Web.
+- **MultiQC**
+  
+  [Code Repository](https://github.com/MultiQC/MultiQC) | [Webpages](https://multiqc.info/)
 
-- [Bioconda](https://pubmed.ncbi.nlm.nih.gov/29967506/)
+  > Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. _Bioinformatics, 32_(19), 3047-3048. https://doi.org/10.1093/bioinformatics/btw354
 
-  > Grüning B, Dale R, Sjödin A, Chapman BA, Rowe J, Tomkins-Tinch CH, Valieris R, Köster J; Bioconda Team. Bioconda: sustainable and comprehensive software distribution for the life sciences. Nat Methods. 2018 Jul;15(7):475-476. doi: 10.1038/s41592-018-0046-7. PubMed PMID: 29967506.
+- **Plasmer**
+  
+  [Code Repository](https://github.com/nekokoe/Plasmer) 
 
-- [BioContainers](https://pubmed.ncbi.nlm.nih.gov/28379341/)
+  > Zhu, Q., Gao, S., Xiao, B., He, Z., & Hu, S. (2023). Plasmer: an accurate and sensitive bacterial plasmid prediction Tool Based on Machine Learning of Shared k-mers and genomic features. _Microbiology Spectrum, 11_(3), e04645-22. https://doi.org/10.1128/spectrum.04645-22
 
-  > da Veiga Leprevost F, Grüning B, Aflitos SA, Röst HL, Uszkoreit J, Barsnes H, Vaudel M, Moreno P, Gatto L, Weber J, Bai M, Jimenez RC, Sachsenberg T, Pfeuffer J, Alvarez RV, Griss J, Nesvizhskii AI, Perez-Riverol Y. BioContainers: an open-source and community-driven framework for software standardization. Bioinformatics. 2017 Aug 15;33(16):2580-2582. doi: 10.1093/bioinformatics/btx192. PubMed PMID: 28379341; PubMed Central PMCID: PMC5870671.
+- **Porechop**
+  
+  [Code Repository](https://github.com/rrwick/Porechop)
 
-- [Docker](https://dl.acm.org/doi/10.5555/2600239.2600241)
+- **QUAST: Quality Assessment Tool for Genome Assemblies**
 
-  > Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. Linux Journal, 2014(239), 2. doi: 10.5555/2600239.2600241.
+  [Code Repository](https://github.com/ablab/quast) | [Webpages](https://quast.sourceforge.net/)
 
-- [Singularity](https://pubmed.ncbi.nlm.nih.gov/28494014/)
+  > Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. _Bioinformatics, 29_(8), 1072-1075. https://doi.org/10.1093/bioinformatics/btt086
+
+- **ResFinder**
+  
+  [Code Repository](https://github.com/cadms/resfinder) | [Webpages](https://www.genomicepidemiology.org/services/)
+
+  > Bortolaia, V., Kaas, R. S., Ruppe, E., Roberts, M. C., Schwarz, S., Cattoir, V., ... & Aarestrup, F. M. (2020). ResFinder 4.0 for predictions of phenotypes from genotypes. _Journal of Antimicrobial Chemotherapy, 75_(12), 3491-3500. https://doi.org/10.1093/jac/dkaa345
+
+- **RGI: Resistance Gene Identifier**
+  
+  [Code Repository](https://github.com/arpcard/rgi) | [Webpages](https://card.mcmaster.ca/analyze/rgi)
+
+  > Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., ... & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. _Nucleic Acids Research, 51_(D1), D690-D699. https://doi.org/10.1093/nar/gkac920
+
+- **SAMtools**
+  
+  [Code Repository](https://github.com/samtools/samtools) | [Webpages](https://www.htslib.org/)
+
+  > Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., ... & Li, H. (2021). Twelve years of SAMtools and BCFtools. _Gigascience, 10_(2), giab008. https://doi.org/10.1093/gigascience/giab008
+
+- **seqtk**
+  
+  [Code Repository](https://github.com/lh3/seqtk) | [Webpages](https://docs.csc.fi/apps/seqtk/)
+
+## Python Packages
+- **Python**
+
+  [Webpages](https://www.python.org/)
+
+  > 
+  
+- **Biopython**
+
+  [Code Repository](https://github.com/biopython/biopython) | [Webpages](https://biopython.org/)
+  
+  > Cock, P. J., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., ... & De Hoon, M. J. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. _Bioinformatics, 25_(11), 1422. https://doi.org/10.1093%2Fbioinformatics%2Fbtp163
+  
+- **NumPy**
+
+  [Code Repository](https://github.com/numpy/numpy) | [Webpages](https://numpy.org/)
+
+  > Harris, C. R., Millman, K. J., Van Der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., ... & Oliphant, T. E. (2020). Array programming with NumPy. _Nature, 585_(7825), 357-362. https://doi.org/10.1038/s41586-020-2649-2
+  
+- **pandas**
+  
+  [Code Repository](https://github.com/pandas-dev/pandas) | [Webpages](https://pandas.pydata.org/)
+  
+  > McKinney, W. (2011). pandas: a foundational Python library for data analysis and statistics. _Python for High Performance and Scientific Computing, 14_(9), 1-9. https://www.researchgate.net/publication/265194455
+  
+- **seaborn**
+  
+  [Code Repository](https://github.com/mwaskom/seaborn) | [Webpages](https://seaborn.pydata.org/)
+  
+  > Waskom, M. L. (2021). Seaborn: statistical data visualization. _Journal of Open Source Software, 6_(60), 3021. https://doi.org/10.21105/joss.03021
+
+## R Packages
+
+- **R**
+
+  [Webpages](https://www.R-project.org/)
+
+  > R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. Available online at: https://www.R-project.org/
+
+## Software Packaging/Containerisation Tools
+
+- **Anaconda**
+
+  [Webpages](https://anaconda.com)
+
+  > Anaconda Software Distribution. Computer software. Vers. 2-2.4.0. Anaconda, Nov. 2016. Web. Available online at: https://anaconda.com/
+
+- **Bioconda**
+
+  [Code Repository](https://github.com/bioconda) | [Webpages](https://bioconda.github.io/)
+
+  > Grüning, B., Dale, R., Sjödin, A., Chapman, B. A., Rowe, J., Tomkins-Tinch, C. H., ... & Bioconda Team. (2018). Bioconda: sustainable and comprehensive software distribution for the life sciences. _Nature Methods, 15_(7), 475-476. https://doi.org/10.1038/s41592-018-0046-7
+
+- **BioContainers**
+  
+  [Code Repository](https://github.com/BioContainers) | [Webpages](https://biocontainers.pro/)
+
+  > da Veiga Leprevost, F., Grüning, B. A., Alves Aflitos, S., Röst, H. L., Uszkoreit, J., Barsnes, H., ... & Perez-Riverol, Y. (2017). BioContainers: an open-source and community-driven framework for software standardization. _Bioinformatics, 33_(16), 2580-2582. https://doi.org/10.1093/bioinformatics/btx192
+
+- **Docker**
+  
+  [Code Repository](https://github.com/docker) | [Webpages](https://www.docker.com/)
+
+  > Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. _Linux Journal, 239_(2), 2. Avaliable online at: https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment
+
+- **Singularity**
+  
+  [Singularity](https://pubmed.ncbi.nlm.nih.gov/28494014/)
 
   > Kurtzer GM, Sochat V, Bauer MW. Singularity: Scientific containers for mobility of compute. PLoS One. 2017 May 11;12(5):e0177459. doi: 10.1371/journal.pone.0177459. eCollection 2017. PubMed PMID: 28494014; PubMed Central PMCID: PMC5426675.
