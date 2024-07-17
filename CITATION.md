@@ -121,6 +121,8 @@
   
   [Code Repository](https://github.com/rrwick/Porechop)
 
+  > Wick, R. R., Judd, L. M., Gorrie, C. L., & Holt, K. E. (2017). Completing bacterial genome assemblies with multiplex MinION sequencing. Microbial genomics, 3(10), e000132. https://doi.org/10.1099/mgen.0.000132
+
 - **QUAST: Quality Assessment Tool for Genome Assemblies**
 
   [Code Repository](https://github.com/ablab/quast) | [Webpages](https://quast.sourceforge.net/)
@@ -149,12 +151,14 @@
   
   [Code Repository](https://github.com/lh3/seqtk) | [Webpages](https://docs.csc.fi/apps/seqtk/)
 
+  > Li, H. (2023). seqtk-1.4 [Computer Software]. Retrieved from https://github.com/lh3/seqtk
+
 ## Python Packages
 - **Python**
 
   [Webpages](https://www.python.org/)
 
-  > 
+  > Van Rossum,  G., & Drake, F. L. (2009). _Python 3 Reference Manual_. Scotts Valley, CA: CreateSpace.
   
 - **Biopython**
 
@@ -180,13 +184,6 @@
   
   > Waskom, M. L. (2021). Seaborn: statistical data visualization. _Journal of Open Source Software, 6_(60), 3021. https://doi.org/10.21105/joss.03021
 
-## R Packages
-
-- **R**
-
-  [Webpages](https://www.R-project.org/)
-
-  > R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. Available online at: https://www.R-project.org/
 
 ## Software Packaging/Containerisation Tools
 
@@ -194,8 +191,16 @@
 
   [Webpages](https://anaconda.com)
 
-  > Anaconda Software Distribution. Computer software. Vers. 2-2.4.0. Anaconda, Nov. 2016. Web. Available online at: https://anaconda.com/
+  > _Anaconda Software Distribution._ (2020). _Anaconda Documentation_. Anaconda Inc. Retrieved from https://docs.anaconda.com/
 
+- **Apptainer/Singularity**
+
+  [Code Repository](https://github.com/apptainer/apptainer) | [Webpages](https://apptainer.org/)
+
+  > Singularity Developers. (2020). Singularity. 10.5281/zenodo.1310023. https://doi.org/10.5281/zenodo.1310023
+
+  > Kurtzer, G. M., Sochat, V., & Bauer, M. W. (2017). Singularity: Scientific containers for mobility of compute. PloS one, 12(5), e0177459. https://doi.org/10.1371/journal.pone.0177459
+  
 - **Bioconda**
 
   [Code Repository](https://github.com/bioconda) | [Webpages](https://bioconda.github.io/)
@@ -212,10 +217,4 @@
   
   [Code Repository](https://github.com/docker) | [Webpages](https://www.docker.com/)
 
-  > Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. _Linux Journal, 239_(2), 2. Avaliable online at: https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment
-
-- **Singularity**
-  
-  [Singularity](https://pubmed.ncbi.nlm.nih.gov/28494014/)
-
-  > Kurtzer GM, Sochat V, Bauer MW. Singularity: Scientific containers for mobility of compute. PLoS One. 2017 May 11;12(5):e0177459. doi: 10.1371/journal.pone.0177459. eCollection 2017. PubMed PMID: 28494014; PubMed Central PMCID: PMC5426675.
+  > Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. _Linux Journal, 239_(2), 2. Retrieved from https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment
