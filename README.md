@@ -31,7 +31,7 @@
 
 <picture>
   <!-- Dark mode image -->
-  <source media="(prefers-color-scheme: dark)" srcset="images/pipeline_outline_darkmode.png"> 
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_nobackground_darkmode.png"> 
   <!-- Light mode image -->
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_lightmode.png">
   <!-- Fallback image -->
@@ -63,9 +63,9 @@ BALROG-MON (Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenom
 
 <picture>
 
-  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png"> 
+  <source media="(prefers-color-scheme: dark)" srcset="images/pipeline_outline_darkmode.png"> 
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png">
-  <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
+  <img alt="Nextflow Logo" src="images/pipeline_outline_darkmode.png">
 </picture>
 
 *See sections below for details on subworkflows (SW)
