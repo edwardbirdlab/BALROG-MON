@@ -48,12 +48,11 @@
 BALROG-MON is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate bacterial antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
 is the main goal of BALROG-MON, it also provides subworkflows for many related analyses, such as pathogen detection and metagenomic community analysis of bacteria, viruses and other microorganisms in the sample. 
 
-
-PLEASE NOTE: 
-
-- Updates to BALROG-MON may occur periodically to help continually improve the pipeline. If you have any requests or recommended changes you'd like to see (i.e. usage with other data types), please reach out via email (edwardbirdlab@gmail.com | edwardbird@ksu.edu) or <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>.
-
-- If you experience any trouble or find bugs when running BALROG-MOND, please <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">report issues or bugs</a> and they will be addressed as soon as possible.
+> [!NOTE]
+> Updates to BALROG-MON may occur periodically to help continually improve the pipeline. If you have any requests or recommended changes you'd like to see (i.e. usage with other data types), please reach out via email (edwardbirdlab@gmail.com | edwardbird@ksu.edu) or <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>.
+> <br />
+><br />
+> If you experience any trouble or find bugs when running BALROG-MON, please <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">report issues or bugs</a> and they will be addressed as soon as possible.
 
 ## Workflow Overview
 
@@ -92,7 +91,8 @@ Before you get too far along, familiarize yourself with this section to make sur
 BALROG-MON in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequencing. BALROG-MON can run in "Assembly-Free" mode or assembles a metagenome using metaFlye, allowing for the analysis of low and high coverage metagenomes. BALROG-MON in its standard configuration will require 100GB of RAM.
 <br />
 <br />
-**If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">request feature</a>.**
+> [!NOTE]
+>**If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">request feature</a>.**
 
 ### 2. Dependencies
 
@@ -197,20 +197,18 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 <a name="readme-optional-steps"></a>
 ## Optional Steps of Workflow
 
-### Community Analysis
+### Sequence Identification
+1. [Kraken2](https://github.com/DerrickWood/kraken2)
 
+### Community Analysis
 1. [Kraken2](https://github.com/DerrickWood/kraken2)
 2. [Bracken](https://github.com/jenniferlu717/Bracken)
-3. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken)
 
 ### Pathogen Detection
-
 1. [Kraken2](https://github.com/DerrickWood/kraken2) - (--report-minimizer-data --minimum-hit-groups 3)
-2. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken
-
-### Additional Sequence Identification
-1. [Kraken2](https://github.com/DerrickWood/kraken2)
-
+   
+> [!NOTE]
+> BALROG-MON does not create a graphical summary of pathogen detection and community analysis results. However, results are readily compatible for visualization using [Pavian](https://github.com/fbreitwieser/pavian).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="readme-citations"></a>
