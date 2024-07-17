@@ -17,13 +17,10 @@
 <br />
 
 <h3 align="center">BALROG-MON</h3>
-
   <p align="center">
     Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Oxford Nanopore
-    <br />
-    ***** Still Under Development *****
-    <br />
-    <br />
+
+  <p align="center">
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -34,77 +31,12 @@
 
 <picture>
   <!-- Dark mode image -->
-  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_darkmode.png"> 
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_nobackground_darkmode.png"> 
   <!-- Light mode image -->
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_lightmode.png">
   <!-- Fallback image -->
-  <img alt="Nextflow Logo" src="images/balrog_darkmode.png">
+  <img alt="Nextflow Logo" src="images/balrog_lightmode.png">
 </picture>
-
-
-## Workflow Overview
-
-<picture>
-
-  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png"> 
-  <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png">
-  <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
-</picture>
-
-*see below sections for in-depth subworkflows
-
-<br />
-
-<!--
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
--->
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-balrog">About BALROG</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#what-data-do-i-need">What Data do I Need?</a></li>
-        <li><a href="#dependicies">Dependicies</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#creating-a-samplesheet">Creating Sample Sheets</a></li>
-        <li><a href="#nextflow-configuration">Nextflow Configuration</a></li>
-        <li><a href="#pipeline-configuration">Pipeline Configuration</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#running-balrog">Running Balrog</a>
-    </li>
-    <li>
-      <a href="#core-steps">Core Steps</a>
-      <ul>
-        <li><a href="#preprocessing">Preprocessing</a></li>
-        <li><a href="#host-removal">Host Removal</a></li>
-        <li><a href="#assembly-and-plasmid-prediction">Assembly and Plasmid Prediction</a></li>
-        <li><a href="#multi-amr-annotation">Multi AMR Annotation</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#optional-steps">Optional Steps</a>
-      <ul>
-        <li><a href="#community-analysis">Community Analysis</a></li>
-        <li><a href="#pathogen-detection">Pathogen Detection</a></li>
-        <li><a href="#additional-mobile-element-annotation">Additional Mobile Element Annotation</a></li>
-        <li><a href="#additional-sequence-identification">Additional Sequence Identification</a></li>
-      </ul>
-    </li>
-    <li><a href="#contact">Contact Information</a></li>
-    <li><a href="#how-to-cite-balrog">How to Cite BALROG</a></li>
-    <li><a href="#citing-tools-used-in-balrog">Citing Tools used in BALROG</a></li>
-  </ol>
-</details>
-
-<br />
 
 <!-- ABOUT THE PROJECT -->
 
@@ -117,32 +49,59 @@ BALROG-MON is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-rea
 is the main goal of BALROG-MON, it also provides subworkflows for many related analyses, such as pathogen detection and metagenomic community analysis of bacteria, viruses and other microorganisms in the sample. 
 
 
-## BALROG-MON IS STILL IN DEVELOPMENT
+PLEASE NOTE: 
 
-Not all features are fully implemented, and while the pipeline MIGHT work in its current state, I would fully expect some troubleshooting to be in store. If you do deciede to test it out in its current state
-please report any and all bugs you find, or suggest any improvements!
+- Updates to BALROG-MON may occur periodically to help continually improve the pipeline. If you have any requests or recommended changes you'd like to see (i.e. usage with other data types), please reach out via email (edwardbirdlab@gmail.com | edwardbird@ksu.edu) or <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>.
 
+- If you experience any trouble or find bugs when running BALROG-MOND, please <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">report issues or bugs</a> and they will be addressed as soon as possible.
 
+## Workflow Overview
+
+<picture>
+
+  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_workflow_light.png"> 
+  <source media="(prefers-color-scheme: light)" srcset="images/balrog_workflow_light.png">
+  <img alt="Nextflow Logo" src="images/balrog_workflow_light.png">
+</picture>
+
+*See sections below for details on subworkflows (SW)
+
+<!--
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+-->
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+- <a href="#readme-getting-started">Getting Started</a>
+- <a href="#readme-running-balrog">Running BALROG-MON</a>
+- <a href="#readme-core-steps">Core Steps of Workflow</a>
+- <a href="#readme-optional-steps">Optional Steps of Workflow</a>
+- <a href="#readme-citations">Citations</a>
+- <a href="#readme-license">License</a>
+- <a href="#readme-contact">Contact Information</a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="readme-getting-started"></a>
 <!-- GETTING STARTED -->
 ## Getting Started
 
 Before you get too far along, familiarize yourself with this section to make sure this is the pipeline for you and your equipment and samples can meet the requirements. (Don't worry, there isn't too much to do).
 
-### What Data Do I Need?
+### 1. What Data Do I Need?
 
 BALROG-MON in its current form expects Q20+ Oxford Nanopore Long Read Metagenomic Sequencing. BALROG-MON can run in "Assembly-Free" mode or assembles a metagenome using metaFlye, allowing for the analysis of low and high coverage metagenomes. BALROG-MON in its standard configuration will require 100GB of RAM.
 <br />
 <br />
-**If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to submit a feature request and I will add the option.**
+**If you would like to run BALROG-MON with older, non-Q20+ Nanopore data, feel free to <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">request feature</a>.**
 
-### Dependencies
+### 2. Dependencies
 
 All dependencies are managed via Docker Containers and hosted on DockerHub. One of the following container runtime software packages will be required:
 <br />
-1. Nextflow (>= 23.04.0.5857) - [Install Nextflow](https://www.nextflow.io/docs/latest/install.html)
-2. Docker/Singularity/Apptainer - [Install Docker](https://docs.docker.com/engine/install/) - [Install Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html) - [Install Apptainer](https://apptainer.org/docs/admin/main/installation.html)
+- Nextflow (>= 23.04.0.5857) - [Install Nextflow](https://www.nextflow.io/docs/latest/install.html)
+- Docker/Singularity/Apptainer - [Install Docker](https://docs.docker.com/engine/install/) - [Install Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html) - [Install Apptainer](https://apptainer.org/docs/admin/main/installation.html)
 
-### Installation
+### 3. Installation
 
 Preferred Method - Download Release
    ```sh
@@ -154,7 +113,7 @@ Method 2 - Clone Repo
    git clone https://github.com/edwardbirdlab/BALROG-MON
    ```
 
-### Creating a Sample Sheet
+### 4. Creating a Sample Sheet
 
 BALROG-MON takes a CSV (Comma-Seperated-Value) sheet as the input. Note that the "sample" column will be the prefix of all output files for that sample. 
 <br />
@@ -166,21 +125,22 @@ Sample_Name_1,/absolute/path/to/sample1.fastq.gz,/absolute/path/to/reference_gen
 Sample_Name_2,/absolute/path/to/sample2.fastq.gz,/absolute/path/to/reference_genome_1.fna
 ```
 
-### Nextflow Configuration
+### 5. Nextflow Configuration
 
 When creating a Nextflow config, ensure a container runtime is enabled (Singularity/Apptainer/Docker). If you are using Slurm, you can use the incuded Beocat Slurm config as a template. Most nf-core configs will also be supported. If you have never created a Nextflow config, or are having issues, reach out to your local administration.
 <br />
 [Nextflow Configuration](https://www.nextflow.io/docs/latest/config.html) - [nf-core configs](https://nf-co.re/configs)
 
 
-### Pipeline Configuration
+### 6. Pipeline Configuration
 
 If you want to change any parameters of BALROG-MON from its default options, they can be changed using the "nextflow.config" file. Configurable parameters will be outlined in the detailed sections below, as well as in the config file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<a name="readme-running-balrog"></a>
 ## Running BALROG-MON
+
 1. Running the whole pipeline
 ```sh
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg
@@ -193,8 +153,10 @@ nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --
 ```sh 
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow-opt multiqc
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Core Steps
+<a name="readme-core-steps"></a>
+## Core Steps of Workflow
 
 ### Preprocessing
 
@@ -230,7 +192,10 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 2. [AMRFinder Plus](https://github.com/ncbi/amr?tab=readme-ov-file)
 3. [Resfinder](https://github.com/cadms/resfinder)
 
-## Optional Steps
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="readme-optional-steps"></a>
+## Optional Steps of Workflow
 
 ### Community Analysis
 
@@ -241,20 +206,19 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 ### Pathogen Detection
 
 1. [Kraken2](https://github.com/DerrickWood/kraken2) - (--report-minimizer-data --minimum-hit-groups 3)
-2. K2Verify - Comming soon! - (Not yet implemented)
-3. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken
-
-### Additional Mobile Element Annotation
-1. [MobileElementFinder](https://pypi.org/project/MobileElementFinder/)
+2. Results ready to view in [Pavian](https://github.com/jenniferlu717/Bracken
 
 ### Additional Sequence Identification
 1. [Kraken2](https://github.com/DerrickWood/kraken2)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="readme-citations"></a>
 ## Citations
 
-As there is currently no paper associated with BAROG-MON, please cite this Github page. Also, I feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
+As there is currently no paper associated with BALROG-MON, please cite this Github page. Also, I feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
 
-Many tools are used in this pipeline and its respective options. References for the tools used in the pipeline and all options can be found in the XXXX file.
+Many tools are used in this pipeline and its respective options. See 'CITATION.md' for the list of all tools used in this pipeline.
 
 <!-- ROADMAP 
 ## Roadmap
@@ -270,16 +234,18 @@ See the [open issues](https://github.com/edwardbirdlab/HT-BALRROG/issues) for a 
 
 
 -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a name="readme-license"></a>
 <!-- LICENSE -->
 ## License
 
 Distributed for the [USDA ARS](https://www.ars.usda.gov/) under the Public Domain. See `LICENSE` for more information.
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
+<a name="readme-contact"></a>
 <!-- CONTACT -->
 ## Contact
 
