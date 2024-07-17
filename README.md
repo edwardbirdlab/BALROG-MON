@@ -45,14 +45,19 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-BALROG-MON is a nextflow pipeline built to utilize Q20+ Oxford Nanopore Long-reads to investigate bacterial antimicrobial resistance (AMR) and its mobility from metagenomic samples. While looking at AMR
-is the main goal of BALROG-MON, it also provides subworkflows for many related analyses, such as pathogen detection and metagenomic community analysis of bacteria, viruses and other microorganisms in the sample. 
+BALROG-MON (Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Oxford Nanopore) is a comprehensive high throughput Nextflow pipeline built to utilize Q20+ Oxford Nanopore long-reads for the investigation of bacterial antimicrobial resistance (AMR) and its mobility from metagenomic samples. While AMR characterization is the main goal of BALROG-MON, it also provides subworkflows for many related analyses customizable to users' needs, such as assembly-free annotation, pathogen detection, and metagenomic community analysis of bacteria, viruses, and other microorganisms in samples. 
 
 > [!NOTE]
-> Updates to BALROG-MON may occur periodically to help continually improve the pipeline. If you have any requests or recommended changes you'd like to see (i.e. usage with other data types), please reach out via email (edwardbirdlab@gmail.com | edwardbird@ksu.edu) or <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>.
+> Updates to BALROG-MON may occur periodically to help continually improve the pipeline. If you have any requests or recommended changes you'd like to see (i.e. usage with other data types), please reach out via email (edwardbirdlab@gmail.com | edwardbird@ksu.edu) or <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=enhancement&template=feature-request---.md">request feature</a>.
 > <br />
 ><br />
 > If you experience any trouble or find bugs when running BALROG-MON, please <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">report issues or bugs</a> and they will be addressed as soon as possible.
+
+<h3 align="center">Not the BALROG pipeline you're looking for?</h3>
+ <p align="center">
+   <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">BALROG-MSR: Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Short Read</a>
+   <br />
+   <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">BALROG-ISO: Bacterial Antimicrobial Resistance annOtation of Genomes - ISOlate whole genomes</a>
 
 ## Workflow Overview
 
@@ -145,11 +150,7 @@ If you want to change any parameters of BALROG-MON from its default options, the
 ```sh
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg
 ```
-2. Optional: Pathogen Detection Conformation (***NOT IMPLEMENTED YET***)
-```sh
-nextflow run -resume /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --taxid-list /path/to/taxid_list.txt
-```
-3. Optional: Multi-QC
+2. Optional: Multi-QC
 ```sh 
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow-opt multiqc
 ```
