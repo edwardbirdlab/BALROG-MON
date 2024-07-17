@@ -31,7 +31,7 @@
 
 <picture>
   <!-- Dark mode image -->
-  <source media="(prefers-color-scheme: dark)" srcset="images/balrog_nobackground_darkmode.png"> 
+  <source media="(prefers-color-scheme: dark)" srcset="images/pipeline_outline_darkmode.png"> 
   <!-- Light mode image -->
   <source media="(prefers-color-scheme: light)" srcset="images/balrog_lightmode.png">
   <!-- Fallback image -->
