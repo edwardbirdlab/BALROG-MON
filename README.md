@@ -144,6 +144,7 @@ If you want to change any parameters of BALROG-MON from its default options, the
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="readme-running-balrog"></a>
+<!-- RUNNING BALROG-MON -->
 ## Running BALROG-MON
 
 1. Running the whole pipeline
@@ -157,101 +158,122 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="readme-core-steps"></a>
+<!-- CORE STEPS OF WORKFLOW -->
 ## Core Steps of Workflow
 
 ### 1. Preprocessing
 
-**Trimming & Raw QC**
+_**Trimming & Raw QC**_
 
-- Standardize Read Names - Included Python Script - (Optional step that is usefull if you have long read names)
-- Raw Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
-- Porechop - [PoreChop](https://github.com/rrwick/Porechop)
-- Chopper - [Chopper](https://github.com/wdecoster/chopper) <br />
-   Params - params.chopper_minlen = (defualt = 500) - params.chopper_averagequality = (defualt = 20)
-- Trimmed Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
+- [FastQC](https://github.com/s-andrews/FastQC) : Raw Read
+- [Porechop](https://github.com/rrwick/Porechop)
+- [chopper](https://github.com/wdecoster/chopper)
+    <br />
+    _Parameters_
+    - params.chopper_minlen = (defualt = 500)
+  
+    - params.chopper_averagequality = (defualt = 20)
+- [FastQC](https://github.com/s-andrews/FastQC) : Trimmed Read
 
-**Final Read QC**
+_**Final Read QC**_
 
-- MultiQC-
+- [MultiQC](https://github.com/MultiQC/MultiQC)
 
-### 2. Read-based Identification
+### 2. Read-Based Identification
 
-**Pathogen Detection (Assembly Free Only)**
+_**Pathogen Detection (Core Step for "Assembly Free" Only)**_
 
--
+- [Kraken 2](https://github.com/DerrickWood/kraken2) (standard database)
 
 ### 3. Sequence Processing
 
-**Assembly**
+_**Assembly**_
 
-- Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk)
+- "Assembly Free"
+    <br />
+    - [Seqtk](https://github.com/lh3/seqtk) : Convert fastq to fasta
   
-**OR**
+  **OR**
+    <br />
+- "Assembled"
+    <br />
+    - [metaFlye](https://github.com/mikolmogorov/Flye) : Metagenomic assembly
 
-- Metagenomic Assembly - [metaFlye](https://github.com/fenderglass/Flye)
+    - [Kraken 2](https://github.com/DerrickWood/kraken2) (standard database) : Reassign sequence identities 
 
-- Kraken 2
+_**Sequence Processing QC**_
 
-**Sequence Processing QC** 
-
-- [Quast](https://github.com/ablab/quast)
+- [QUAST](https://github.com/ablab/quast)
 
 ### 4. ARG & Mobility Annotation
 
-1. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
-    Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
-2. CARD
+- [Plasmer](https://github.com/nekokoe/Plasmer) : Plasmid prediction
+    <br />
+    _Parameters_
+    - params.plasmer_min_len = (defualt = 500)
+       
+    - params.plasmer_max_len = (defualt = 500000)
+   
+- [CARD](https://card.mcmaster.ca/) 
 
 ### 5. Binning
 
-1. Lrbinner
-2. CheckM
-
-Assembly and Plasmid Prediction
-
-1. Assembly: <br />
-Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk) <br />
-OR <br />
-Metagenomic Assembly - [metaFlye](https://github.com/fenderglass/Flye)
-
-2. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
-    Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
-
-
-### Multi AMR Annotation
-
-Multi AMR is run by defualt, however it can be switched to only run CARD by setting params.cardonly = TRUE
-
-1. [CARD](https://card.mcmaster.ca/)
-2. [AMRFinder Plus](https://github.com/ncbi/amr?tab=readme-ov-file)
-3. [Resfinder](https://github.com/cadms/resfinder)
-
+- [LRBinner](https://github.com/anuradhawick/LRBinner)
+- [CheckM](https://github.com/Ecogenomics/CheckM)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="readme-optional-steps"></a>
+<!-- OPTIONAL STEPS OF WORKFLOW -->
 ## Optional Steps of Workflow
 
-### Host Removal
+### 1. Preprocessing
 
-1. Mapping to Host Genome - [Minimap2](https://github.com/lh3/minimap2)
-2. Extracting Non-Host Reads Names - [Samtools](https://github.com/samtools/samtools)
-3. Extract Non-Host Reads - [SeqTK](https://github.com/lh3/seqtk)
+_**Standardize Read Names**_
 
-### Sequence Identification
-1. [Kraken2](https://github.com/DerrickWood/kraken2)
+- Included Python script (useful if you have long read names)
 
-### Community Analysis
-1. [Kraken2](https://github.com/DerrickWood/kraken2)
-2. [Bracken](https://github.com/jenniferlu717/Bracken)
+_**Remove Human DNA**_
 
-### Pathogen Detection
-1. [Kraken2](https://github.com/DerrickWood/kraken2) - (--report-minimizer-data --minimum-hit-groups 3)
+- [minimap2](https://github.com/lh3/minimap2) : Mapping to human genome
+- [SAMtools](https://github.com/samtools/samtools) : Extracting non-human reads names
+- [Seqtk](https://github.com/lh3/seqtk) : Extract non-human reads 
+
+_**Remove Host DNA**_
+
+- [minimap2](https://github.com/lh3/minimap2) : Mapping to host genome
+- [SAMtools](https://github.com/samtools/samtools) : Extracting non-host reads names
+- [Seqtk](https://github.com/lh3/seqtk) : Extract non-host reads 
+
+### 2. Read-Based Identification
+
+_**Pathogen Detection (Optional for "Assembled" Only)**_
+- [Kraken 2](https://github.com/DerrickWood/kraken2) (standard database)
+  <br />
+  _Parameters_
+  - report-minimizer-data
+
+  - minimum-hit-groups 3
    
+_**Community Analysis**_
 > [!NOTE]
 > BALROG-MON does not create a graphical summary of pathogen detection and community analysis results. However, results are readily compatible for visualization using [Pavian](https://github.com/fbreitwieser/pavian).
+
+- [Kraken 2](https://github.com/DerrickWood/kraken2) (standard database)
+- [Bracken](https://github.com/jenniferlu717/Bracken)
+   
+### 4. ARG and Mobility Annotation
+
+_**Multi AMR Annotation**_
+> [!NOTE]
+> CARD is run by defualt, however it can be switched to include additional ARG databases by setting params.cardonly = TRUE
+
+- [CARD](https://card.mcmaster.ca/)
+- [AMRFinder Plus](https://github.com/ncbi/amr?tab=readme-ov-file)
+- [Resfinder](https://github.com/cadms/resfinder)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="readme-citations"></a>
+<!-- CITATIONS -->
 ## Citations
 
 As there is currently no paper associated with BALROG-MON, please cite this Github page. Also, I feel free to contact me (edwardbirdlab@gmail.com | edwardbird@ksu.edu) to let me know!
