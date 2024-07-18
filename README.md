@@ -150,7 +150,7 @@ If you want to change any parameters of BALROG-MON from its default options, the
 ```sh
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg
 ```
-2. Optional: Multi-QC
+2. Generate Multi-QC
 ```sh 
 nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow-opt multiqc
 ```
@@ -159,22 +159,55 @@ nextflow run /path/to/edwardbirdlab/BALROG-MON -c /path/to/config.cfg --workflow
 <a name="readme-core-steps"></a>
 ## Core Steps of Workflow
 
-### Preprocessing
+### 1. Preprocessing
 
-1. Standardize Read Names - Included Python Script - (Optional step that is usefull if you have long read names)
-2. Raw Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
-3. Porechop - [PoreChop](https://github.com/rrwick/Porechop)
-4. Chopper - [Chopper](https://github.com/wdecoster/chopper) <br />
+**Trimming & Raw QC**
+
+- Standardize Read Names - Included Python Script - (Optional step that is usefull if you have long read names)
+- Raw Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
+- Porechop - [PoreChop](https://github.com/rrwick/Porechop)
+- Chopper - [Chopper](https://github.com/wdecoster/chopper) <br />
    Params - params.chopper_minlen = (defualt = 500) - params.chopper_averagequality = (defualt = 20)
-5. Trimed Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
+- Trimmed Read FastQC - [FastQC](https://github.com/s-andrews/FastQC)
 
-### Host Removal
+**Final Read QC**
 
-1. Mapping to Host Genome - [Minimap2](https://github.com/lh3/minimap2)
-2. Extracting Non-Host Reads Names - [Samtools](https://github.com/samtools/samtools)
-3. Extract Non-Host Reads - [SeqTK](https://github.com/lh3/seqtk)
+- MultiQC-
 
-### Assembly and Plasmid Prediction
+### 2. Read-based Identification
+
+**Pathogen Detection (Assembly Free Only)**
+
+-
+
+### 3. Sequence Processing
+
+**Assembly**
+
+- Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk)
+  
+**OR**
+
+- Metagenomic Assembly - [metaFlye](https://github.com/fenderglass/Flye)
+
+- Kraken 2
+
+**Sequence Processing QC** 
+
+- [Quast](https://github.com/ablab/quast)
+
+### 4. ARG & Mobility Annotation
+
+1. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
+    Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
+2. CARD
+
+### 5. Binning
+
+1. Lrbinner
+2. CheckM
+
+Assembly and Plasmid Prediction
 
 1. Assembly: <br />
 Assembly Free: Convert Fastq to Fasta - [SeqTK](https://github.com/lh3/seqtk) <br />
@@ -183,7 +216,7 @@ Metagenomic Assembly - [metaFlye](https://github.com/fenderglass/Flye)
 
 2. Plasmid Prediction - [Plasmer](https://github.com/nekokoe/Plasmer)
     Params - params.plasmer_min_len = (defualt = 500) - params.plasmer_max_len = (defualt = 500000)
-4. Assembly QC - [Quast](https://github.com/ablab/quast)
+
 
 ### Multi AMR Annotation
 
@@ -197,6 +230,12 @@ Multi AMR is run by defualt, however it can be switched to only run CARD by sett
 
 <a name="readme-optional-steps"></a>
 ## Optional Steps of Workflow
+
+### Host Removal
+
+1. Mapping to Host Genome - [Minimap2](https://github.com/lh3/minimap2)
+2. Extracting Non-Host Reads Names - [Samtools](https://github.com/samtools/samtools)
+3. Extract Non-Host Reads - [SeqTK](https://github.com/lh3/seqtk)
 
 ### Sequence Identification
 1. [Kraken2](https://github.com/DerrickWood/kraken2)
