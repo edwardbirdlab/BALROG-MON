@@ -14,6 +14,7 @@ include { MULTI_AMR as MULTI_AMR } from '../subworkflows/MULTI_AMR.nf'
 include { METAGENOMIC_SEQUENCE_IDENTIFICATION as METAGENOMIC_SEQUENCE_IDENTIFICATION } from '../subworkflows/METAGENOMIC_SEQUENCE_IDENTIFICATION.nf'
 include { HUMAN_REMOVAL_ONT as HUMAN_REMOVAL_ONT } from '../subworkflows/HUMAN_REMOVAL_ONT.nf'
 include { METAGENOMIC_BINNING as METAGENOMIC_BINNING } from '../subworkflows/METAGENOMIC_BINNING.nf'
+include { CARD_ONT_QUANT as CARD_ONT_QUANT } from '../subworkflows/CARD_ONT_QUANT.nf'
 //include { PATHOGEN_DETECTION as PATHOGEN_DETECTION } from '../subworkflows/PATHOGEN_DETECTION.nf'
 
 
@@ -155,6 +156,8 @@ workflow ONT_METAGENOMIC {
 
                 //Some process here
             }
+
+            CARD_ONT_QUANT(PLASMID_PREDICTION.out.all)
         }
 
 /*
