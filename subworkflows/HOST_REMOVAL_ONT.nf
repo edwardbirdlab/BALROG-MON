@@ -14,15 +14,18 @@ include { FASTQC_ONT as FASTQC_HOST_DEP } from '../modules/FASTQC_ONT.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS_HOST } from '../modules/SAMTOOLS_STATS.nf'
 //include { SAMTOOLS_READNAMES as SAMTOOLS_READNAMES_HOST } from '../modules/SAMTOOLS_READNAMES.nf'
 //include { SEQTK_SUBSEQ_ONT as SEQTK_SUBSEQ_ONT_HOST } from '../modules/SEQTK_SUBSEQ_ONT.nf'
+include { INPUT_STANDARD_FA as INPUT_STANDARD_FA } from '../modules/INPUT_STANDARD.nf'
 
 
 workflow HOST_REMOVAL_ONT {
     take:
-        ch_fastqs_hostremoval              // channel: [val(sample), fastq_1]
+        ch_fastqs_hostremoval              // channel: [val(sample), fastq_1] gzipped
         ch_hostgen                 // channel: [val(sample), fasta]
     main:
 
-        ch_for_minimap_host = ch_fastqs_hostremoval.join(ch_hostgen)
+        INPUT_STANDARD_FA(ch_hostgen)
+
+        ch_for_minimap_host = ch_fastqs_hostremoval.join(INPUT_STANDARD_FA.out.valid_fasta)
 
         MINIMAP2_ONT_HOST(ch_for_minimap_host)
         SAMTOOLS_STATS_HOST(MINIMAP2_ONT_HOST.out.sam)
@@ -39,6 +42,6 @@ workflow HOST_REMOVAL_ONT {
 
 
     emit:
-        host_depleted_reads    =  SAMTOOLS_EXTRACT_UNMAPPED_HOST.out.non_host_reads  //   channel: [ val(sample), fastq]
+        host_depleted_reads    =  SAMTOOLS_EXTRACT_UNMAPPED_HOST.out.non_host_reads  //   channel: [ val(sample), fastq] gzipped
 
 }
