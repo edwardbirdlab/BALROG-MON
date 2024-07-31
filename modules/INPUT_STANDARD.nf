@@ -25,11 +25,10 @@ process INPUT_STANDARD_SEFQ {
 
     script:
 
+    def rename_arg = ""
+
     if ( params.rename_fastq ) {
         def rename_arg = " --rename"
-    }
-    else {
-        def rename_arg = ""
     }
 
     """
