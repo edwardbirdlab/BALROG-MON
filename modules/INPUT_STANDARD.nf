@@ -28,7 +28,7 @@ process INPUT_STANDARD_SEFQ {
     def rename_arg = ""
 
     if ( params.rename_fastq ) {
-        def rename_arg = " --rename"
+        rename_arg = " --rename"
     }
 
     """
