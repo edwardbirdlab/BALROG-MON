@@ -11,6 +11,7 @@ process INPUT_STANDARD_PEFQ {
 
     """
     data_validator.py PE_FQ ${R1} ${R2} ${sample} --gzip
+
     """
 }
 
@@ -34,6 +35,7 @@ process INPUT_STANDARD_SEFQ {
     """
     data_validator.py SE_FQ ${R1} ${sample} --gzip \\
     ${rename_arg}
+
     """
 }
 
@@ -50,6 +52,7 @@ process INPUT_STANDARD_FA {
 
     """
     data_validator.py FA ${fasta}
+    
     """
 
 }
