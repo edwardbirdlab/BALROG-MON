@@ -52,7 +52,6 @@ process INPUT_STANDARD_FA {
 
     """
     data_validator.py FA ${fasta}
-    
     """
 
 }
