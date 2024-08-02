@@ -12,7 +12,6 @@ process INPUT_STANDARD_PEFQ {
 
     """
     data_validator.py PE_FQ ${R1} ${R2} --sample_name ${sample}
-    cp -r /work/Validated_Data .
     """
 }
 
@@ -33,7 +32,6 @@ process INPUT_STANDARD_SEFQ {
 
     """
     data_validator.py SE_FQ ${R1} --sample_name ${sample}
-    cp -r /work/Validated_Data .
     """
 }
 
@@ -51,6 +49,5 @@ process INPUT_STANDARD_FA {
 
     """
     data_validator.py FA ${FASTA}
-    cp -r /work/Validated_Data .
     """
 }
