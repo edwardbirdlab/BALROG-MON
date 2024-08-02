@@ -34,6 +34,8 @@ process INPUT_STANDARD_SEFQ {
     //}
 
     """
+
+    echo "Running data_validator.py with fastq: ${R1}"
     data_validator.py SE_FQ ${R1} ${sample} --gzip
 
     """
