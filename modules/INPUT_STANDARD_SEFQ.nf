@@ -1,6 +1,6 @@
 process INPUT_STANDARD_SEFQ {
     label 'midmemshort'
-    container 'ebird013/data_validator:1.0'
+    container 'ebird013/data_validator:1.1'
 
     input:
         tuple val(sample), file(R1)

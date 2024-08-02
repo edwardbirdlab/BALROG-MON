@@ -1,6 +1,6 @@
 process INPUT_STANDARD_FA {
     label 'midmemshort'
-    container 'ebird013/data_validator:1.0'
+    container 'ebird013/data_validator:1.1'
 
     input:
         tuple val(sample), val(fasta)
