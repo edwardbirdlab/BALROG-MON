@@ -33,8 +33,7 @@ process INPUT_STANDARD_SEFQ {
     //}
 
     """
-    data_validator.py SE_FQ ${R1} ${sample} --gzip \\
-    ${rename_arg}
+    data_validator.py SE_FQ ${R1} ${sample} --gzip
 
     """
 }
