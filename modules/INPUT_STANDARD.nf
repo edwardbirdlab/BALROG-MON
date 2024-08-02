@@ -51,6 +51,7 @@ process INPUT_STANDARD_FA {
     script:
 
     """
+    echo "Running data_validator.py with fasta: ${fasta}"
     data_validator.py FA ${fasta}
     """
 
