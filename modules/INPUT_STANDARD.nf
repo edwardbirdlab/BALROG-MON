@@ -26,11 +26,11 @@ process INPUT_STANDARD_SEFQ {
 
     script:
 
-    def rename_arg = ""
+    //def rename_arg = ""
 
-    if ( params.rename_fastq ) {
-        rename_arg = " --rename"
-    }
+    //if ( params.rename_fastq ) {
+    //    rename_arg = " --rename"
+    //}
 
     """
     data_validator.py SE_FQ ${R1} ${sample} --gzip \\
