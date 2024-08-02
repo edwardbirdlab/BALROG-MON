@@ -12,7 +12,7 @@ include { FASTQC_ONT as PORECHOP_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { FASTQC_ONT as CHOPPER_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { PORECHOP as PORECHOP } from '../modules/PORECHOP.nf'
 include { CHOPPER as CHOPPER } from '../modules/CHOPPER.nf'
-include { INPUT_STANDARD_SEFQ as INPUT_STANDARD_SEFQ } from '../modules/INPUT_STANDARD_SEFQ.nf'
+include { INPUT_STANDARD_SEFQ as INPUT_STANDARD_SEFQ } from '../modules/INPUT_STANDARD.nf'
 
 
 workflow READ_QC_ONT {

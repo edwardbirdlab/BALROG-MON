@@ -14,7 +14,7 @@ include { FASTQC_ONT as FASTQC_HOST_DEP } from '../modules/FASTQC_ONT.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS_HOST } from '../modules/SAMTOOLS_STATS.nf'
 //include { SAMTOOLS_READNAMES as SAMTOOLS_READNAMES_HOST } from '../modules/SAMTOOLS_READNAMES.nf'
 //include { SEQTK_SUBSEQ_ONT as SEQTK_SUBSEQ_ONT_HOST } from '../modules/SEQTK_SUBSEQ_ONT.nf'
-include { INPUT_STANDARD_FA as INPUT_STANDARD_FA } from '../modules/INPUT_STANDARD_FA.nf'
+include { INPUT_STANDARD_FA as INPUT_STANDARD_FA } from '../modules/INPUT_STANDARD.nf'
 
 
 workflow HOST_REMOVAL_ONT {

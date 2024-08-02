@@ -1,19 +1,23 @@
 process INPUT_STANDARD_SEFQ {
-    label 'midmemshort'
-    container 'ebird013/data_validator:1.1'
+    label 'verylow'
+	container 'biocontainers/fastp:v0.20.1_cv1'
 
     input:
-        tuple val(sample), file(R1)
-
+        tuple val(sample), file(R1), file(R2)
     output:
-        tuple val(sample), path("/work/Validated_Data/${sample}.fastq.gz"), emit: valid_fastq
+	    tuple val(sample), path("${sample}_R1.fq.gz"), path("${sample}_R2.fq.gz"), emit: trimmed_fastq
+	    tuple val(sample), path("${sample}.fastp.html"), emit: fastp_html
+        tuple val(sample), path("${sample}.fastp.json"), emit: fastp_json
+
 
     script:
 
+    def adapter_arg_1 = params.fastp_adap1 ? "--adapter_sequence ${params.fastp_adap1}" : ""
+    def adapter_arg_2 = params.fastp_adap2 ? "--adapter_sequence_r2 ${params.fastp_adap2}" : ""
+
     """
-
-    echo "Running data_validator.py with fastq: ${R1}"
-    data_validator.py SE_FQ ${R1} ${sample} --gzip
-
+    fastp -i ${R1} -I ${R2} -o ${sample}_R1.fq.gz -O ${sample}_R2.fq.gz -q ${params.fastp_q} -l ${params.fastp_minlen} --json ${sample}.fastp.json --html ${sample}.fastp.html  \\
+    $adapter_arg_1 \\
+    $adapter_arg_2
     """
 }
