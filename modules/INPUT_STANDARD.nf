@@ -21,6 +21,7 @@ process INPUT_STANDARD_SEFQ {
 
     input:
         tuple val(sample), file(R1)
+
     output:
         tuple val(sample), path("/work/Validated_Data/${sample}.fastq.gz"), emit: valid_fastq
 
