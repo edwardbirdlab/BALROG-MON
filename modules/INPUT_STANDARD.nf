@@ -1,6 +1,6 @@
 process INPUT_STANDARD_PEFQ {
     label 'midmemshort'
-	container 'ebird013/data_validator:1.1'
+	container 'ebird013/data_validator:1.3'
 
     input:
         tuple val(sample), file(R1), file(R2)
@@ -18,7 +18,7 @@ process INPUT_STANDARD_PEFQ {
 
 process INPUT_STANDARD_SEFQ {
     label 'midmemshort'
-    container 'ebird013/data_validator:1.1'
+    container 'ebird013/data_validator:1.3'
 
     input:
         tuple val(sample), file(R1)
@@ -39,7 +39,7 @@ process INPUT_STANDARD_SEFQ {
 
 process INPUT_STANDARD_FA {
     label 'midmemshort'
-    container 'ebird013/data_validator:1.1'
+    container 'ebird013/data_validator:1.3'
 
     input:
         tuple val(sample), file(FASTA)
