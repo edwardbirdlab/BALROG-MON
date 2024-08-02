@@ -11,7 +11,7 @@ process INPUT_STANDARD_PEFQ {
     script:
 
     """
-    data_validator.py PE_FQ ${R1} ${R2} ${sample} --gzip
+    data_validator.py PE_FQ ${R1} ${R2} --sample_name ${sample}
     cp -r /work/Validated_Data .
     """
 }
@@ -32,7 +32,7 @@ process INPUT_STANDARD_SEFQ {
     //def adapter_arg_2 = params.fastp_adap2 ? "--adapter_sequence_r2 ${params.fastp_adap2}" : ""
 
     """
-    data_validator.py SE_FQ ${R1} ${sample} --gzip
+    data_validator.py SE_FQ ${R1} --sample_name ${sample}
     cp -r /work/Validated_Data .
     """
 }
