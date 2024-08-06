@@ -26,8 +26,9 @@ process LRBINNER_READS {
     script:
 
     """
+    gunzip ${reads}
     mkdir ${sample}_lrbinner
-    lrbinner.py reads --reads-path ${reads} --output ${sample}_lrbinner --k-size ${params.lrbinner_kmmer_size} --bin-size ${params.lrbinner_bin_size} --bin-count ${params.lrbinner_bin_count} --threads ${task.cpus} --separate --min-bin-size ${params.lrbinner_min_bin_size} --bin-iterations ${params.lrbinner_bin_itterations}
+    lrbinner.py reads --reads-path ${sample}.fastq --output ${sample}_lrbinner --k-size ${params.lrbinner_kmmer_size} --bin-size ${params.lrbinner_bin_size} --bin-count ${params.lrbinner_bin_count} --threads ${task.cpus} --separate --min-bin-size ${params.lrbinner_min_bin_size} --bin-iterations ${params.lrbinner_bin_itterations}
     
     """
 }
