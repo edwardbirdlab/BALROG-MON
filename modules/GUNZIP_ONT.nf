@@ -12,7 +12,7 @@ process GUNZIP_ONT {
 
     """
     mkdir temp
-    mv ${fastq} temp/${sample}t.fastq.gz
+    mv ${fastq} temp/${sample}.fastq.gz
     gunzip -f temp/ ${sample}.fastq.gz
     """
 }
