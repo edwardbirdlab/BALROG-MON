@@ -17,6 +17,7 @@ params.lrbinner_bin_itterations # Number of iterations for cluster search. Use 0
 process LRBINNER_READS {
     label 'midmemlong'
     container 'ebird013/lrbinner:1.0'
+    errorStrategy 'ignore'
 
     input:
         tuple val(sample), file(reads)
@@ -35,6 +36,7 @@ process LRBINNER_READS {
 process LRBINNER_CONTIGS {
     label 'midmemlong'
     container 'ebird013/lrbinner:1.0'
+    errorStrategy 'ignore'
 
     input:
         tuple val(sample), file(reads), file(scaffolds)
