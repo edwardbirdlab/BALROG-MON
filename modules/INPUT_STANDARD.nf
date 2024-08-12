@@ -27,11 +27,11 @@ process INPUT_STANDARD_SEFQ {
 
     script:
 
-    //def adapter_arg_1 = params.fastp_adap1 ? "--adapter_sequence ${params.fastp_adap1}" : ""
-    //def adapter_arg_2 = params.fastp_adap2 ? "--adapter_sequence_r2 ${params.fastp_adap2}" : ""
+    def rename = params.rename_fastq ? "--rename" : ""
 
     """
-    data_validator.py SE_FQ ${R1} --sample_name ${sample}
+    data_validator.py SE_FQ ${R1} --sample_name ${sample} \\
+    ${rename}
     """
 }
 
