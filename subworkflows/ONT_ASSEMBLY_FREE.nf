@@ -7,25 +7,21 @@ params.min_contig_cov = '2'        ==  conbined with size to filter out small lo
 
 */
 
-include { FLYE_META as FLYE_META } from '../modules/FLYE_META.nf'
-include { QUAST as QUAST } from '../modules/QUAST.nf'
+include { SEQTK_FQ2FA as SEQTK_FQ2FA_SAMP } from '../modules/SEQTK_FQ2FA.nf'
 
 
-workflow ONT_ASSEMBLY {
+
+workflow ONT_ASSEMBLY_FREE {
     take:
         fastqs_ont      //    channel: [val(sample), path(fastq)]
 
     main:
 
 
-        FLYE_META(fastqs_ont)
-
-        QUAST(FLYE_META.out.metagenome)
-
-
+        SEQTK_FQ2FA_SAMP(fastqs_ont)
 
 
     emit:
-        output   = FLYE_META.out.metagenome  //   channel: [ val(sample), path("${sample}.fasta")]
+        output   = SEQTK_FQ2FA_SAMP.out.fq2fa  //   channel: [ val(sample), path("${sample}.fasta")]
 
 }

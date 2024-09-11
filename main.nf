@@ -110,6 +110,7 @@ include { ONT_METAGENOMIC as ONT_METAGENOMIC } from './workflows/ONT_METAGENOMIC
 include { ONT_METAGENOMIC_RNA as ONT_METAGENOMIC_RNA } from './workflows/ONT_METAGENOMIC_RNA.nf'
 include { SR_QC_ONLY as SR_QC_ONLY } from './workflows/SR_QC_ONLY.nf'
 include { SR_MULTIQC as SR_MULTIQC } from './workflows/SR_MULTIQC.nf'
+include { ONT_MULTIQC as ONT_MULTIQC } from './workflows/ONT_MULTIQC.nf'
 
 workflow {
 
@@ -152,6 +153,12 @@ workflow {
     if (params.workflow_opt == 'sr_multiqc') {
 
         SR_MULTIQC()
+
+        }
+
+    if (params.workflow_opt == 'ont_multiqc') {
+
+        ONT_MULTIQC()
 
         }
 

@@ -12,7 +12,7 @@ include { FASTQC_ONT as PORECHOP_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { FASTQC_ONT as CHOPPER_FASTQC } from '../modules/FASTQC_ONT.nf'
 include { PORECHOP as PORECHOP } from '../modules/PORECHOP.nf'
 include { CHOPPER as CHOPPER } from '../modules/CHOPPER.nf'
-include { RENAME_READS as RENAME_READS } from '../modules/RENAME_READS.nf'
+include { INPUT_STANDARD_SEFQ as INPUT_STANDARD_SEFQ } from '../modules/INPUT_STANDARD.nf'
 
 
 workflow READ_QC_ONT {
@@ -22,14 +22,14 @@ workflow READ_QC_ONT {
         // Create output channels
         //ch_trimmed_fastq        = Channel.empty()
 
-        RENAME_READS(fastqs)
-        RAW_FASTQC(RENAME_READS.out.renamed_reads)
-        PORECHOP(RENAME_READS.out.renamed_reads)
+        INPUT_STANDARD_SEFQ(fastqs)
+        RAW_FASTQC(INPUT_STANDARD_SEFQ.out.valid_fastq)
+        PORECHOP(INPUT_STANDARD_SEFQ.out.valid_fastq)
         PORECHOP_FASTQC(PORECHOP.out.fastq)
         CHOPPER(PORECHOP.out.fastq)
         CHOPPER_FASTQC(CHOPPER.out.fastq)
 
     emit:
-       chopper_fastq_ch    =  CHOPPER.out.fastq  //   channel: [ val(sample), fastq]
+       chopper_fastq_ch    =  CHOPPER.out.fastq  //   channel: [ val(sample), fastq] gzipped
 
 }

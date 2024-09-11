@@ -5,7 +5,7 @@ process FLYE_META {
     input:
         tuple val(sample), file(fastq)
     output:
-        tuple val(sample), path("${sample}_fly"), emit: metagenome
+        tuple val(sample), path("${sample}_fly/assembly.fasta"), emit: metagenome
 
     script:
 

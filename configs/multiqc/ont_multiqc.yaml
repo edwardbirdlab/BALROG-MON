@@ -1,0 +1,33 @@
+run_modules:
+- fastqc
+- porechop
+- samtools
+- quast
+sp: {}
+module_order:
+
+# ONT QC
+- fastqc:
+    name: FastQC (Raw_FQ)
+    path_filters: ONT_METAGENOMIC/READ_QC_ONT/RAW_FASTQC/*_fastqc.zip
+- porechop:
+    name: Porechop
+    path_filters: ONT_METAGENOMIC/READ_QC_ONT/PORECHOP/*.log
+- fastqc:
+    name: FastQC (PoreChop_FQ)
+    path_filters: ONT_METAGENOMIC/READ_QC_ONT/PORECHOP_FASTQC/*_fastqc.zip
+- fastqc:
+    name: FastQC (Chopper_FQ)
+    path_filters: ONT_METAGENOMIC/READ_QC_ONT/CHOPPER_FASTQC/*_fastqc.zip
+- samtools:
+    name: Human Removal (Minimap2 + Samtools)
+    path_filters: ONT_METAGENOMIC/HUMAN_REMOVAL_ONT/SAMTOOLS_STATS_HUMAN/*txt
+- samtools:
+    name: Host Removal (Minimap2 + Samtools)
+    path_filters: ONT_METAGENOMIC/HOST_REMOVAL_ONT/SAMTOOLS_STATS_HOST/*txt
+- fastqc:
+    name: Human/Host/Trimmed Final QC (FastQC)
+    path_filters: ONT_METAGENOMIC/HOST_REMOVAL_ONT/FASTQC_HOST_DEP/*_fastqc.zip
+- quast:
+    name: Metagenome Assembly (FLYE)
+    path_filters: ONT_METAGENOMIC/ONT_ASSEMBLY/QUAST/*/report.tsv

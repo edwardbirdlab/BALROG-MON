@@ -6,12 +6,13 @@ process GUNZIP_ONT {
         tuple val(sample), file(fastq)
 
     output:
-        tuple val(sample), path("${sample}_readsubset.fastq"), emit: read_subset
+        tuple val(sample), path("temp/${sample}.fastq"), emit: decomp
 
     script:
 
     """
-    mv ${fastq} ${sample}_readsubset.fastq.gz
-    gunzip -f ${sample}_readsubset.fastq.gz
+    mkdir temp
+    mv ${fastq} temp/${sample}.fastq.gz
+    gunzip -f temp/${sample}.fastq.gz
     """
 }
