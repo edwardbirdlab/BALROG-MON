@@ -55,9 +55,9 @@ BALROG-MON (Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenom
 
 <h3 align="center">Not the BALROG pipeline you're looking for?</h3>
  <p align="center">
-   <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">BALROG-MSR: Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Short Read</a>
+   <a href="https://github.com/edwardbirdlab/BALROG-MS">BALROG-MSR: Bacterial Antimicrobial Resistance annOtation of Genomes - Metagenomic Short Read</a>
    <br />
-   <a href="https://github.com/edwardbirdlab/HT-BALRROG/issues/new?labels=bug&template=bug-report---.md">BALROG-ISO: Bacterial Antimicrobial Resistance annOtation of Genomes - ISOlate whole genomes</a>
+   <a href="https://github.com/edwardbirdlab/BALROG-ISO">BALROG-ISO: Bacterial Antimicrobial Resistance annOtation of Genomes - ISOlate whole genomes</a>
 
 ## Workflow Overview
 
