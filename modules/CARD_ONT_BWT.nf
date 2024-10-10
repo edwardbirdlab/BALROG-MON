@@ -28,5 +28,4 @@ process CARD_ONT_BWT {
         card: \$(rgi database -v 2>&1)
     END_VERSIONS
     """
-    """
 }
