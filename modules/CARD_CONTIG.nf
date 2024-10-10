@@ -21,7 +21,7 @@ process CARD_CONTIG {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        rgi: \$(rgi main -v 2>&1)
+        rgi_main: \$(rgi main -v 2>&1)
         card: \$(rgi database -v 2>&1)
     END_VERSIONS
     """
