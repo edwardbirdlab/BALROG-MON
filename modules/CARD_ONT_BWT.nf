@@ -18,7 +18,7 @@ process CARD_ONT_BWT {
     rgi card_annotation -i ${db} > card_annotation.log 2>&1
     rm *all.fasta
     mv card_database_*.fasta card_database.fasta
-    rgi load -i ${db} --card_annotation card_database_v3.2.9.fasta --local
+    rgi load -i ${db} --card_annotation card_database.fasta --local
 
     rgi bwt --read_one ${R1} --output_file ./${sample}/${sample}_out --local --clean -a kma -n ${task.cpus} --kma_ont
     """
