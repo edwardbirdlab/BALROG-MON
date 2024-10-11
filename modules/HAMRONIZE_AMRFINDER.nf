@@ -13,7 +13,8 @@ process HAMRONIZE_AMRFINDER {
 
     """
     version=\$(grep 'amrfinder' ${versions} | awk -F': ' '{print \$2}')
-    version_db=\$(grep 'amrfinder_db' ${versions} | awk -F': ' '{print \$2} | sed 's/\./_/g'')
+    version_db=\$(grep 'amrfinder_db' ${versions} | awk -F': ' '{print \$2}' | sed 's/\\./_/g')
+)
 
     hamronize amrfinderplus ${tsv} --analysis_software_version \$version --reference_database_version \$version_db --input_file_name ${sample} --output ${sample}_harmonize_amrfinder.tsv
 
