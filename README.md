@@ -5,12 +5,12 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-<!--[![MIT License][(https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)]][license-url]-->
-[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A523.04.0-23aa62.svg)](https://www.nextflow.io/)
-[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
-[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![DOI](https://zenodo.org/badge/450245642.svg)](https://zenodo.org/doi/10.5281/zenodo.11110897)
+<br />
+[![License](https://img.shields.io/badge/License%20-%20PDDL%201.0%20-%20%2FLICENSE?style=flat-square&color=959595)](/LICENSE)
+[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2%20-%20%E2%89%A5%2023.04.0%20-%20run%20with%20Nextflow?style=flat-square&color=2E8B57)](https://www.nextflow.io/)
+[![run with docker](https://img.shields.io/badge/run%20with%20-%20docker%20-%20run%20with%20Docker?style=flat-square&color=87CEFA)](https://www.docker.com/)
+[![run with singularity](https://img.shields.io/badge/run%20with%20-%20singularity%20-%20run%20with%20Singularity?style=flat-square&color=191970)](https://sylabs.io/docs/)
+[![DOI](https://img.shields.io/badge/DOI%20-%2010.5281%2Fzenodo.1110898%20-%2010%205281%20zenodo%2011110898?style=flat-square&color=4169E1)](https://doi.org/10.5281/zenodo.11110898)
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
