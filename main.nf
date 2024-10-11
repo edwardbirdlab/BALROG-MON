@@ -56,7 +56,7 @@ if (params.workflow_opt == 'ont_meta') {
 
     ch_hostgen = Channel.fromPath(params.sample_sheet) \
         | splitCsv(header:true) \
-        | map { row-> tuple(row.sample, file(row.refernce_genome)) }
+        | map { row-> tuple(row.sample, file(row.reference_genome)) }
 
     }
 
