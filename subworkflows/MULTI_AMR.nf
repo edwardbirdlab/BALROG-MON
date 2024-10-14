@@ -15,6 +15,7 @@ include { CARD_PARSE as CARD_PARSE } from '../modules/CARD_PARSE.nf'
 include { RESFINDER_PARSE as RESFINDER_PARSE } from '../modules/RESFINDER_PARSE.nf'
 include { HAMRONIZE_AMRFINDER as HAMRONIZE_AMRFINDER } from '../modules/HAMRONIZE_AMRFINDER.nf'
 include { HAMRONIZE_RGI as HAMRONIZE_RGI } from '../modules/HAMRONIZE_RGI.nf'
+include { HAMRONIZE_RESFINDER as HAMRONIZE_RESFINDER } from '../modules/HAMRONIZE_RESFINDER.nf'
 
 
 workflow MULTI_AMR {
@@ -74,6 +75,7 @@ workflow MULTI_AMR {
 
         HAMRONIZE_AMRFINDER(AMRFINDER.out.for_hamr)
         HAMRONIZE_RGI(CARD_CONTIG.out.for_hamr)
+        HAMRONIZE_RESFINDER(RESFINDER.out.for_hamr)
 
         ch_amrfinder_collect = AMRFINDER.out.amrfinder_results.collect()
         AMRFINDER_PARSE(ch_amrfinder_collect, ch_amrfinder_db)
