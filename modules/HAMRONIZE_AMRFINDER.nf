@@ -13,8 +13,8 @@ process HAMRONIZE_AMRFINDER {
 
     '''
     mv !{versions} metadata.yml
-    version=$(grep 'amrfinder' metadata.yml | awk -F' ' '{print $2}')
-    version_db=$(grep 'amrfinder_db' metadata.yml | awk -F' ' '{print $2}')
+    version=$(grep 'amrfinder:' metadata.yml | awk -F' ' '{print $2}')
+    version_db=$(grep 'amrfinder_db:' metadata.yml | awk -F' ' '{print $2}')
 
     echo $version
     echo $version_db
