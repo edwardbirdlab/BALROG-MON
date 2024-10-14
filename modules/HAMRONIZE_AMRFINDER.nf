@@ -12,12 +12,12 @@ process HAMRONIZE_AMRFINDER {
     script:
 
     '''
-    version=$(grep 'amrfinder' ${versions} | awk -F' ' '{print $2}')
-    version_db=$(grep 'amrfinder_db' ${versions} | awk -F' ' '{print $2}')
-    hamronize amrfinderplus ${tsv} --analysis_software_version $version --reference_database_version $version_db --input_file_name ${sample} --output ${sample}_harmonize_amrfinder.tsv
+    version=$(grep 'amrfinder' !{versions} | awk -F' ' '{print $2}')
+    version_db=$(grep 'amrfinder_db' !{versions} | awk -F' ' '{print $2}')
+    hamronize amrfinderplus !{tsv} --analysis_software_version $version --reference_database_version $version_db --input_file_name !{sample} --output !{sample}_harmonize_amrfinder.tsv
 
     cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
+    "!{task.process}":
         hamronization: $(hamronize -v 2>&1 | sed -e "s/hamronize //g")
     END_VERSIONS  
     '''
