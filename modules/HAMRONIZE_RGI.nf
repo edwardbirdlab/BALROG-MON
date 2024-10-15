@@ -6,8 +6,8 @@ process HAMRONIZE_RGI {
         tuple val(sample), file(tsv), file(versions)
 
     output:
-        tuple val(sample), path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv
-        path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv_only
+        tuple val(sample), path("./${sample}_harmonize_rgi.tsv"), emit: tsv
+        path("./${sample}_harmonize_rgi.tsv"), emit: tsv_only
         path("versions.yml"), emit: versions
 
     shell:
