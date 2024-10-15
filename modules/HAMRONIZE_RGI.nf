@@ -7,6 +7,7 @@ process HAMRONIZE_AMRFINDER {
 
     output:
         tuple val(sample), path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv
+        path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv_only
         path("versions.yml"), emit: versions
 
     shell:
@@ -16,7 +17,7 @@ process HAMRONIZE_AMRFINDER {
     version=$(grep 'rgi_main:' metadata.yml | awk -F' ' '{print $2}')
     version_db=$(grep 'card:' metadata.yml | awk -F' ' '{print $2}')
 
-    hamronize rgi !{tsv} --analysis_software_version $version --reference_database_version $version_db --input_file_name !{sample} --output !{sample}_harmonize_amrfinder.tsv
+    hamronize rgi !{tsv} --analysis_software_version $version --reference_database_version $version_db --input_file_name !{sample} --output !{sample}_harmonize_rgi.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "!{task.process}":

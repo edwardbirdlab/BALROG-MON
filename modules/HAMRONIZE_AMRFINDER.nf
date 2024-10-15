@@ -7,6 +7,7 @@ process HAMRONIZE_AMRFINDER {
 
     output:
         tuple val(sample), path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv
+        path("./${sample}_harmonize_amrfinder.tsv"), emit: tsv_only
         path("versions.yml"), emit: versions
 
     shell:
