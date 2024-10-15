@@ -80,7 +80,7 @@ workflow MULTI_AMR {
 
         ch_summarize_amr = HAMRONIZE_AMRFINDER.out.tsv_only.concat(HAMRONIZE_RGI.out.tsv_only,HAMRONIZE_RESFINDER.out.tsv_only)
 
-        HAMRONIZE_SUMMARY()
+        HAMRONIZE_SUMMARY(ch_summarize_amr)
 
         ch_amrfinder_collect = AMRFINDER.out.amrfinder_results.collect()
         AMRFINDER_PARSE(ch_amrfinder_collect, ch_amrfinder_db)
