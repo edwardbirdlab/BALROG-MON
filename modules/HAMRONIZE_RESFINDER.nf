@@ -1,4 +1,4 @@
-process HAMRONIZE_AMRFINDER {
+process HAMRONIZE_RESFINDER {
    label 'lowmemnk'
     container 'ebird013/harmonization:1.0.2'
 
