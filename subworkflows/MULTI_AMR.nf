@@ -74,22 +74,22 @@ workflow MULTI_AMR {
         AMRFINDER(seqs, ch_amrfinder_db)
         RESFINDER(seqs, ch_resfinder_db)
 
-        HAMRONIZE_AMRFINDER(AMRFINDER.out.for_hamr)
+        //HAMRONIZE_AMRFINDER(AMRFINDER.out.for_hamr)
         HAMRONIZE_RGI(CARD_CONTIG.out.for_hamr)
         HAMRONIZE_RESFINDER(RESFINDER.out.for_hamr)
 
-        ch_summarize_amr = HAMRONIZE_AMRFINDER.out.tsv_only.concat(HAMRONIZE_RGI.out.tsv_only,HAMRONIZE_RESFINDER.out.tsv_only)
+        ch_summarize_amr = HAMRONIZE_RESFINDER.out.tsv_only.concat(HAMRONIZE_RGI.out.tsv_only)
 
         HAMRONIZE_SUMMARY(ch_summarize_amr.collect())
 
         ch_amrfinder_collect = AMRFINDER.out.amrfinder_results.collect()
-        AMRFINDER_PARSE(ch_amrfinder_collect, ch_amrfinder_db)
+        //AMRFINDER_PARSE(ch_amrfinder_collect, ch_amrfinder_db)
 
         ch_card_collect = CARD_CONTIG.out.tbout.collect()
-        CARD_PARSE(ch_card_collect)
+        //CARD_PARSE(ch_card_collect)
 
         ch_resfinder_collect = RESFINDER.out.db_hits.collect()
-        RESFINDER_PARSE(ch_resfinder_collect)
+        //RESFINDER_PARSE(ch_resfinder_collect)
 
 
     //emit:
