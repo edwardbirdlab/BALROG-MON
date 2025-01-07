@@ -23,8 +23,8 @@ workflow READ_QC_ONT {
         //ch_trimmed_fastq        = Channel.empty()
 
         //INPUT_STANDARD_SEFQ(fastqs)
-        RAW_FASTQC(INPUT_STANDARD_SEFQ.out.valid_fastq)
-        PORECHOP(INPUT_STANDARD_SEFQ.out.valid_fastq)
+        RAW_FASTQC(fastqs)
+        PORECHOP(fastqs)
         PORECHOP_FASTQC(PORECHOP.out.fastq)
         CHOPPER(PORECHOP.out.fastq)
         CHOPPER_FASTQC(CHOPPER.out.fastq)
