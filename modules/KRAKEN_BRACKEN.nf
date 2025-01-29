@@ -11,6 +11,7 @@ process KRAKEN_BRACKEN {
        tuple val(sample), path("${sample}.breport"), emit: report
        tuple val(sample), path("${sample}.bracken"), emit: bracken
        path("${sample}.bracken"), emit: bracken_only
+       path("versions.yml"), emit: versions
 
     script:
 
@@ -23,5 +24,10 @@ process KRAKEN_BRACKEN {
     cd ..
     bracken -d krakendb -i ${report} -r 150 -l S -t 10 -o ${sample}.bracken -w ${sample}.breport
     bracken -d krakendb -i ${report} -r 150 -l F -t 10 -o ${sample}_F.bracken -w ${sample}_F.breport
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Bracken: \$(bracken -v 2>&1 | grep "Bracken" | sed -e "s/Bracken //g")
+    END_VERSIONS 
     """
 }

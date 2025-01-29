@@ -23,6 +23,7 @@ process LRBINNER_READS {
         tuple val(sample), file(reads)
     output:
         tuple val(sample), path("./${sample}_lrbinner"), emit: bins
+        path("versions.yml"), emit: versions
 
     script:
 
@@ -30,6 +31,10 @@ process LRBINNER_READS {
     mkdir ${sample}_lrbinner
     lrbinner.py reads --reads-path ${reads} --output ${sample}_lrbinner --k-size ${params.lrbinner_kmmer_size} --bin-size ${params.lrbinner_bin_size} --bin-count ${params.lrbinner_bin_count} --threads ${task.cpus} --separate --min-bin-size ${params.lrbinner_min_bin_size} --bin-iterations ${params.lrbinner_bin_itterations}
     
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Lrbinner: \$(lrbinner.py --version 2>&1 | grep "lrbinner.py" | sed -e "s/lrbinner.py //g")
+    END_VERSIONS 
     """
 }
 
@@ -42,6 +47,7 @@ process LRBINNER_CONTIGS {
         tuple val(sample), file(reads), file(scaffolds)
     output:
         tuple val(sample), path("./${sample}_lrbinner"), emit: bins
+        path("versions.yml"), emit: versions
 
     script:
 
@@ -50,5 +56,9 @@ process LRBINNER_CONTIGS {
     mkdir ${sample}_lrbinner
     lrbinner.py reads --reads-path ${reads} --output ${sample}_lrbinner --k-size ${params.lrbinner_kmmer_size} --bin-size ${params.lrbinner_bin_size} --bin-count ${params.lrbinner_bin_count} --threads ${task.cpus} --separate --min-bin-size ${params.lrbinner_min_bin_size} --bin-iterations ${params.lrbinner_bin_itterations}
 
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Lrbinner: \$(lrbinner.py --version 2>&1 | grep "lrbinner.py" | sed -e "s/lrbinner.py //g")
+    END_VERSIONS 
     """
 }

@@ -4,11 +4,17 @@ process VIRSORTER2_DB {
 
     output:
         path("db"), emit: database
+        path("versions.yml"), emit: versions
 
     script:
 
     """
     wget https://osf.io/v46sc/download
     tar -xzf download
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Virsorter2: \$(virsorter --version 2>&1 | grep "VirSorter" | sed -E "s/.*VirSorter //g")
+    END_VERSIONS 
     """
 }

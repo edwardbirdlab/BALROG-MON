@@ -7,6 +7,7 @@ process SYLPH_SKETCH_GTDB {
 
     output:
         path("gtdb_ref_database.syldb"), emit: gtdb_sylph
+        path("versions.yml"), emit: versions
 
     script:
 
@@ -15,5 +16,10 @@ process SYLPH_SKETCH_GTDB {
     tar -xf gtdbtk_r207_v2_data.tar.gz -C db --strip-components=1
     find db | grep .fna > gtdb_all.txt
     sylph sketch -l gtdb_all.txt -t ${task.cpus} -o gtdb_ref_database
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        sylph: \$(sylph --version 2>&1 | grep "sylph" | sed -e "s/sylph //g")
+    END_VERSIONS 
     """
 }
