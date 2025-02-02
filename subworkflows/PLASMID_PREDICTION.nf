@@ -75,7 +75,7 @@ workflow PLASMID_PREDICTION {
         QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome)
         QUAST_SHORT(PLASMER_SORT.out.tooshort)
         //VIRSORTER2(PLASMER_SORT.out.all, ch_virsorter_db)
-        MEF(PLASMER_SORT.out.all)
+        //MEF(PLASMER_SORT.out.all)
         //VIRALVERIFY(PLASMER_SORT.out.plasmid, ch_viralverify_db)
 
     emit:
