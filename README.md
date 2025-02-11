@@ -10,7 +10,7 @@
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2%20-%20%E2%89%A5%2023.04.0%20-%20run%20with%20Nextflow?style=flat-square&color=2E8B57)](https://www.nextflow.io/)
 [![run with docker](https://img.shields.io/badge/run%20with%20-%20docker%20-%20run%20with%20Docker?style=flat-square&color=87CEFA)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with%20-%20singularity%20-%20run%20with%20Singularity?style=flat-square&color=191970)](https://sylabs.io/docs/)
-[![DOI](https://img.shields.io/badge/DOI%20-%2010.5281%2Fzenodo.1110898%20-%2010%205281%20zenodo%2011110898?style=flat-square&color=4169E1)](https://doi.org/10.5281/zenodo.11110898)
+[![DOI](https://zenodo.org/badge/450245642.svg)](https://doi.org/10.5281/zenodo.11110897)
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
