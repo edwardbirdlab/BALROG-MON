@@ -75,6 +75,13 @@
   
   > Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database. _Bioinformatics, 36_(6), 1925-1927. https://doi.org/10.1093/bioinformatics/btz848
 
+- **hAMRonization**
+  
+  [Code Repository](https://github.com/pha4ge/hAMRonization)
+
+  > I Mendes et al. 2024. "hAMRonization: Enhancing antimicrobial resistance prediction using the PHA4GE AMR detection specification and tooling". bioRxiv. https://doi.org/10.1101/2024.03.07.583950
+
+
 - **Kracken 2**
   
   [Code Repository](https://github.com/DerrickWood/kraken2) | [Webpages](https://ccb.jhu.edu/software/kraken2/)
