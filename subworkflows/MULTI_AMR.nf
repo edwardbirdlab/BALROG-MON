@@ -74,7 +74,7 @@ workflow MULTI_AMR {
         AMRFINDER(seqs, ch_amrfinder_db)
         RESFINDER(seqs, ch_resfinder_db)
 
-        //HAMRONIZE_AMRFINDER(AMRFINDER.out.for_hamr)
+        HAMRONIZE_AMRFINDER(AMRFINDER.out.for_hamr)
         HAMRONIZE_RGI(CARD_CONTIG.out.for_hamr)
         HAMRONIZE_RESFINDER(RESFINDER.out.for_hamr)
 
