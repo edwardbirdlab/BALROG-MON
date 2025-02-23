@@ -1,6 +1,6 @@
 process HAMRONIZE_RESFINDER {
    label 'lowmemnk'
-    container 'ebird013/harmonization:1.0.2'
+    container 'ebird013/hamronization:1.1.8'
 
     input:
         tuple val(sample), file(tsv), file(versions)
