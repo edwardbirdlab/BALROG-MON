@@ -17,8 +17,8 @@ process HAMRONIZE_AMRFINDER {
     version=$(grep 'amrfinder:' metadata.yml | awk -F' ' '{print $2}')
     version_db=$(grep 'amrfinder_db:' metadata.yml | awk -F' ' '{print $2}')
 
-    sed "s/^Protein id/Protein identifier/" !{tsv} > reformatted.tsv
-    sed "s/^Subtype/Element subtype/" !{tsv} > reformatted.tsv
+    sed "s/^Protein id/Protein identifier/" !{tsv} > reformatted_temp.tsv
+    sed "s/^Subtype/Element subtype/" reformatted_temp.tsv > reformatted.tsv
 
     hamronize amrfinderplus reformatted.tsv --analysis_software_version $version --reference_database_version $version_db --input_file_name !{sample} --output !{sample}_harmonize_amrfinder.tsv
 
