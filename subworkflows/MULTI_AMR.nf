@@ -78,7 +78,7 @@ workflow MULTI_AMR {
         HAMRONIZE_RGI(CARD_CONTIG.out.for_hamr)
         HAMRONIZE_RESFINDER(RESFINDER.out.for_hamr)
 
-        ch_summarize_amr = HAMRONIZE_RESFINDER.out.tsv_only.concat(HAMRONIZE_RGI.out.tsv_only)
+        ch_summarize_amr = HAMRONIZE_AMRFINDER.out.tsv_only.concat(HAMRONIZE_RGI.out.tsv_only,HAMRONIZE_RESFINDER.out.tsv_only)
 
         HAMRONIZE_SUMMARY(ch_summarize_amr.collect())
 
