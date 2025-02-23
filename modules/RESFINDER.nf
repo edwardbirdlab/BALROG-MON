@@ -9,7 +9,7 @@ process RESFINDER {
     output:
         path("./${sample}"), emit: resfinder_results
         path("Resfinder_geneseqs_${sample}.fsa"), emit: db_hits
-        tuple val(sample), path("${sample}_resfinder_tab.txt"), path("versions.yml"), emit: for_hamr
+        tuple val(sample), path("${sample}/${sample}_allclass.json"), path("versions.yml"), emit: for_hamr
         path("versions.yml"), emit: versions
 
     script:
