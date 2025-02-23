@@ -17,7 +17,7 @@ process HAMRONIZE_RESFINDER {
     version=$(grep 'resfinder:' metadata.yml | awk -F' ' '{print $2}')
     version_db=$(grep 'resfinder_db:' metadata.yml | awk -F' ' '{print $2}')
 
-    hamronize resfinder !{tsv} --input_file_name !{sample} --output !{sample}_harmonize_resfinder.tsv
+    hamronize resfinder !{tsv} --output !{sample}_harmonize_resfinder.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "!{task.process}":
