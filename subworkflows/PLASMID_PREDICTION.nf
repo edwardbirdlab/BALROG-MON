@@ -36,7 +36,7 @@ workflow PLASMID_PREDICTION {
 
             } else {
 
-                ch_plasmer_db   =  Channel.fromPath("${params.database_dir}/Plasmer/*.Kraken2DB.tar.xz","${params.database_dir}/Plasmer/*.MainDB.tar.xz")
+                ch_plasmer_db = Channel.fromPath("${params.database_dir}/Plasmer/*.Kraken2DB.tar.xz").mix(Channel.fromPath("${params.database_dir}/Plasmer/*.MainDB.tar.xz"))
 
             }
 
@@ -47,11 +47,11 @@ workflow PLASMID_PREDICTION {
 
             PFAM_DB()
 
-            ch_viralverify_db        =  PFAM_DB.out.pfam_DB
+            //ch_viralverify_db        =  PFAM_DB.out.pfam_DB
 
             } else {
 
-                ch_viralverify_db    =  Channel.fromPath("${params.database_dir}/Kraken2/*.hmm")
+                //ch_viralverify_db    =  Channel.fromPath("${params.database_dir}/Kraken2/*.hmm")
 
             }
 
@@ -69,19 +69,84 @@ workflow PLASMID_PREDICTION {
 
             }
 
-        PLASMER(assembly, ch_plasmer_db)
-        PLASMER_SORT(PLASMER.out.for_sort)
-        QUAST_PLASMID(PLASMER_SORT.out.plasmid)
-        QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome)
-        QUAST_SHORT(PLASMER_SORT.out.tooshort)
+        //Splitting large assemblies
+        ch_assembly_chunks = assembly
+            .flatMap { sample, fasta ->
+                fasta.splitFasta(by: params.chunksize, file: true).collect { sequence -> [sample, sequence] }
+            }
+
+        PLASMER(ch_assembly_chunks, ch_plasmer_db)
+
+        // Group Fasta Files
+        ch_merged_too_short = PLASMER.out.too_short
+            .map { sample, file -> tuple(sample, file) }
+            .groupTuple()
+            .map { sample, files ->
+                def outputFile = file("${params.project_name}/SHORT_READ_METAGENOMIC/PLASMID_PREDICTION/PLASMER_MERGE/${sample}_too_short.fasta")
+                outputFile.text = files.collect { it.text }.join('\n')
+                return outputFile
+            }
+
+        ch_merged_pred_plasmids = PLASMER.out.pred_plasmids
+            .collect()
+            .groupTuple()
+            .collectFile(
+                name: { sample, _ -> "${sample}_plasmids.fasta" },
+                storeDir: "${params.project_name}/SHORT_READ_METAGENOMIC/PLASMID_PREDICTION/PLASMER_MERGE",
+                sort: true
+            )
+
+        // Merging TSVs with no header
+        ch_merged_pred_class = PLASMER.out.pred_class
+            .map { sample, file -> tuple(sample, file) }
+            .groupTuple()
+            .map { sample, files ->
+                def outputFile = file("${params.project_name}/SHORT_READ_METAGENOMIC/PLASMID_PREDICTION/PLASMER_MERGE/${sample}_plasmer_class.tsv")
+                outputFile.text = files.collect { it.text }.join('\n')
+                return outputFile
+            }
+
+        ch_merged_pred_taxon = PLASMER.out.pred_taxon
+            .map { sample, file -> tuple(sample, file) }
+            .groupTuple()
+            .map { sample, files ->
+                def outputFile = file("${params.project_name}/SHORT_READ_METAGENOMIC/PLASMID_PREDICTION/PLASMER_MERGE/${sample}_plasmer_taxon.tsv")
+                outputFile.text = files.collect { it.text }.join('\n')
+                return outputFile
+            }
+
+        // Merging TSVs with header
+        ch_merged_probability = PLASMER.out.probability
+            .map { sample, file -> tuple(sample, file) }
+            .groupTuple()
+            .map { sample, files ->
+                def allLines = files.collect { it.readLines() }.flatten()
+                def header = allLines.find { it.startsWith("#") } // Assuming the header starts with #
+                def content = allLines.findAll { !it.startsWith("chromosome") }
+                tuple(sample, header, content)
+            }
+            .map { sample, header, content ->
+                def outputFile = file("${params.project_name}/SHORT_READ_METAGENOMIC/PLASMID_PREDICTION/PLASMER_MERGE/${sample}_class_prob.tsv")
+                outputFile.text = header + "\n" + content.join("\n")
+                return outputFile
+            }
+
+
+
+
+        //PLASMER_SORT(PLASMER.out.for_sort)
+        //QUAST_PLASMID(PLASMER_SORT.out.plasmid)
+        //QUAST_CHROMOSOMAL(PLASMER_SORT.out.chromosome)
+        //QUAST_SHORT(PLASMER_SORT.out.tooshort)
         //VIRSORTER2(PLASMER_SORT.out.all, ch_virsorter_db)
-        //MEF(PLASMER_SORT.out.all)
+        //MEF(assembly)
         //VIRALVERIFY(PLASMER_SORT.out.plasmid, ch_viralverify_db)
 
     emit:
-        plasmids         =       PLASMER_SORT.out.plasmid        // tuple val(sample), path("*plasmid.fasta"), emit: plasmid
-        chromosomal      =       PLASMER_SORT.out.chromosome     // tuple val(sample), path("*chromosome.fasta"), emit: chromosome
-        too_short        =       PLASMER_SORT.out.tooshort       // tuple val(sample), path("*tooshort.fasta"), emit: tooshort
-        all              =       PLASMER_SORT.out.all            // tuple val(sample), path("*allclass.fasta"), emit: all
+        //plasmids         =       PLASMER_SORT.out.plasmid        // tuple val(sample), path("*plasmid.fasta"), emit: plasmid
+        //chromosomal      =       PLASMER_SORT.out.chromosome     // tuple val(sample), path("*chromosome.fasta"), emit: chromosome
+        //too_short        =       PLASMER_SORT.out.tooshort       // tuple val(sample), path("*tooshort.fasta"), emit: tooshort
+        //all              =       PLASMER_SORT.out.all            // tuple val(sample), path("*allclass.fasta"), emit: all
+        all              =       assembly                          // tuple val(sample), path("*allclass.fasta"), emit: all
 
 }
