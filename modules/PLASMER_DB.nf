@@ -1,5 +1,5 @@
 process PLASMER_DB {
-    label 'small'
+    label 'internet'
     output:
         tuple path("customizedKraken2DB.tar.xz"), path("plasmerMainDB.tar.xz"), emit: plasmer_DB
 
