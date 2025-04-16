@@ -1,6 +1,6 @@
 process KRAKEN2_PLUSPF_SE {
     label 'kracken2_PlusPF'
-	container 'ebird013/kracken2:2.1.3'
+	container 'ebird013/kraken2:latest'
 
     input:
         tuple val(sample), file(R1)
@@ -18,6 +18,6 @@ process KRAKEN2_PLUSPF_SE {
     cd krakendb
     tar zxvf $db
     cd ..
-    kraken2 --db krakendb --threads ${task.cpus} --output ${sample}_out.tsv --report ${sample}_report.tsv --report-minimizer-data --minimum-hit-groups 3 ${R1}
+    kraken2 --db krakendb --threads ${task.cpus} --output ${sample}_out.tsv --report ${sample}_report.tsv --report-minimizer-data --minimum-hit-groups {params.k2_min_hit_group} --confidence {params.k2_confidence} ${R1}
     """
 }
