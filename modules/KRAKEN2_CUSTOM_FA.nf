@@ -1,5 +1,5 @@
 process KRAKEN2_CUSTOM_FA {
-    label 'kracken2_PlusPF'
+    label 'k2_custom_search'
 	container 'ebird013/kraken2:latest'
 
     input:

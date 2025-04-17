@@ -1,5 +1,5 @@
 process KRAKEN2_DB_CUSTOM {
-    label 'kracken2'
+    label 'k2_custom_db'
     container 'ebird013/kraken2:latest'
 
     input:
