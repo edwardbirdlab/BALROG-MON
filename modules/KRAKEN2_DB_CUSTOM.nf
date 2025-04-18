@@ -5,7 +5,7 @@ process KRAKEN2_DB_CUSTOM {
     input:
         val(dbs)
     output:
-        path "${db_dir}", emit: db
+        path("$custom_kraken2_db"), emit: db
 
     script:
     def download_cmds = dbs.split(/\s+/).collect { db -> "kraken2-build --download-library ${db} --db custom_kraken2_db" }.join('\n')
